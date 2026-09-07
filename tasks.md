@@ -3,25 +3,30 @@
 ## PHASE 1 (Core Showcase & MVP)
 
 ### Project Setup
+
 - [x] Audit existing App Router structure and local conventions
 - [x] Add required interaction and animation dependencies
 - [x] Define production-ready page metadata and typography
 
 ### Auth Utility
+
 - [x] Add centralized session and role validation utility
 - [x] Define typed authorization results for public and protected actions
 
 ### Data Access Layer
+
 - [x] Define creator, campaign, brand, and booking domain types
 - [x] Add curated showcase data provider
 - [x] Add authorized creator filtering and campaign brief data access
 
 ### Server Actions
+
 - [x] Add secured booking submission action
 - [x] Add secured creator application submission action
 - [x] Add typed success, field-error, and unauthorized response states
 
 ### UI Components
+
 - [x] Build agency navigation and hero showcase
 - [x] Build creator roster with niche/platform/reach filtering
 - [x] Build production pipeline and reel preview
@@ -30,18 +35,28 @@
 - [x] Build footer and final contact CTA
 
 ### Animations
+
 - [x] Add scroll reveals and staggered creator-card entrances
 - [x] Add ticker, hover, counter, and modal transitions
 - [x] Respect reduced-motion preferences
 
 ### Responsive Design
+
 - [x] Verify mobile touch layouts and modal behavior
 - [x] Verify tablet grid and navigation behavior
 - [x] Verify desktop composition, spacing, and overflow
 
 ### Validation
+
 - [x] Run lint and production build
 - [ ] Verify core interactions in a browser
+
+### Phase 1.5 (Services, Tiers & Offers)
+
+- [x] Implement 3-Tier Service Pricing & Offers UI Section.
+- [x] Add Sticky Promotional Top Banner with Neon Glow.
+- [x] Build Interactive Discount & Tier Savings Calculator.
+- [x] Update Booking Modal & Server Action to handle `selectedTier` and `discountCode`.
 
 ## PHASE 2 (Future Scope - On Hold)
 

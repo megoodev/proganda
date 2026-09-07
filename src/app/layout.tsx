@@ -22,7 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "ProGanda | Make noise. Move culture.",
-  description: "A full-service creator agency and production house for brands that want to move culture.",
+  description:
+    "A full-service creator agency and production house for brands that want to move culture.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

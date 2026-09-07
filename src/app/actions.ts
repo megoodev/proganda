@@ -1,6 +1,7 @@
 "use server";
 
 import { validateSession } from "@/lib/auth";
+import { serviceTiers, type ServiceTierId } from "@/lib/data";
 
 export type ActionState = {
   status: "idle" | "success" | "error" | "unauthorized";
@@ -8,7 +9,14 @@ export type ActionState = {
   fields?: Record<string, string>;
 };
 
-type BookingInput = { name: string; email: string; company: string; brief: string };
+type BookingInput = {
+  name: string;
+  email: string;
+  company: string;
+  brief: string;
+  selectedTier: ServiceTierId;
+  appliedDiscountCode?: string;
+};
 type CreatorInput = { name: string; email: string; handle: string; niche: string };
 
 function validateContactFields(input: Record<string, string>) {
@@ -24,6 +32,12 @@ export async function submitBooking(_state: ActionState, input: BookingInput): P
   const fields = validateContactFields(input);
   if (!input.company.trim()) fields.company = "Add your company";
   if (!input.brief.trim()) fields.brief = "Tell us what you want to make";
+  if (!serviceTiers.some((tier) => tier.id === input.selectedTier)) {
+    fields.selectedTier = "Choose a service tier";
+  }
+  if (input.appliedDiscountCode && !["LAUNCH10", "BETA15", "PAIR3"].includes(input.appliedDiscountCode.trim().toUpperCase())) {
+    fields.appliedDiscountCode = "That offer code is not active";
+  }
   if (Object.keys(fields).length) return { status: "error", fields, message: "Check the highlighted fields." };
   return { status: "success", message: "Brief received. Our production team will be in touch within one business day." };
 }
