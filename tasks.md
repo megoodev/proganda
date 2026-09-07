@@ -49,7 +49,7 @@
 ### Validation
 
 - [x] Run lint and production build
-- [ ] Verify core interactions in a browser
+- [x] Verify core interactions in a browser
 
 ### Phase 1.5 (Services, Tiers & Offers)
 
@@ -57,6 +57,18 @@
 - [x] Add Sticky Promotional Top Banner with Neon Glow.
 - [x] Build Interactive Discount & Tier Savings Calculator.
 - [x] Update Booking Modal & Server Action to handle `selectedTier` and `discountCode`.
+
+## PHASE 1.75 (Multi-Page Architecture, AR/EN & Subscriptions)
+
+- [x] Install all required dependencies at once (`next-intl`, `framer-motion`, `lucide-react`, etc.).
+- [x] Configure `next-intl` for Internationalization (AR/EN) with RTL/LTR support.
+- [x] Refactor Navigation Bar & Footer for Multi-Page Routing & Language Switcher.
+- [x] Build New Home Page (`/`) with Creator Carousel & Brand Grid (AR/EN).
+- [x] Build Dedicated About Us Page (`/about`) (AR/EN).
+- [x] Build Dedicated Creators Roster Page (`/creators`) & Dynamic Profiles (`/creators/[slug]`) (AR/EN).
+- [x] Build Dedicated Services & Offers Page (`/services`) (AR/EN).
+- [x] Build Separate Multi-Role Auth & Registration Portal (`/auth/register` & `/auth/login`) (AR/EN).
+- [x] Build Dynamic Subscriptions & Plans Page (`/subscriptions`) (AR/EN).
 
 ## PHASE 2 (Future Scope - On Hold)
 

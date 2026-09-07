@@ -1,5 +1,5 @@
-import { Showcase } from "@/components/showcase";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <Showcase />;
+  redirect("/en");
 }

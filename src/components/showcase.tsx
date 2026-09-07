@@ -280,7 +280,11 @@ function BookingModal({
                     <option value="tier_2">Full Management</option>
                     <option value="tier_3">One-Tail Pilot</option>
                   </select>
-                  {state.fields?.selectedTier && <span className="text-[#ff007f] normal-case tracking-normal">{state.fields.selectedTier}</span>}
+                  {state.fields?.selectedTier && (
+                    <span className="text-[#ff007f] normal-case tracking-normal">
+                      {state.fields.selectedTier}
+                    </span>
+                  )}
                 </label>
                 <label className="grid gap-2 text-xs uppercase tracking-widest text-white/45">
                   company
@@ -300,16 +304,25 @@ function BookingModal({
                     placeholder="Campaign, launch, social series..."
                   />
                 </label>
-                  <label className="grid gap-2 text-xs uppercase tracking-widest text-white/45">
-                    offer code <span className="text-white/25 normal-case tracking-normal">optional</span>
-                    <input
-                      value={form.appliedDiscountCode}
-                      onChange={(e) => change("appliedDiscountCode", e.target.value)}
-                      className="field"
-                      placeholder="LAUNCH10"
-                    />
-                    {state.fields?.appliedDiscountCode && <span className="text-[#ff007f] normal-case tracking-normal">{state.fields.appliedDiscountCode}</span>}
-                  </label>
+                <label className="grid gap-2 text-xs uppercase tracking-widest text-white/45">
+                  offer code{" "}
+                  <span className="text-white/25 normal-case tracking-normal">
+                    optional
+                  </span>
+                  <input
+                    value={form.appliedDiscountCode}
+                    onChange={(e) =>
+                      change("appliedDiscountCode", e.target.value)
+                    }
+                    className="field"
+                    placeholder="LAUNCH10"
+                  />
+                  {state.fields?.appliedDiscountCode && (
+                    <span className="text-[#ff007f] normal-case tracking-normal">
+                      {state.fields.appliedDiscountCode}
+                    </span>
+                  )}
+                </label>
               </>
             ) : (
               <>
@@ -361,7 +374,10 @@ export function Showcase() {
   const [niche, setNiche] = useState<string>("All");
   const [platform, setPlatform] = useState<string>("All");
   const [query, setQuery] = useState("");
-  const [modal, setModal] = useState<{ creator?: Creator; selectedTier?: ServiceTierId } | null>(null);
+  const [modal, setModal] = useState<{
+    creator?: Creator;
+    selectedTier?: ServiceTierId;
+  } | null>(null);
   const [offerVisible, setOfferVisible] = useState(true);
   const visibleCreators = filterCreators({ niche, platform, query });
   return (
@@ -369,19 +385,32 @@ export function Showcase() {
       {offerVisible && (
         <div className="fixed inset-x-0 top-0 z-50 border-b border-[#ccff00]/50 bg-[#111a0b]/95 px-5 py-2 text-[#ccff00] shadow-[0_0_28px_rgba(204,255,0,.18)] backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 text-[10px] font-black uppercase tracking-[0.18em] sm:text-xs">
-            <span><span className="mr-2 inline-block size-1.5 animate-pulse rounded-full bg-[#ccff00]" />Launch Beta: First 10 Brands Get Free Studio Production Upgrades!</span>
-            <button onClick={() => setOfferVisible(false)} aria-label="Dismiss launch offer" className="shrink-0 text-lg leading-none text-white/60 hover:text-white">×</button>
+            <span>
+              <span className="mr-2 inline-block size-1.5 animate-pulse rounded-full bg-[#ccff00]" />
+              Launch Beta: First 10 Brands Get Free Studio Production Upgrades!
+            </span>
+            <button
+              onClick={() => setOfferVisible(false)}
+              aria-label="Dismiss launch offer"
+              className="shrink-0 text-lg leading-none text-white/60 hover:text-white"
+            >
+              ×
+            </button>
           </div>
         </div>
       )}
-      <header className={`fixed left-0 right-0 z-40 border-b border-white/10 bg-[#0d0d0d]/85 backdrop-blur-xl ${offerVisible ? "top-9" : "top-0"}`}>
+      <header
+        className={`fixed left-0 right-0 z-40 border-b border-white/10 bg-[#0d0d0d]/85 backdrop-blur-xl ${offerVisible ? "top-9" : "top-0"}`}
+      >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
           <a href="#top" className="text-lg font-black tracking-[-0.08em]">
             PRO<span className="text-[#ccff00]">GANDA</span>
             <span className="ml-1 text-[#ff007f]">.</span>
           </a>
           <div className="hidden items-center gap-8 text-xs font-bold uppercase tracking-widest text-white/55 md:flex">
-            <a href="#services" className="hover:text-white">Services</a>
+            <a href="#services" className="hover:text-white">
+              Services
+            </a>
             <a href="#creators" className="hover:text-white">
               Creators
             </a>
@@ -455,7 +484,9 @@ export function Showcase() {
           <span>100% in-house production</span>
         </div>
       </div>
-      <ServiceTiers onSelectTier={(selectedTier) => setModal({ selectedTier })} />
+      <ServiceTiers
+        onSelectTier={(selectedTier) => setModal({ selectedTier })}
+      />
       <section id="creators" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div>
