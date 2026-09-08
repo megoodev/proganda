@@ -1,0 +1,42 @@
+      <section className="mx-auto max-w-7xl px-5 pb-24 pt-24 lg:px-8">
+        <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+          {t("eyebrow")}
+        </p>
+        <h1 className="max-w-5xl text-6xl font-black leading-[.9] tracking-[-0.07em] sm:text-8xl">
+          {t("title")}
+        </h1>
+        <p className="mt-8 max-w-2xl text-xl leading-relaxed text-white/55">
+          {t("description")}
+        </p>
+      </section>
+
+
+
+
+            <section className="order-1 border-b-8 border-[#ff007f] bg-[#ccff00] px-5 py-16 text-black lg:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+          <div>
+            <div className="mb-10 flex items-center gap-3 text-xs font-black uppercase tracking-[0.25em]">
+              <span className="size-2 bg-[#8a2be2]" />
+              <span>{t("eyebrow")}</span>
+            </div>
+            <h1 className="max-w-5xl text-6xl font-black uppercase leading-[.82] tracking-[-0.08em] sm:text-8xl lg:text-9xl">
+              {t("title")}
+            </h1>
+          </div>
+          <div className="bg-[#0d0d0d] p-6 text-white sm:p-8">
+            <div className="flex items-center justify-between border-b border-white/15 pb-5">
+              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ccff00]">
+                01 / THE BRIEF
+              </span>
+              <ArrowUpRight className="size-5 text-[#ff007f]" />
+            </div>
+            <p className="mt-8 text-lg leading-relaxed text-white/65">
+              {t("description")}
+            </p>
+            <p className="mt-8 border-t border-white/15 pt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#ccff00]">
+              {t("capabilityMeta")}
+            </p>
+          </div>
+        </div>
+      </section>

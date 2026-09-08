@@ -1,7 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowDownRight, ArrowRight, Play, Sparkles } from "lucide-react";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  Check,
+  Sparkles,
+  WandSparkles,
+} from "lucide-react";
 import { brandNames, creators, serviceTiers } from "@/lib/data";
+import { HomeCreatorCarousel } from "@/components/home-creator-carousel";
 
 export async function HomePage({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "home" });
@@ -9,8 +16,8 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
 
   return (
     <main className="overflow-hidden">
-      <section className="relative mx-auto flex min-h-[680px] max-w-7xl items-end px-5 pb-20 pt-24 lg:px-8">
-        <div className="pointer-events-none absolute -right-40 top-16 size-[620px] rounded-full bg-[#8a2be2]/20 blur-[130px]" />
+      <section className="relative mx-auto flex min-h-170 max-w-7xl items-end px-5 pb-20 pt-24 lg:px-8">
+        <div className="pointer-events-none absolute -right-40 top-16 size-155 rounded-full bg-[#8a2be2]/20 blur-[130px]" />
         <div className="relative max-w-5xl">
           <p className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.28em] text-[#ccff00]">
             <Sparkles className="size-4" /> {t("eyebrow")}
@@ -63,38 +70,9 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
             {common("explore")} <ArrowRight className="inline size-4" />
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {creators.map((creator) => (
-            <Link
-              href={`/creators/${creator.id}`}
-              key={creator.id}
-              className="group relative overflow-hidden border border-white/10 bg-[#171717]"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={creator.image}
-                  alt={creator.name}
-                  className="size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <span
-                    className="text-[10px] font-bold uppercase tracking-widest"
-                    style={{ color: creator.accent }}
-                  >
-                    {creator.niche}
-                  </span>
-                  <h3 className="mt-2 text-2xl font-black">{creator.name}</h3>
-                  <p className="text-sm text-white/55">
-                    {creator.reach} {t("views")}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <HomeCreatorCarousel creators={creators} viewsLabel={t("views")} />
       </section>
-      <section className="border-y border-white/10 bg-[#151515] px-5 py-24 lg:px-8">
+      <section className="workflow-section border-y border-white/10 bg-[#151515] px-5 py-24 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
@@ -108,26 +86,59 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
             </p>
             <Link
               href="/about"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#ccff00]"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#ccff00] transition hover:text-white"
             >
               {t("aboutCta")} <ArrowRight className="size-4" />
             </Link>
           </div>
-          <div className="relative flex min-h-[330px] items-end overflow-hidden bg-[url('https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1400&q=85&auto=format&fit=crop')] bg-cover bg-center p-7">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
-            <div className="relative">
-              <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#ccff00]">
+          <div className="workflow-board relative overflow-hidden border border-white/10 bg-[#171717] p-5 sm:p-8">
+            <div className="workflow-grid absolute inset-0 opacity-30" />
+            <div className="relative flex items-center justify-between border-b border-white/15 pb-5">
+              <div className="flex items-center gap-3">
+                <span className="flex size-10 items-center justify-center bg-[#ccff00] text-black">
+                  <WandSparkles className="size-5" />
+                </span>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ccff00]">
+                    live pipeline
+                  </p>
+                  <p className="text-sm font-bold text-white">{t("reel")}</p>
+                </div>
+              </div>
+              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/60">
                 <span className="size-2 animate-pulse rounded-full bg-[#ff007f]" />{" "}
                 studio / live
               </span>
-              <h3 className="mt-3 text-3xl font-black">{t("reel")}</h3>
             </div>
-            <button
-              aria-label={t("reel")}
-              className="absolute right-7 top-7 flex size-14 items-center justify-center rounded-full bg-[#ccff00] text-black"
-            >
-              <Play className="ml-1 fill-current" />
-            </button>
+            <div className="workflow-track relative mt-8">
+              <div className="workflow-line absolute left-5 right-5 top-5 h-px bg-[#ccff00]/30" />
+              <div className="relative grid grid-cols-5 gap-2">
+                {[
+                  ["01", "Spark"],
+                  ["02", "Match"],
+                  ["03", "Shoot"],
+                  ["04", "Edit"],
+                  ["05", "Launch"],
+                ].map(([number, label], index) => (
+                  <div
+                    className="workflow-step text-center"
+                    style={{ animationDelay: `${index * 140}ms` }}
+                    key={number}
+                  >
+                    <span className="mx-auto flex size-10 items-center justify-center border border-[#ccff00] bg-[#171717] text-xs font-black text-[#ccff00]">
+                      {index === 4 ? <Check className="size-4" /> : number}
+                    </span>
+                    <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-white/65">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative mt-10 flex items-center justify-between border-t border-white/15 pt-5 text-xs text-white/45">
+              <span>one sharp team</span>
+              <span className="text-[#ccff00]">100% in-house production</span>
+            </div>
           </div>
         </div>
       </section>
@@ -158,10 +169,18 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
         </div>
       </section>
       <section className="border-t border-white/10 px-5 py-8 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-x-10 gap-y-4 text-2xl font-black tracking-tight text-white/25 sm:text-4xl">
-          {brandNames.map((brand) => (
-            <span key={brand}>{brand}</span>
-          ))}
+        <div className="mx-auto flex max-w-7xl items-end justify-between gap-6">
+          <div className="flex flex-wrap gap-x-10 gap-y-4 text-2xl font-black tracking-tight text-white/25 sm:text-4xl">
+            {brandNames.map((brand) => (
+              <span key={brand}>{brand}</span>
+            ))}
+          </div>
+          <Link
+            href="/brands"
+            className="shrink-0 text-sm font-bold text-[#ccff00]"
+          >
+            {common("brands")} <ArrowRight className="inline size-4" />
+          </Link>
         </div>
       </section>
     </main>

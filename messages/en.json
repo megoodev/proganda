@@ -6,6 +6,7 @@
     "home": "Home",
     "about": "About",
     "creators": "Creators",
+    "brands": "Brands",
     "services": "Services",
     "subscriptions": "Subscriptions",
     "login": "Log in",
@@ -34,16 +35,65 @@
   },
   "about": {
     "eyebrow": "The studio behind the signal",
-    "title": "A sharper bridge between brands and culture.",
-    "description": "ProGanda was built for the space between a brand brief and the thing people cannot scroll past.",
-    "studio": "Inside the studio",
-    "studioDescription": "A small, restless production team with the cameras, light, edit suites, and taste to make an idea land.",
+    "title": "One operating studio for brands ready to move.",
+    "description": "ProGanda connects brand strategy, social operations, creator partnerships, production, design, and Notion systems into one team that keeps the work moving.",
+    "studio": "Inside the operating studio",
+    "studioDescription": "We turn a business goal into the strategy, content engine, production system, and partnerships that make it visible and repeatable.",
+    "capabilityMeta": "Six systems / one operating team",
+    "capabilities": [
+      "Brand strategy + visual identity",
+      "Seven-channel social management",
+      "Scripts + campaign concepts",
+      "Commercial video + product shoots",
+      "Post-production + graphic design",
+      "Notion systems + team operations"
+    ],
     "metrics": "The numbers behind the noise",
     "campaigns": "Campaigns shipped",
     "impressions": "Impressions reached",
     "engagement": "Average engagement",
     "roi": "Average campaign ROI",
     "timeline": "The workflow",
+    "timelineLive": "Campaign system / live",
+    "timelineDescription": "One connected team from business goal to public launch.",
+    "timelineStatus": "in motion",
+    "teamEyebrow": "The crew / 04 on signal",
+    "teamTitle": "The people behind the signal.",
+    "teamDescription": "Strategists, makers, and operators working as one sharp studio team.",
+    "teamMembers": [
+      {
+        "name": "Nadia Rahman",
+        "role": "Creative Director",
+        "specialty": "Culture-led campaigns",
+        "handle": "@nadiaframes",
+        "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=85&auto=format&fit=crop",
+        "accent": "#ccff00"
+      },
+      {
+        "name": "Marcus Vale",
+        "role": "Head of Production",
+        "specialty": "Studio + product film",
+        "handle": "@marcusmakes",
+        "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=85&auto=format&fit=crop",
+        "accent": "#ff007f"
+      },
+      {
+        "name": "Sana Okafor",
+        "role": "Lead Strategist",
+        "specialty": "Audience + narrative",
+        "handle": "@sana.signal",
+        "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&q=85&auto=format&fit=crop",
+        "accent": "#8a2be2"
+      },
+      {
+        "name": "Eli Torres",
+        "role": "Notion Architect",
+        "specialty": "Systems that move",
+        "handle": "@eli.works",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&q=85&auto=format&fit=crop",
+        "accent": "#00e5ff"
+      }
+    ],
     "timelineItems": [
       "Concept",
       "Creator match",
@@ -103,7 +153,47 @@
           "Tier 2 upgrade credit"
         ]
       }
-    }
+    },
+    "brandsTab": "For brands",
+    "creatorsTab": "For creators",
+    "scopeTitle": "Build your custom scope",
+    "scopeDescription": "No fixed one-size-fits-all packages. Pricing is shaped by your goal, scope, and budget.",
+    "consultation": "Book a free consultation",
+    "brandServices": [
+      "Operational & administrative management",
+      "Social media management across Instagram, Facebook, TikTok, YouTube, Google, Snapchat, and Threads",
+      "Scriptwriting & marketing strategy",
+      "Commercial video & product shoots",
+      "Post-production & graphic design",
+      "Custom Notion systems",
+      "Creator & influencer collaborations",
+      "B2B brand partnerships",
+      "Brand strategy & visual identity development"
+    ],
+    "creatorServices": [
+      "Talent management & business administration",
+      "Multi-platform account management",
+      "Personal content scriptwriting & strategy",
+      "Video shoot & production support",
+      "Editing & personal brand design",
+      "Creator Notion workspace",
+      "Cross-creator collaborations",
+      "Brand sponsorships & monetization",
+      "Income diversification & investment advisory"
+    ]
+  },
+  "brands": {
+    "eyebrow": "Campaigns that moved culture",
+    "title": "Proof, not promises.",
+    "description": "A working portfolio of launches, partnerships, and culture-shifting campaigns built in-house.",
+    "all": "All industries",
+    "caseStudy": "Case study",
+    "campaign": "Campaign",
+    "servicesUsed": "Services used",
+    "views": "Views",
+    "roi": "ROI",
+    "back": "Back to brands",
+    "cta": "Start a brand brief"
   },
   "auth": {
     "eyebrow": "The ProGanda portal",

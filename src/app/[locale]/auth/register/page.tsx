@@ -15,7 +15,7 @@ export default async function RegisterPage({
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
         {t("eyebrow")}
       </p>
-      <h1 className="mb-12 max-w-3xl text-6xl font-black leading-[.9] tracking-[-0.07em] sm:text-8xl">
+      <h1 className="mb-12 max-w-3xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em]">
         {t("title")}
       </h1>
       <RegisterPortal

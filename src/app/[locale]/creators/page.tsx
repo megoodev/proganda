@@ -11,7 +11,7 @@ export default async function CreatorsPage({
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#ff007f]">
         {t("eyebrow")}
       </p>
-      <h1 className="max-w-3xl text-6xl font-black leading-[.9] tracking-[-0.07em] sm:text-8xl">
+      <h1 className="max-w-3xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em]">
         {t("title")}
       </h1>
       <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/50">

@@ -26,12 +26,14 @@ export default async function ServicesPage({
       features: string[];
     },
   };
+  const brandServiceCopy = t.raw("brandServices") as string[];
+  const creatorServiceCopy = t.raw("creatorServices") as string[];
   return (
     <main className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
         {t("eyebrow")}
       </p>
-      <h1 className="max-w-4xl text-6xl font-black leading-[.9] tracking-[-0.07em] sm:text-8xl">
+      <h1 className="max-w-4xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em]">
         {t("title")}
       </h1>
       <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/50">
@@ -46,8 +48,15 @@ export default async function ServicesPage({
             creators: t("creators"),
             estimate: t("estimate"),
             build: t("build"),
+            brandsTab: t("brandsTab"),
+            creatorsTab: t("creatorsTab"),
+            scopeTitle: t("scopeTitle"),
+            scopeDescription: t("scopeDescription"),
+            consultation: t("consultation"),
           }}
           tierCopy={tierCopy}
+          brandServiceCopy={brandServiceCopy}
+          creatorServiceCopy={creatorServiceCopy}
         />
       </div>
     </main>

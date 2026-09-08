@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
-import { serviceTiers } from "@/lib/data";
+import { brandServices, creatorServices, serviceTiers } from "@/lib/data";
 
 type Labels = {
   select: string;
@@ -11,26 +11,81 @@ type Labels = {
   creators: string;
   estimate: string;
   build: string;
+  brandsTab: string;
+  creatorsTab: string;
+  scopeTitle: string;
+  scopeDescription: string;
+  consultation: string;
 };
 
 export function ServicePlans({
   labels,
   tierCopy,
+  brandServiceCopy,
+  creatorServiceCopy,
 }: {
   labels: Labels;
   tierCopy: Record<
     string,
     { name: string; scope: string; offer: string; features: string[] }
   >;
+  brandServiceCopy: string[];
+  creatorServiceCopy: string[];
 }) {
   const [active, setActive] = useState("tier_2");
   const [count, setCount] = useState(3);
+  const [audience, setAudience] = useState<"brand" | "creator">("brand");
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const tier =
     serviceTiers.find((item) => item.id === active) ?? serviceTiers[1];
   const copy = tierCopy[active];
   const savings = Math.round(count * 420 * tier.savingsRate);
+  const serviceCopy =
+    audience === "brand" ? brandServiceCopy : creatorServiceCopy;
+  const serviceKeys = audience === "brand" ? brandServices : creatorServices;
+
+  function toggleService(service: string) {
+    setSelectedServices((current) =>
+      current.includes(service)
+        ? current.filter((item) => item !== service)
+        : [...current, service],
+    );
+  }
+
   return (
     <>
+      <section className="mb-16 border-y border-white/10 py-5">
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setAudience("brand")}
+            className={`px-5 py-3 text-sm font-bold ${audience === "brand" ? "bg-[#ccff00] text-black" : "border border-white/15 text-white/55"}`}
+          >
+            {labels.brandsTab}
+          </button>
+          <button
+            onClick={() => setAudience("creator")}
+            className={`px-5 py-3 text-sm font-bold ${audience === "creator" ? "bg-[#ff007f] text-white" : "border border-white/15 text-white/55"}`}
+          >
+            {labels.creatorsTab}
+          </button>
+        </div>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceCopy.map((service, index) => (
+            <button
+              key={serviceKeys[index]}
+              onClick={() => toggleService(service)}
+              className={`flex min-h-20 items-start gap-3 border p-4 text-start text-sm transition ${selectedServices.includes(service) ? "border-[#ccff00] bg-[#ccff00]/10 text-white" : "border-white/10 text-white/55 hover:border-white/35"}`}
+            >
+              <span
+                className={`mt-0.5 flex size-4 shrink-0 items-center justify-center border text-[10px] ${selectedServices.includes(service) ? "border-[#ccff00] bg-[#ccff00] text-black" : "border-white/25"}`}
+              >
+                {selectedServices.includes(service) ? "✓" : ""}
+              </span>
+              {service}
+            </button>
+          ))}
+        </div>
+      </section>
       <div className="grid gap-4 lg:grid-cols-3">
         {serviceTiers.map((item) => {
           const itemCopy = tierCopy[item.id];
@@ -38,7 +93,7 @@ export function ServicePlans({
           return (
             <article
               key={item.id}
-              className={`relative flex flex-col border bg-white/[.04] p-6 transition sm:p-7 ${selected ? "-translate-y-1" : "border-white/10 hover:border-white/30"}`}
+              className={`relative flex flex-col border bg-white/4 p-6 transition sm:p-7 ${selected ? "-translate-y-1" : "border-white/10 hover:border-white/30"}`}
               style={
                 selected
                   ? {
@@ -90,6 +145,12 @@ export function ServicePlans({
             {labels.calculator}
           </p>
           <h2 className="mt-3 text-3xl font-black">{copy.name}</h2>
+          <p className="mt-3 text-sm leading-relaxed text-white/50">
+            {labels.scopeDescription}
+          </p>
+          <p className="mt-5 text-xs font-bold uppercase tracking-widest text-[#ccff00]">
+            {labels.scopeTitle}: {selectedServices.length}
+          </p>
           <label className="mt-8 block max-w-lg text-xs font-bold uppercase tracking-widest text-white/55">
             {labels.creators}{" "}
             <span className="float-end text-[#ccff00]">{count}</span>
@@ -114,7 +175,7 @@ export function ServicePlans({
             onClick={() => setActive(active)}
             className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#ccff00]"
           >
-            {labels.build}
+            {selectedServices.length > 0 ? labels.consultation : labels.build}
             <ArrowRight className="size-4" />
           </button>
         </div>

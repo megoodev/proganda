@@ -35,6 +35,42 @@ export type CaseStudy = {
   color: string;
 };
 
+export type Brand = {
+  slug: string;
+  name: string;
+  industry: string;
+  campaign: string;
+  description: string;
+  services: string[];
+  views: string;
+  roi: string;
+  color: string;
+};
+
+export const brandServices = [
+  "Operational & administrative management",
+  "Social media management across 7 channels",
+  "Scriptwriting & marketing strategy",
+  "Commercial video & product shoots",
+  "Post-production & graphic design",
+  "Custom Notion systems",
+  "Creator & influencer collaborations",
+  "B2B brand partnerships",
+  "Brand strategy & visual identity",
+];
+
+export const creatorServices = [
+  "Talent management & business administration",
+  "Multi-platform account management",
+  "Personal content scriptwriting & strategy",
+  "Video shoot & production support",
+  "Editing & personal brand design",
+  "Creator Notion workspace",
+  "Cross-creator collaborations",
+  "Brand sponsorships & monetization",
+  "Income diversification & investment advisory",
+];
+
 export const serviceTiers: ServiceTier[] = [
   {
     id: "tier_1",
@@ -134,6 +170,45 @@ export const creators: Creator[] = [
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=900&q=85&auto=format&fit=crop",
     accent: "#00e5ff",
   },
+  {
+    id: "zuri",
+    name: "Zuri Cole",
+    handle: "@zuriunfiltered",
+    niche: "Lifestyle",
+    platforms: ["Instagram", "TikTok"],
+    reach: "1.9M",
+    engagement: "12.6%",
+    location: "Toronto",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=900&q=85&auto=format&fit=crop",
+    accent: "#ff8a00",
+  },
+  {
+    id: "devon",
+    name: "Devon Lee",
+    handle: "@devonbuilds",
+    niche: "Tech",
+    platforms: ["YouTube", "Instagram"],
+    reach: "760K",
+    engagement: "10.8%",
+    location: "Seoul / SF",
+    image:
+      "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=900&q=85&auto=format&fit=crop",
+    accent: "#00e5ff",
+  },
+  {
+    id: "amara",
+    name: "Amara Vale",
+    handle: "@amaravalestudio",
+    niche: "Fashion",
+    platforms: ["TikTok", "YouTube"],
+    reach: "2.1M",
+    engagement: "13.1%",
+    location: "London",
+    image:
+      "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?w=900&q=85&auto=format&fit=crop",
+    accent: "#ccff00",
+  },
 ];
 
 export const caseStudies: CaseStudy[] = [
@@ -157,6 +232,49 @@ export const caseStudies: CaseStudy[] = [
     brand: "VANTA",
     category: "Culture campaign",
     creator: "Rio Santos + 8 creators",
+    views: "26.1M",
+    roi: "6.2x",
+    color: "#8a2be2",
+  },
+];
+
+export const brands: Brand[] = [
+  {
+    slug: "lumen",
+    name: "LUMEN",
+    industry: "Beauty & wellness",
+    campaign: "The glow-up drop",
+    description:
+      "A creator-first launch that made a new skincare ritual impossible to scroll past.",
+    services: [
+      "Creator collaborations",
+      "Studio production",
+      "Social distribution",
+    ],
+    views: "18.4M",
+    roi: "4.8x",
+    color: "#ccff00",
+  },
+  {
+    slug: "nova",
+    name: "NOVA",
+    industry: "Consumer technology",
+    campaign: "Product launch, remixed",
+    description:
+      "A sharp product story built around real use cases, quick cuts, and a creator audience that converts.",
+    services: ["Marketing strategy", "Product shoots", "Post-production"],
+    views: "9.7M",
+    roi: "3.6x",
+    color: "#ff007f",
+  },
+  {
+    slug: "vanta",
+    name: "VANTA",
+    industry: "Streetwear & culture",
+    campaign: "Own the night",
+    description:
+      "A culture campaign pairing a limited collection with the creators shaping the conversation around it.",
+    services: ["Brand strategy", "Talent management", "Campaign production"],
     views: "26.1M",
     roi: "6.2x",
     color: "#8a2be2",
