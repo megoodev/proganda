@@ -3,6 +3,8 @@
 import { useState, useTransition } from "react";
 import { ArrowRight, BriefcaseBusiness, Check, UserRound } from "lucide-react";
 import { registerUserAction, type RegistrationState } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function RegisterPortal({
   labels,
@@ -40,22 +42,26 @@ export function RegisterPortal({
   if (!role)
     return (
       <div className="grid gap-4 md:grid-cols-2">
-        <button
+        <Button
+          type="button"
+          size="lg"
           onClick={() => setRole("brand")}
-          className="group border border-[#ccff00]/40 bg-[#ccff00]/[.06] p-7 text-start transition hover:-translate-y-1 hover:bg-[#ccff00]/[.12]"
+          className="group justify-start border border-[#ccff00]/40 bg-[#ccff00]/6 p-7 text-start transition hover:-translate-y-1 hover:bg-[#ccff00]/12"
         >
           <BriefcaseBusiness className="size-7 text-[#ccff00]" />
           <h2 className="mt-16 text-2xl font-black">{labels.brandRole}</h2>
           <ArrowRight className="mt-8 size-5 text-[#ccff00] transition group-hover:translate-x-2" />
-        </button>
-        <button
+        </Button>
+        <Button
+          type="button"
+          size="lg"
           onClick={() => setRole("creator")}
-          className="group border border-[#8a2be2]/50 bg-[#8a2be2]/[.08] p-7 text-start transition hover:-translate-y-1 hover:bg-[#8a2be2]/[.14]"
+          className="group justify-start border border-[#8a2be2]/50 bg-[#8a2be2]/8 p-7 text-start transition hover:-translate-y-1 hover:bg-[#8a2be2]/14"
         >
           <UserRound className="size-7 text-[#ff007f]" />
           <h2 className="mt-16 text-2xl font-black">{labels.creatorRole}</h2>
           <ArrowRight className="mt-8 size-5 text-[#ff007f] transition group-hover:translate-x-2" />
-        </button>
+        </Button>
       </div>
     );
   if (state.status === "success")
@@ -94,21 +100,19 @@ export function RegisterPortal({
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-xs uppercase tracking-widest text-white/50">
           name
-          <input
+          <Input
             required
             value={form.name}
             onChange={(event) => change("name", event.target.value)}
-            className="field"
           />
         </label>
         <label className="grid gap-2 text-xs uppercase tracking-widest text-white/50">
           email
-          <input
+          <Input
             required
             type="email"
             value={form.email}
             onChange={(event) => change("email", event.target.value)}
-            className="field"
           />
         </label>
         {fields.map(([key, label]) => (
@@ -117,11 +121,10 @@ export function RegisterPortal({
             className="grid gap-2 text-xs uppercase tracking-widest text-white/50"
           >
             {label}
-            <input
+            <Input
               required
               value={form[key]}
               onChange={(event) => change(key, event.target.value)}
-              className="field"
             />
           </label>
         ))}
@@ -129,14 +132,15 @@ export function RegisterPortal({
       {state.message && (
         <p className="mt-5 text-sm text-[#ff007f]">{state.message}</p>
       )}
-      <button
+      <Button
         type="submit"
         disabled={pending}
-        className="mt-8 inline-flex items-center gap-3 bg-[#ccff00] px-5 py-3 text-sm font-bold text-black hover:bg-white"
+        size="lg"
+        className="mt-8 bg-[#ccff00] text-black hover:bg-white"
       >
         {pending ? "..." : labels.submit}
         <ArrowRight className="size-4" />
-      </button>
+      </Button>
     </form>
   );
 }

@@ -9,6 +9,7 @@
     "brands": "Brands",
     "services": "Services",
     "subscriptions": "Subscriptions",
+    "contact": "Contact",
     "login": "Log in",
     "register": "Get started",
     "explore": "Explore",
@@ -230,5 +231,35 @@
   "footer": {
     "contact": "hello@proganda.studio",
     "note": "Creative work for the attention economy / 2026"
+  },
+  "contactPage": {
+    "eyebrow": "Start a conversation",
+    "title": "Bring us the messy brief.",
+    "description": "Tell us what you are building, where attention is stuck, and what needs to move next. We will shape the right mix of strategy, social, creators, production, and systems around it.",
+    "formTitle": "Send the brief",
+    "name": "Your name",
+    "email": "Work email",
+    "company": "Brand or company",
+    "interest": "What do you need?",
+    "interestPlaceholder": "Choose a starting point",
+    "options": [
+      "Brand growth",
+      "Social media",
+      "Creator partnerships",
+      "Production + design",
+      "Notion systems",
+      "Creator management"
+    ],
+    "message": "Tell us about the goal",
+    "messagePlaceholder": "What are you trying to make, launch, or fix?",
+    "submit": "Send inquiry",
+    "sending": "Sending...",
+    "success": "Brief received. We will be in touch within one business day.",
+    "error": "Please complete the highlighted fields.",
+    "socialTitle": "Find us in the wild",
+    "emailLabel": "hello@proganda.studio",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube"
   }
 }

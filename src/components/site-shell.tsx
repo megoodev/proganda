@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { ArrowUpRight, Languages } from "lucide-react";
 import { MobileNavigation } from "@/components/mobile-navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
@@ -40,18 +41,13 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           >
             {t("subscriptions")}
           </Link>
+          <Link href="/contact" className="transition hover:text-[#ccff00]">
+            {t("contact")}
+          </Link>
         </div>
         <div className="flex shrink-0 items-center gap-1 sm:gap-3">
           <ThemeToggle />
-          <Link
-            href="/"
-            locale={alternate}
-            aria-label={t("language")}
-            className="inline-flex size-10 items-center justify-center gap-2 border border-white/15 px-0 text-xs font-bold text-white/70 transition hover:border-[#ccff00] hover:text-[#ccff00] sm:h-auto sm:w-auto sm:px-3 sm:py-2"
-          >
-            <Languages className="size-3.5" />
-            <span className="hidden sm:inline">{t("language")}</span>
-          </Link>
+          <LanguageSwitcher locale={locale} label={t("language")} />
           <MobileNavigation
             labels={{
               about: t("about"),
@@ -59,6 +55,7 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
               brands: t("brands"),
               services: t("services"),
               subscriptions: t("subscriptions"),
+              contact: t("contact"),
               register: t("register"),
               language: t("language"),
             }}

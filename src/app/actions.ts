@@ -12,6 +12,14 @@ export type ActionState = {
 
 export type RegistrationState = ActionState & { role?: "brand" | "creator" };
 
+const contactSchema = z.object({
+  name: z.string().trim().min(1),
+  email: z.string().email(),
+  company: z.string().trim().min(1),
+  interest: z.string().trim().min(1),
+  message: z.string().trim().min(10),
+});
+
 const registrationSchema = z.discriminatedUnion("role", [
   z.object({
     role: z.literal("brand"),
@@ -53,6 +61,35 @@ function validateContactFields(input: Record<string, string>) {
   if (!input.name.trim()) fields.name = "Add your name";
   if (!input.email.includes("@")) fields.email = "Use a valid email";
   return fields;
+}
+
+export async function submitContactAction(
+  _state: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const input = Object.fromEntries(formData.entries());
+  const result = contactSchema.safeParse(input);
+
+  if (!result.success) {
+    const fields: Record<string, string> = {};
+    for (const issue of result.error.issues) {
+      const field = issue.path[0];
+      if (typeof field === "string" && !fields[field]) {
+        fields[field] = "Complete this field";
+      }
+    }
+    return {
+      status: "error",
+      fields,
+      message: "Check the highlighted fields.",
+    };
+  }
+
+  return {
+    status: "success",
+    message:
+      "Your brief is in. The ProGanda team will reply within one business day.",
+  };
 }
 
 export async function submitBooking(

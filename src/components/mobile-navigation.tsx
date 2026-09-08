@@ -15,6 +15,7 @@ export function MobileNavigation({
     brands: string;
     services: string;
     subscriptions: string;
+    contact: string;
     register: string;
     language: string;
   };
@@ -83,6 +84,7 @@ export function MobileNavigation({
                   ["/brands", labels.brands],
                   ["/services", labels.services],
                   ["/subscriptions", labels.subscriptions],
+                  ["/contact", labels.contact],
                 ].map(([href, label], index) => (
                   <Link
                     key={href}
@@ -99,7 +101,7 @@ export function MobileNavigation({
               </nav>
               <div className="mt-auto flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
                 <Link
-                  href="/"
+                  href={pathname}
                   locale={alternateLocale}
                   onClick={close}
                   className="inline-flex items-center gap-2 text-sm font-bold text-white/55 hover:text-[#ccff00]"
