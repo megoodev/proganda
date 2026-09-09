@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+
 import {
   ArrowRight,
   BadgeCheck,

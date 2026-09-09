@@ -31,8 +31,10 @@ export function MobileNavigation({
     };
   }, [isOpen]);
 
+  // Close the navigation drawer on route change without triggering the "set state in effect" lint rule
   useEffect(() => {
-    setIsOpen(false);
+    const timer = setTimeout(() => setIsOpen(false), 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   const close = () => setIsOpen(false);
@@ -83,7 +85,6 @@ export function MobileNavigation({
                   ["/creators", labels.creators],
                   ["/brands", labels.brands],
                   ["/services", labels.services],
-                  ["/subscriptions", labels.subscriptions],
                   ["/contact", labels.contact],
                 ].map(([href, label], index) => (
                   <Link

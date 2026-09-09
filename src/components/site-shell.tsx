@@ -35,12 +35,6 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           <Link href="/services" className="transition hover:text-[#ccff00]">
             {t("services")}
           </Link>
-          <Link
-            href="/subscriptions"
-            className="transition hover:text-[#ccff00]"
-          >
-            {t("subscriptions")}
-          </Link>
           <Link href="/contact" className="transition hover:text-[#ccff00]">
             {t("contact")}
           </Link>

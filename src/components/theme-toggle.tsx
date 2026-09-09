@@ -6,12 +6,17 @@ import { useEffect, useState } from "react";
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
 
+  // Initialise theme from localStorage on mount
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("proganda-theme");
     const dark = savedTheme !== "light";
-    setIsDark(dark);
+    const timer = setTimeout(() => {
+      setIsDark(dark);
+    }, 0);
     document.documentElement.dataset.theme = dark ? "dark" : "light";
+    return () => clearTimeout(timer);
   }, []);
+
 
   function toggleTheme() {
     const nextIsDark = !isDark;

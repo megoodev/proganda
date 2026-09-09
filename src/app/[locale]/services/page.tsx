@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ServicePlans } from "@/components/service-plans";
+import FreeConsultBanner from "@/components/free-consult-banner";
 
 export default async function ServicesPage({
   params,
@@ -40,6 +41,7 @@ export default async function ServicesPage({
         {t("description")}
       </p>
       <div className="mt-14">
+        <FreeConsultBanner text={t('freeConsultation')} />
         <ServicePlans
           labels={{
             select: t("select"),
