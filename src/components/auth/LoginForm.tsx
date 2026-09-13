@@ -98,7 +98,7 @@ export function LoginForm({
                     {labels.email} *
                   </FieldLabel>
                   <InputGroup>
-                    <InputGroupAddon placement="start">
+                    <InputGroupAddon>
                       <Mail className="size-4 text-muted-foreground" />
                     </InputGroupAddon>
                     <InputGroupInput
@@ -118,7 +118,7 @@ export function LoginForm({
                     {labels.password} *
                   </FieldLabel>
                   <InputGroup>
-                    <InputGroupAddon placement="start">
+                    <InputGroupAddon>
                       <Lock className="size-4 text-muted-foreground" />
                     </InputGroupAddon>
                     <InputGroupInput
