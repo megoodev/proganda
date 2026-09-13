@@ -118,32 +118,7 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#8a2be2]">
-          {t("offersEyebrow")}
-        </p>
-        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <h2 className="text-5xl font-black tracking-[-0.06em] sm:text-7xl">
-            {t("offersTitle")}
-          </h2>
-          <Link href="/services" className="text-sm font-bold text-[#3AA7FD]">
-            {t("servicesCta")} <ArrowRight className="inline size-4" />
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {serviceTiers.map((tier) => (
-            <Link
-              href="/services"
-              key={tier.id}
-              className="border border-white/10 p-6 transition hover:border-[#3AA7FD]"
-            >
-              <p className="text-xs text-white/35">{tier.eyebrow}</p>
-              <h3 className="mt-8 text-2xl font-black">{tier.name}</h3>
-              <p className="mt-3 text-sm text-[#3AA7FD]">{tier.offer}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
+
       <section className="border-t border-white/10 bg-[#151515] px-5 py-20 lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
           <div>

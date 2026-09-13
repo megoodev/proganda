@@ -1,18 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter, Link } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import { Field, FieldLabel } from "@/components/ui/field";
 import {
   ArrowRight,
   LoaderCircle,
   Lock,
   Mail,
   AlertCircle,
+  UserCheck,
 } from "lucide-react";
-import { Link } from "@/i18n/navigation";
 
 export function LoginForm({
   labels,
@@ -60,80 +68,103 @@ export function LoginForm({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="grid gap-5 border border-white/10 bg-[#121212]/90 backdrop-blur-md p-6 sm:p-9 shadow-2xl relative overflow-hidden"
-    >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#3AA7FD]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#1B449A]/5 rounded-full blur-3xl pointer-events-none" />
+    <div className="grid gap-8">
+      <Card className="relative overflow-hidden border-border bg-card shadow-lg">
+        {/* Ambient background blur accents */}
+        <div className="absolute -top-10 -right-10 size-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 size-40 bg-destructive/10 rounded-full blur-3xl pointer-events-none" />
 
-      {error && (
-        <div className="flex items-center gap-3 p-3.5 border border-[#1B449A]/50 bg-[#1B449A]/10 text-xs text-[#1B449A] font-semibold">
-          <AlertCircle className="size-4 shrink-0" />
-          <span>{error}</span>
-        </div>
-      )}
+        <CardContent className="p-6 sm:p-9">
+          <form onSubmit={handleSubmit} className="grid gap-6">
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircle className="size-4 shrink-0" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-      <div className="grid gap-2">
-        <label className="text-xs font-bold uppercase tracking-[0.2em] text-white/50 flex items-center gap-1.5">
-          <Mail className="size-3 text-[#3AA7FD]" />
-          {labels.email}
-        </label>
-        <Input
-          type="email"
-          required
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="user@proganda.studio"
-          className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
-        />
-      </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <UserCheck className="size-3.5 text-primary" />
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                  Account Login
+                </h3>
+              </div>
+              <Separator className="my-4" />
 
-      <div className="grid gap-2">
-        <label className="text-xs font-bold uppercase tracking-[0.2em] text-white/50 flex items-center gap-1.5">
-          <Lock className="size-3 text-[#3AA7FD]" />
-          {labels.password}
-        </label>
-        <Input
-          type="password"
-          required
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
-        />
-      </div>
+              <div className="grid gap-4">
+                <Field>
+                  <FieldLabel htmlFor="login-email">
+                    {labels.email} *
+                  </FieldLabel>
+                  <InputGroup>
+                    <InputGroupAddon placement="start">
+                      <Mail className="size-4 text-muted-foreground" />
+                    </InputGroupAddon>
+                    <InputGroupInput
+                      id="login-email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="user@proganda.studio"
+                    />
+                  </InputGroup>
+                </Field>
 
-      <Button
-        type="submit"
-        disabled={loading}
-        className="mt-3 bg-[#3AA7FD] text-black font-black uppercase tracking-wider text-xs h-12 hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)]"
-      >
-        {loading ? (
-          <span className="flex items-center gap-2">
-            <LoaderCircle className="size-4 animate-spin" />
-            {labels.signingIn}
-          </span>
-        ) : (
-          <span className="flex items-center gap-2">
-            {labels.login}
-            <ArrowRight className="size-4" />
-          </span>
-        )}
-      </Button>
+                <Field>
+                  <FieldLabel htmlFor="login-password">
+                    {labels.password} *
+                  </FieldLabel>
+                  <InputGroup>
+                    <InputGroupAddon placement="start">
+                      <Lock className="size-4 text-muted-foreground" />
+                    </InputGroupAddon>
+                    <InputGroupInput
+                      id="login-password"
+                      type="password"
+                      required
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                    />
+                  </InputGroup>
+                </Field>
+              </div>
+            </div>
 
-      <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/50">
-        <span>{labels.dontHaveAccount}</span>
-        <Link
-          href="/auth/register"
-          className="font-bold text-[#3AA7FD] hover:underline uppercase tracking-wider flex items-center gap-1"
-        >
-          {labels.signUp}
-          <ArrowRight className="size-3" />
-        </Link>
-      </div>
-    </form>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="mt-2 h-12 w-full font-bold uppercase tracking-wider text-xs shadow-md transition-all"
+            >
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <LoaderCircle className="size-4 animate-spin" />
+                  {labels.signingIn}
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  {labels.login}
+                  <ArrowRight className="size-4" />
+                </span>
+              )}
+            </Button>
+
+            <div className="mt-2 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+              <span>{labels.dontHaveAccount}</span>
+              <Link
+                href="/auth/register"
+                className="font-bold text-primary hover:underline uppercase tracking-wider flex items-center gap-1 transition-colors"
+              >
+                {labels.signUp} →
+              </Link>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
