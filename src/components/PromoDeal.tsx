@@ -15,11 +15,11 @@ export const PromoDeal = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#3AA7FD]">
                 Limited Portal Offer
               </span>
-              <span className="bg-[#1B449A] px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-white">
+              <span className="bg-[#1B449A] px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-white!">
                 -20% OFF
               </span>
             </div>
-            <p className="mt-0.5 text-xs font-semibold text-white/90">
+            <p className="mt-0.5 text-xs font-semibold text-secondary-foreground">
               Sign up today and get{" "}
               <span className="text-[#3AA7FD] font-bold">20% off</span> your
               first studio shoot or creator campaign with code{" "}
