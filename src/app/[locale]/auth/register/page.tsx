@@ -21,7 +21,7 @@ export default async function RegisterPage({
       <PromoDeal />
 
       <div className="mb-10 text-center sm:text-start">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
           {t("eyebrow")}
         </p>
         <h1 className="max-w-3xl text-4xl sm:text-6xl font-black leading-[0.95] tracking-[-0.06em] text-white">

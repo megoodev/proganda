@@ -19,7 +19,7 @@ export default async function CreatorProfile({
     <main className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
       <Link
         href="/creators"
-        className="mb-12 inline-flex items-center gap-2 text-sm text-white/50 hover:text-[#ccff00]"
+        className="mb-12 inline-flex items-center gap-2 text-sm text-white/50 hover:text-[#3AA7FD]"
       >
         <ArrowLeft className="size-4" /> {t("profile")}
       </Link>
@@ -43,7 +43,7 @@ export default async function CreatorProfile({
           </div>
         </div>
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
             {creator.location} / roster profile
           </p>
           <h2 className="mt-5 max-w-2xl text-5xl font-black tracking-[-0.06em] sm:text-7xl">
@@ -57,7 +57,7 @@ export default async function CreatorProfile({
               ["Collabs", "24+"],
             ].map(([label, value]) => (
               <div key={label} className="bg-[#0d0d0d] p-4">
-                <p className="text-2xl font-black text-[#ccff00]">{value}</p>
+                <p className="text-2xl font-black text-[#3AA7FD]">{value}</p>
                 <p className="mt-2 text-[10px] uppercase tracking-widest text-white/35">
                   {label}
                 </p>
@@ -65,7 +65,7 @@ export default async function CreatorProfile({
             ))}
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <span className="inline-flex items-center gap-2 border border-[#ccff00]/40 px-3 py-2 text-xs text-[#ccff00]">
+            <span className="inline-flex items-center gap-2 border border-[#3AA7FD]/40 px-3 py-2 text-xs text-[#3AA7FD]">
               <BadgeCheck className="size-4" /> Usage rights ready
             </span>
             <span className="inline-flex items-center gap-2 border border-[#8a2be2]/50 px-3 py-2 text-xs text-white">
@@ -75,7 +75,7 @@ export default async function CreatorProfile({
         </div>
       </div>
       <section className="mt-20 border-t border-white/10 pt-10">
-        <p className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-[#ff007f]">
+        <p className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
           Sample reels
         </p>
         <div className="grid gap-4 sm:grid-cols-3">
@@ -87,7 +87,7 @@ export default async function CreatorProfile({
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=80&auto=format&fit=crop')] bg-cover bg-center opacity-60" />
               <div className="relative flex w-full items-center justify-between">
                 <span className="font-bold">{title}</span>
-                <span className="flex size-10 items-center justify-center rounded-full bg-[#ccff00] text-black">
+                <span className="flex size-10 items-center justify-center rounded-full bg-[#3AA7FD] text-black">
                   <Play className="ml-1 size-4 fill-current" />
                 </span>
               </div>

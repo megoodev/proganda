@@ -134,7 +134,7 @@
 
 @layer components {
   .field {
-    @apply h-11 w-full border border-white/15 bg-white/5 px-3 text-sm normal-case tracking-normal text-white outline-none transition placeholder:text-white/25 focus:border-[#ccff00];
+    @apply h-11 w-full border border-white/15 bg-white/5 px-3 text-sm normal-case tracking-normal text-white outline-none transition placeholder:text-white/25 focus:border-[#3AA7FD];
   }
 
   .theme-toggle {
@@ -153,9 +153,9 @@
 
   .theme-toggle:hover,
   .theme-toggle:focus-visible {
-    border-color: #ccff00;
+    border-color: #3aa7fd;
     background: rgb(204 255 0 / 10%);
-    color: #ccff00;
+    color: #3aa7fd;
     outline: none;
   }
 
@@ -165,16 +165,16 @@
 
   .workflow-grid {
     background-image:
-      linear-gradient(#ccff0012 1px, transparent 1px),
-      linear-gradient(90deg, #ccff0012 1px, transparent 1px);
+      linear-gradient(#3aa7fd12 1px, transparent 1px),
+      linear-gradient(90deg, #3aa7fd12 1px, transparent 1px);
     background-size: 28px 28px;
     mask-image: linear-gradient(to bottom, black, transparent);
   }
 
   .workflow-line::after {
     animation: workflow-scan 3.2s ease-in-out infinite;
-    background: #ccff00;
-    box-shadow: 0 0 14px #ccff00;
+    background: #3aa7fd;
+    box-shadow: 0 0 14px #3aa7fd;
     content: "";
     display: block;
     height: 2px;
@@ -205,9 +205,13 @@
     display: flex;
     width: max-content;
     gap: 1rem;
-    animation: creator-carousel-scroll 32s linear infinite;
   }
-
+  .ar-animation {
+    animation: creator-carousel-scroll-ar 32s linear infinite;
+  }
+  .en-animation {
+    animation: creator-carousel-scroll-en 32s linear infinite;
+  }
   .creator-carousel-viewport:hover .creator-carousel-track,
   .creator-carousel-viewport:focus-within .creator-carousel-track {
     animation-play-state: paused;
@@ -247,7 +251,7 @@
 
   .creator-carousel-arrow:hover,
   .creator-carousel-arrow:focus-visible {
-    color: #ccff00;
+    color: #3aa7fd;
     transform: translateY(-0.1rem);
     outline: none;
   }
@@ -264,7 +268,7 @@
   .creator-carousel-dots {
     position: relative;
     padding: 0.45rem 0.65rem;
-    border: 1px solid rgb(255 255 255 / 12%);
+    border: 1px solid #3aa8fda8;
     border-radius: 9999px;
     background: linear-gradient(
       135deg,
@@ -293,7 +297,7 @@
 
   .creator-carousel-dot:hover,
   .creator-carousel-dot:focus-visible {
-    border-color: #ccff00;
+    border-color: #3aa7fd;
     outline: none;
   }
 
@@ -315,7 +319,7 @@
     background: radial-gradient(
       circle at 30% 30%,
       #ffffff,
-      #ff007f 38%,
+      #1b449a 38%,
       #a80059
     );
     box-shadow:
@@ -373,26 +377,26 @@ html[data-theme="light"] .creator-carousel-arrow {
 
 html[data-theme="light"] .creator-carousel-arrow:hover,
 html[data-theme="light"] .creator-carousel-arrow:focus-visible {
-  color: #526800;
+  color: #1b449a;
 }
 
-html[data-theme="light"] .text-\[\#ccff00\],
-html[data-theme="light"] .hover\:text-\[\#ccff00\]:hover,
-html[data-theme="light"] .focus\:border-\[\#ccff00\]:focus {
-  color: #526800;
+html[data-theme="light"] .text-\[\#3AA7FD\],
+html[data-theme="light"] .hover\:text-\[\#3AA7FD\]:hover,
+html[data-theme="light"] .focus\:border-\[\#3AA7FD\]:focus {
+  color: #3aa7fd;
 }
 
-html[data-theme="light"] .bg-\[\#ccff00\] {
-  background-color: #d8ef63;
+html[data-theme="light"] .bg-\[\#3AA7FD\] {
+  background-color: #3aa7fd;
 }
 
-html[data-theme="light"] .border-\[\#ccff00\],
-html[data-theme="light"] .hover\:border-\[\#ccff00\]:hover {
-  border-color: #789400;
+html[data-theme="light"] .border-\[\#3AA7FD\],
+html[data-theme="light"] .hover\:border-\[\#3AA7FD\]:hover {
+  border-color: #3aa7fd;
 }
 
-html[data-theme="light"] .text-\[\#ff007f\],
-html[data-theme="light"] .hover\:text-\[\#ff007f\]:hover {
+html[data-theme="light"] .text-\[\#1B449A\],
+html[data-theme="light"] .hover\:text-\[\#1B449A\]:hover {
   color: #bd075f;
 }
 
@@ -428,9 +432,9 @@ html[data-theme="light"] .theme-toggle {
 
 html[data-theme="light"] .theme-toggle:hover,
 html[data-theme="light"] .theme-toggle:focus-visible {
-  border-color: #789400;
-  background: rgb(216 239 99 / 35%);
-  color: #526800;
+  border-color: #1b449a;
+  background: #3aa8fd3f;
+  color: #1b449a;
 }
 
 html[data-theme="light"] .creator-carousel-card,
@@ -493,6 +497,22 @@ html[data-theme="light"] .workflow-grid {
 }
 
 @keyframes creator-carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+@keyframes creator-carousel-scroll-ar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(50% - 0.5rem));
+  }
+}
+@keyframes creator-carousel-scroll-en {
   from {
     transform: translateX(0);
   }

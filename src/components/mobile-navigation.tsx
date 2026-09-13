@@ -46,7 +46,7 @@ export function MobileNavigation({
         aria-label="Open navigation"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
-        className="flex size-10 items-center justify-center border border-white/15 text-white/75 transition hover:border-[#ccff00] hover:text-[#ccff00]"
+        className="flex size-10 items-center justify-center border border-white/15 text-white/75 transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
       >
         <Menu className="size-4" />
       </button>
@@ -59,7 +59,7 @@ export function MobileNavigation({
             className="relative z-101 min-h-screen bg-[#0d0d0d] shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="absolute inset-0 opacity-20 bg-[linear-gradient(#ccff0012_1px,transparent_1px),linear-gradient(90deg,#ccff0012_1px,transparent_1px)] bg-size-[28px_28px]" />
+            <div className="absolute inset-0 opacity-20 bg-[linear-gradient(#3AA7FD12_1px,transparent_1px),linear-gradient(90deg,#3AA7FD12_1px,transparent_1px)] bg-size-[28px_28px]" />
             <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-5 py-5 sm:px-8">
               <div className="flex items-center justify-between">
                 <Link
@@ -67,14 +67,14 @@ export function MobileNavigation({
                   onClick={close}
                   className="text-lg font-black tracking-[-0.08em]"
                 >
-                  PRO<span className="text-[#ccff00]">GANDA</span>
-                  <span className="text-[#ff007f]">.</span>
+                  PRO<span className="text-[#3AA7FD]">GANDA</span>
+                  <span className="text-[#1B449A]">.</span>
                 </Link>
                 <button
                   type="button"
                   aria-label="Close navigation"
                   onClick={close}
-                  className="flex size-10 items-center justify-center text-[#ff007f] transition hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#ff007f]"
+                  className="flex size-10 items-center justify-center text-[#1B449A] transition hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#1B449A]"
                 >
                   <X className="size-5" />
                 </button>
@@ -91,10 +91,10 @@ export function MobileNavigation({
                     key={href}
                     href={href as "/about"}
                     onClick={close}
-                    className="group flex items-center justify-between border-b border-white/10 py-4 text-[clamp(1.8rem,8vw,3rem)] font-black tracking-[-0.06em] transition hover:border-[#ccff00] hover:text-[#ccff00]"
+                    className="group flex items-center justify-between border-b border-white/10 py-4 text-[clamp(1.8rem,8vw,3rem)] font-black tracking-[-0.06em] transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
                   >
                     <span>{label}</span>
-                    <span className="text-sm font-bold text-white/25 transition group-hover:text-[#ff007f]">
+                    <span className="text-sm font-bold text-white/25 transition group-hover:text-[#1B449A]">
                       0{index + 1}
                     </span>
                   </Link>
@@ -105,14 +105,14 @@ export function MobileNavigation({
                   href={pathname}
                   locale={alternateLocale}
                   onClick={close}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-white/55 hover:text-[#ccff00]"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-white/55 hover:text-[#3AA7FD]"
                 >
                   <Languages className="size-4" /> {labels.language}
                 </Link>
                 <Link
                   href="/auth/register"
                   onClick={close}
-                  className="inline-flex items-center justify-center gap-2 bg-[#ccff00] px-5 py-3 text-sm font-black text-black hover:bg-white"
+                  className="inline-flex items-center justify-center gap-2 bg-[#3AA7FD] px-5 py-3 text-sm font-black text-black hover:bg-white"
                 >
                   {labels.register} <ArrowUpRight className="size-4" />
                 </Link>

@@ -80,19 +80,19 @@ export function ContactForm({
         />
       </label>
       {state.status === "success" && (
-        <p className="flex items-center gap-2 text-sm font-bold text-[#ccff00]">
+        <p className="flex items-center gap-2 text-sm font-bold text-[#3AA7FD]">
           <CheckCircle2 className="size-4" />
           {labels.success}
         </p>
       )}
       {state.status === "error" && (
-        <p className="text-sm font-bold text-[#ff007f]">{labels.error}</p>
+        <p className="text-sm font-bold text-[#1B449A]">{labels.error}</p>
       )}
       <Button
         type="submit"
         disabled={isPending}
         size="lg"
-        className="bg-[#ccff00] text-black hover:bg-white"
+        className="bg-[#3AA7FD] text-black hover:bg-white"
       >
         {isPending ? labels.sending : labels.submit}
         {isPending ? (

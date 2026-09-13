@@ -16,7 +16,7 @@ export default async function LoginPage({
       <PromoDeal />
 
       <div className="text-center mb-8">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
           {t("eyebrow")}
         </p>
         <h1 className="text-4xl sm:text-5xl font-black tracking-[-0.05em] text-white">

@@ -22,8 +22,8 @@ export function ContactFAQ({
     <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
       <div className="max-w-2xl mb-12">
         <div className="flex items-center gap-2 mb-3">
-          <HelpCircle className="size-4 text-[#ccff00]" />
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#ccff00]">
+          <HelpCircle className="size-4 text-[#3AA7FD]" />
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#3AA7FD]">
             Support & Clarity
           </span>
         </div>
@@ -43,7 +43,7 @@ export function ContactFAQ({
               key={index}
               className={`border transition-all duration-200 overflow-hidden ${
                 isOpen
-                  ? "border-[#ccff00]/60 bg-white/[0.03]"
+                  ? "border-[#3AA7FD]/60 bg-white/[0.03]"
                   : "border-white/10 bg-[#141414] hover:border-white/20"
               }`}
             >
@@ -53,14 +53,14 @@ export function ContactFAQ({
                 className="flex w-full items-center justify-between p-5 text-start font-bold text-sm sm:text-base text-white"
               >
                 <span className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-[#ccff00]">
+                  <span className="font-mono text-xs text-[#3AA7FD]">
                     0{index + 1}
                   </span>
                   {faq.q}
                 </span>
                 <ChevronDown
                   className={`size-4 shrink-0 transition-transform duration-200 ${
-                    isOpen ? "rotate-180 text-[#ccff00]" : "text-white/40"
+                    isOpen ? "rotate-180 text-[#3AA7FD]" : "text-white/40"
                   }`}
                 />
               </button>

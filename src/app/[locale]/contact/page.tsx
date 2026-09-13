@@ -47,11 +47,11 @@ export default async function ContactPage({
           <div>
             <Link
               href="/"
-              className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/45 hover:text-[#ccff00] transition-colors"
+              className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/45 hover:text-[#3AA7FD] transition-colors"
             >
               {common("back")} <ArrowUpRight className="size-3" />
             </Link>
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#ff007f]">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
               {t("eyebrow")}
             </p>
             <h1 className="max-w-4xl text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[.84] tracking-[-0.08em] text-white">
@@ -63,12 +63,12 @@ export default async function ContactPage({
               {t("description")}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 border border-[#ccff00]/40 bg-[#ccff00]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#ccff00]">
+              <span className="inline-flex items-center gap-1.5 border border-[#3AA7FD]/40 bg-[#3AA7FD]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#3AA7FD]">
                 <Zap className="size-3.5" />
                 {t("responseTime")}
               </span>
               <span className="inline-flex items-center gap-1.5 border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white/70">
-                <ShieldCheck className="size-3.5 text-[#ff007f]" />
+                <ShieldCheck className="size-3.5 text-[#1B449A]" />
                 NDA Protected Briefs
               </span>
             </div>
@@ -81,7 +81,7 @@ export default async function ContactPage({
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00] mb-2">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD] mb-2">
                 {t("directChannelsTitle")}
               </p>
               <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
@@ -108,7 +108,9 @@ export default async function ContactPage({
                   </div>
                   <ArrowUpRight className="size-4 text-white/30 group-hover:text-[#25D366] transition-colors" />
                 </div>
-                <h3 className="text-base font-black text-white">{t("whatsapp")}</h3>
+                <h3 className="text-base font-black text-white">
+                  {t("whatsapp")}
+                </h3>
                 <p className="mt-1 text-xs text-white/50 leading-relaxed">
                   {t("whatsappDesc")}
                 </p>
@@ -121,21 +123,23 @@ export default async function ContactPage({
             {/* Direct Phone */}
             <a
               href="tel:+966501234567"
-              className="group flex flex-col justify-between border border-[#ccff00]/30 bg-[#ccff00]/5 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#ccff00] hover:bg-[#ccff00]/10"
+              className="group flex flex-col justify-between border border-[#3AA7FD]/30 bg-[#3AA7FD]/5 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#3AA7FD] hover:bg-[#3AA7FD]/10"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex size-10 items-center justify-center bg-[#ccff00]/20 text-[#ccff00]">
+                  <div className="flex size-10 items-center justify-center bg-[#3AA7FD]/20 text-[#3AA7FD]">
                     <Phone className="size-5" />
                   </div>
-                  <ArrowUpRight className="size-4 text-white/30 group-hover:text-[#ccff00] transition-colors" />
+                  <ArrowUpRight className="size-4 text-white/30 group-hover:text-[#3AA7FD] transition-colors" />
                 </div>
-                <h3 className="text-base font-black text-white">{t("phone")}</h3>
-                <p className="mt-1 text-xs font-mono text-[#ccff00]">
+                <h3 className="text-base font-black text-white">
+                  {t("phone")}
+                </h3>
+                <p className="mt-1 text-xs font-mono text-[#3AA7FD]">
                   {t("phoneNumber")}
                 </p>
               </div>
-              <span className="mt-6 text-xs font-bold uppercase tracking-wider text-[#ccff00]">
+              <span className="mt-6 text-xs font-bold uppercase tracking-wider text-[#3AA7FD]">
                 Call Studio Desk →
               </span>
             </a>
@@ -154,7 +158,9 @@ export default async function ContactPage({
                   </div>
                   <ArrowUpRight className="size-4 text-white/30 group-hover:text-[#229ED9] transition-colors" />
                 </div>
-                <h3 className="text-base font-black text-white">{t("telegram")}</h3>
+                <h3 className="text-base font-black text-white">
+                  {t("telegram")}
+                </h3>
                 <p className="mt-1 text-xs text-white/50 leading-relaxed">
                   {t("telegramDesc")}
                 </p>
@@ -168,19 +174,31 @@ export default async function ContactPage({
             <div className="flex flex-col justify-between border border-white/10 bg-[#151515] p-6">
               <div>
                 <div className="flex size-10 items-center justify-center bg-white/10 text-white mb-4">
-                  <Mail className="size-5 text-[#ff007f]" />
+                  <Mail className="size-5 text-[#1B449A]" />
                 </div>
-                <h3 className="text-base font-black text-white mb-2">Dedicated Routing</h3>
+                <h3 className="text-base font-black text-white mb-2">
+                  Dedicated Routing
+                </h3>
                 <div className="space-y-2 text-xs">
                   <div>
-                    <span className="text-white/40 block">{t("emailBrief")}</span>
-                    <a href="mailto:brief@proganda.studio" className="font-mono text-[#ccff00] hover:underline">
+                    <span className="text-white/40 block">
+                      {t("emailBrief")}
+                    </span>
+                    <a
+                      href="mailto:brief@proganda.studio"
+                      className="font-mono text-[#3AA7FD] hover:underline"
+                    >
                       brief@proganda.studio
                     </a>
                   </div>
                   <div>
-                    <span className="text-white/40 block">{t("emailCreator")}</span>
-                    <a href="mailto:creators@proganda.studio" className="font-mono text-[#ff007f] hover:underline">
+                    <span className="text-white/40 block">
+                      {t("emailCreator")}
+                    </span>
+                    <a
+                      href="mailto:creators@proganda.studio"
+                      className="font-mono text-[#1B449A] hover:underline"
+                    >
                       creators@proganda.studio
                     </a>
                   </div>
@@ -195,7 +213,7 @@ export default async function ContactPage({
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[.8fr_1.2fr] lg:px-8 lg:py-24">
         <aside className="flex flex-col justify-between gap-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
               {t("socialTitle")}
             </p>
             <div className="mt-8 grid gap-3">
@@ -203,49 +221,48 @@ export default async function ContactPage({
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#ccff00] transition-colors"
+                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#3AA7FD] transition-colors"
               >
                 <span className="flex items-center gap-3">
-                  <InstagramIcon size={18} className="text-[#ff007f]" />
+                  <InstagramIcon size={18} className="text-[#1B449A]" />
                   {t("instagram")}
                 </span>
-                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#ccff00] transition-colors" />
+                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#3AA7FD] transition-colors" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#ccff00] transition-colors"
+                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#3AA7FD] transition-colors"
               >
                 <span className="flex items-center gap-3">
                   <LinkedinIcon size={18} className="text-[#8a2be2]" />
                   {t("linkedin")}
                 </span>
-                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#ccff00] transition-colors" />
+                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#3AA7FD] transition-colors" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#ccff00] transition-colors"
+                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#3AA7FD] transition-colors"
               >
                 <span className="flex items-center gap-3">
-                  <YoutubeIcon size={18} className="text-[#ff007f]" />
+                  <YoutubeIcon size={18} className="text-[#1B449A]" />
                   {t("youtube")}
                 </span>
-                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#ccff00] transition-colors" />
+                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#3AA7FD] transition-colors" />
               </a>
               <a
                 href="https://x.com"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#ccff00] transition-colors"
+                className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold hover:border-[#3AA7FD] transition-colors"
               >
                 <span className="flex items-center gap-3">
-                  <XTwitterIcon size={18} className="text-white" />
-                  X (Twitter)
+                  <XTwitterIcon size={18} className="text-white" />X (Twitter)
                 </span>
-                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#ccff00] transition-colors" />
+                <ArrowUpRight className="size-4 text-white/35 group-hover:text-[#3AA7FD] transition-colors" />
               </a>
             </div>
           </div>
@@ -253,7 +270,7 @@ export default async function ContactPage({
           {/* Working Hours & Locations Card */}
           <div className="space-y-4 border border-white/10 bg-[#141414] p-6">
             <div className="flex items-start gap-3">
-              <Clock className="size-4 text-[#ccff00] shrink-0 mt-0.5" />
+              <Clock className="size-4 text-[#3AA7FD] shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-white">
                   {t("officeHoursTitle")}
@@ -265,7 +282,7 @@ export default async function ContactPage({
             </div>
 
             <div className="border-t border-white/10 pt-4 flex items-start gap-3">
-              <MapPin className="size-4 text-[#ff007f] shrink-0 mt-0.5" />
+              <MapPin className="size-4 text-[#1B449A] shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-white">
                   {t("officeLocationsTitle")}
@@ -280,8 +297,8 @@ export default async function ContactPage({
 
         <div>
           <div className="flex items-center gap-2 mb-5">
-            <Sparkles className="size-4 text-[#ccff00]" />
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+            <Sparkles className="size-4 text-[#3AA7FD]" />
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
               {t("formTitle")}
             </p>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FreeConsultBannerProps {
   /** Text to display inside the banner */
@@ -7,7 +7,7 @@ interface FreeConsultBannerProps {
 
 export default function FreeConsultBanner({ text }: FreeConsultBannerProps) {
   return (
-    <section className="mb-8 rounded border border-[#ccff00] bg-[#ccff00]/10 p-4 text-center text-[#ccff00]">
+    <section className="mb-8 rounded border border-[#3AA7FD] bg-[#3AA7FD]/10 p-4 text-center text-[#3AA7FD]">
       <p className="text-sm font-medium">{text}</p>
     </section>
   );

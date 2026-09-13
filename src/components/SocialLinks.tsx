@@ -69,7 +69,11 @@ export const YoutubeIcon = ({
     {...props}
   >
     <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-    <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" stroke="none" />
+    <polygon
+      points="10 15 15 12 10 9 10 15"
+      fill="currentColor"
+      stroke="none"
+    />
   </svg>
 );
 
@@ -165,7 +169,7 @@ export const SocialLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="text-white/70 hover:text-[#ccff00] transition-colors"
+          className="text-white/70 hover:text-[#3AA7FD] transition-colors"
         >
           <Icon size={24} />
         </a>
@@ -173,4 +177,3 @@ export const SocialLinks = () => {
     </div>
   );
 };
-

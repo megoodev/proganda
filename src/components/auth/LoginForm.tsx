@@ -5,7 +5,13 @@ import { useRouter } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, LoaderCircle, Lock, Mail, AlertCircle } from "lucide-react";
+import {
+  ArrowRight,
+  LoaderCircle,
+  Lock,
+  Mail,
+  AlertCircle,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 export function LoginForm({
@@ -58,11 +64,11 @@ export function LoginForm({
       onSubmit={handleSubmit}
       className="grid gap-5 border border-white/10 bg-[#121212]/90 backdrop-blur-md p-6 sm:p-9 shadow-2xl relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#ccff00]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#ff007f]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#3AA7FD]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#1B449A]/5 rounded-full blur-3xl pointer-events-none" />
 
       {error && (
-        <div className="flex items-center gap-3 p-3.5 border border-[#ff007f]/50 bg-[#ff007f]/10 text-xs text-[#ff007f] font-semibold">
+        <div className="flex items-center gap-3 p-3.5 border border-[#1B449A]/50 bg-[#1B449A]/10 text-xs text-[#1B449A] font-semibold">
           <AlertCircle className="size-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -70,7 +76,7 @@ export function LoginForm({
 
       <div className="grid gap-2">
         <label className="text-xs font-bold uppercase tracking-[0.2em] text-white/50 flex items-center gap-1.5">
-          <Mail className="size-3 text-[#ccff00]" />
+          <Mail className="size-3 text-[#3AA7FD]" />
           {labels.email}
         </label>
         <Input
@@ -80,13 +86,13 @@ export function LoginForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="user@proganda.studio"
-          className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+          className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
         />
       </div>
 
       <div className="grid gap-2">
         <label className="text-xs font-bold uppercase tracking-[0.2em] text-white/50 flex items-center gap-1.5">
-          <Lock className="size-3 text-[#ccff00]" />
+          <Lock className="size-3 text-[#3AA7FD]" />
           {labels.password}
         </label>
         <Input
@@ -96,14 +102,14 @@ export function LoginForm({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+          className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
         />
       </div>
 
       <Button
         type="submit"
         disabled={loading}
-        className="mt-3 bg-[#ccff00] text-black font-black uppercase tracking-wider text-xs h-12 hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)]"
+        className="mt-3 bg-[#3AA7FD] text-black font-black uppercase tracking-wider text-xs h-12 hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)]"
       >
         {loading ? (
           <span className="flex items-center gap-2">
@@ -122,7 +128,7 @@ export function LoginForm({
         <span>{labels.dontHaveAccount}</span>
         <Link
           href="/auth/register"
-          className="font-bold text-[#ccff00] hover:underline uppercase tracking-wider flex items-center gap-1"
+          className="font-bold text-[#3AA7FD] hover:underline uppercase tracking-wider flex items-center gap-1"
         >
           {labels.signUp}
           <ArrowRight className="size-3" />

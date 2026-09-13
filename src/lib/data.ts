@@ -129,7 +129,7 @@ export const creators: Creator[] = [
     location: "LA / NYC",
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=85&auto=format&fit=crop",
-    accent: "#ccff00",
+    accent: "#3AA7FD",
   },
   {
     id: "jules",
@@ -142,7 +142,7 @@ export const creators: Creator[] = [
     location: "London",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&q=85&auto=format&fit=crop",
-    accent: "#ff007f",
+    accent: "#1B449A",
   },
   {
     id: "rio",
@@ -207,7 +207,7 @@ export const creators: Creator[] = [
     location: "London",
     image:
       "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?w=900&q=85&auto=format&fit=crop",
-    accent: "#ccff00",
+    accent: "#3AA7FD",
   },
 ];
 
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
     creator: "Maya Chen + 12 creators",
     views: "18.4M",
     roi: "4.8x",
-    color: "#ccff00",
+    color: "#3AA7FD",
   },
   {
     brand: "NOVA",
@@ -226,7 +226,7 @@ export const caseStudies: CaseStudy[] = [
     creator: "Jules Okafor",
     views: "9.7M",
     roi: "3.6x",
-    color: "#ff007f",
+    color: "#1B449A",
   },
   {
     brand: "VANTA",
@@ -253,7 +253,7 @@ export const brands: Brand[] = [
     ],
     views: "18.4M",
     roi: "4.8x",
-    color: "#ccff00",
+    color: "#3AA7FD",
   },
   {
     slug: "nova",
@@ -265,7 +265,7 @@ export const brands: Brand[] = [
     services: ["Marketing strategy", "Product shoots", "Post-production"],
     views: "9.7M",
     roi: "3.6x",
-    color: "#ff007f",
+    color: "#1B449A",
   },
   {
     slug: "vanta",

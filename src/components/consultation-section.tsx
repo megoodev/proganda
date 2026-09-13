@@ -62,14 +62,14 @@ export function ConsultationSection({
       icon: Compass,
       title: labels.track1Title,
       desc: labels.track1Desc,
-      accent: "#ccff00",
+      accent: "#3AA7FD",
     },
     {
       id: "track2",
       icon: Film,
       title: labels.track2Title,
       desc: labels.track2Desc,
-      accent: "#ff007f",
+      accent: "#1B449A",
     },
     {
       id: "track3",
@@ -85,15 +85,15 @@ export function ConsultationSection({
       id="consultation"
       className="relative border-y border-white/10 bg-[#0d0d0d] py-20 lg:py-28 overflow-hidden"
     >
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#ccff00]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#ff007f]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#3AA7FD]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#1B449A]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#ccff00]/30 bg-[#ccff00]/10 mb-4">
-            <Sparkles className="size-3.5 text-[#ccff00]" />
-            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ccff00]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#3AA7FD]/30 bg-[#3AA7FD]/10 mb-4">
+            <Sparkles className="size-3.5 text-[#3AA7FD]" />
+            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#3AA7FD]">
               {labels.badge}
             </span>
           </div>
@@ -117,12 +117,12 @@ export function ConsultationSection({
                 onClick={() => setSelectedTrack(track.id)}
                 className={`text-start p-6 border transition-all duration-200 relative ${
                   isSelected
-                    ? "border-[#ccff00] bg-white/[0.04] shadow-[0_0_25px_rgba(204,255,0,0.12)]"
+                    ? "border-[#3AA7FD] bg-white/[0.04] shadow-[0_0_25px_rgba(204,255,0,0.12)]"
                     : "border-white/10 bg-[#141414] hover:border-white/30"
                 }`}
               >
                 {isSelected && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#ccff00]" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#3AA7FD]" />
                 )}
                 <div
                   className="flex size-10 items-center justify-center mb-4 border border-white/15"
@@ -145,17 +145,18 @@ export function ConsultationSection({
         <div className="border border-white/10 bg-[#141414] p-6 sm:p-10">
           {success ? (
             <div className="text-center py-10">
-              <CheckCircle2 className="mx-auto size-14 text-[#ccff00] animate-bounce" />
+              <CheckCircle2 className="mx-auto size-14 text-[#3AA7FD] animate-bounce" />
               <h3 className="mt-5 text-2xl font-black text-white">
                 {labels.success}
               </h3>
               <p className="mt-2 text-sm text-white/60 max-w-md mx-auto">
-                We have reserved your slot. A calendar invitation with Google Meet details has been dispatched.
+                We have reserved your slot. A calendar invitation with Google
+                Meet details has been dispatched.
               </p>
               <button
                 type="button"
                 onClick={() => setSuccess(false)}
-                className="mt-6 text-xs uppercase tracking-widest text-[#ccff00] font-bold hover:underline"
+                className="mt-6 text-xs uppercase tracking-widest text-[#3AA7FD] font-bold hover:underline"
               >
                 ← Book another session
               </button>
@@ -163,7 +164,7 @@ export function ConsultationSection({
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-6">
               <div className="flex items-center gap-2 pb-4 border-b border-white/10 text-xs font-bold uppercase tracking-[0.2em] text-white/70">
-                <Calendar className="size-4 text-[#ccff00]" />
+                <Calendar className="size-4 text-[#3AA7FD]" />
                 <span>Session Reservation Form</span>
               </div>
 
@@ -177,7 +178,7 @@ export function ConsultationSection({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Alex Vance"
-                    className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+                    className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
                   />
                 </div>
 
@@ -191,7 +192,7 @@ export function ConsultationSection({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="alex@company.com"
-                    className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+                    className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
                   />
                 </div>
 
@@ -205,7 +206,7 @@ export function ConsultationSection({
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
                     placeholder="e.g. Next Tuesday at 2:00 PM GMT+3"
-                    className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+                    className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
                   />
                 </div>
 
@@ -216,7 +217,7 @@ export function ConsultationSection({
                   <select
                     value={selectedTrack}
                     onChange={(e) => setSelectedTrack(e.target.value)}
-                    className="bg-black/50 border border-white/15 focus:border-[#ccff00] h-12 px-3 text-sm text-white outline-none"
+                    className="bg-black/50 border border-white/15 focus:border-[#3AA7FD] h-12 px-3 text-sm text-white outline-none"
                   >
                     <option value="track1">{labels.track1Title}</option>
                     <option value="track2">{labels.track2Title}</option>
@@ -232,21 +233,21 @@ export function ConsultationSection({
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Briefly describe your brand goals or questions for our creative team..."
-                    className="bg-black/50 border-white/15 focus:border-[#ccff00] h-12 text-sm text-white"
+                    className="bg-black/50 border-white/15 focus:border-[#3AA7FD] h-12 text-sm text-white"
                   />
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
                 <div className="flex items-center gap-2 text-xs text-white/40">
-                  <Clock className="size-3.5 text-[#ccff00]" />
+                  <Clock className="size-3.5 text-[#3AA7FD]" />
                   <span>30 minutes • Google Meet / Zoom • Free advisory</span>
                 </div>
 
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:w-auto bg-[#ccff00] text-black font-black uppercase tracking-wider text-xs h-12 px-8 hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)]"
+                  className="w-full sm:w-auto bg-[#3AA7FD] text-black font-black uppercase tracking-wider text-xs h-12 px-8 hover:bg-white transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)]"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">

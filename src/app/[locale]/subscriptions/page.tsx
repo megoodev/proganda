@@ -47,15 +47,15 @@ export default async function SubscriptionsPage({
     );
   return (
     <main className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-      <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+      <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
         {t("eyebrow")}
       </p>
       <h1 className="max-w-4xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em]">
         {t("title")}
       </h1>
       <div className="mt-14 grid gap-5 lg:grid-cols-2">
-        <section className="border border-[#ccff00]/40 bg-[#ccff00]/[.05] p-7">
-          <Sparkles className="size-7 text-[#ccff00]" />
+        <section className="border border-[#3AA7FD]/40 bg-[#3AA7FD]/[.05] p-7">
+          <Sparkles className="size-7 text-[#3AA7FD]" />
           <h2 className="mt-14 text-4xl font-black">{t("brandTitle")}</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/55">
             {t("brandDescription")}
@@ -65,7 +65,7 @@ export default async function SubscriptionsPage({
               <div key={tier.id} className="border border-white/10 p-4">
                 <div className="flex justify-between gap-4">
                   <span className="font-bold">{tier.name}</span>
-                  <span className="text-xs text-[#ccff00]">
+                  <span className="text-xs text-[#3AA7FD]">
                     {tier.offer.split("+")[0]}
                   </span>
                 </div>
@@ -74,13 +74,13 @@ export default async function SubscriptionsPage({
           </div>
           <Link
             href="/auth/register?role=brand"
-            className="mt-8 inline-flex items-center gap-2 bg-[#ccff00] px-5 py-3 text-sm font-bold text-black"
+            className="mt-8 inline-flex items-center gap-2 bg-[#3AA7FD] px-5 py-3 text-sm font-bold text-black"
           >
             {t("brandCta")} <ArrowRight className="size-4" />
           </Link>
         </section>
         <section className="border border-[#8a2be2]/50 bg-[#8a2be2]/[.06] p-7">
-          <BarChart3 className="size-7 text-[#ff007f]" />
+          <BarChart3 className="size-7 text-[#1B449A]" />
           <h2 className="mt-14 text-4xl font-black">{t("creatorTitle")}</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/55">
             {t("creatorDescription")}
@@ -92,7 +92,7 @@ export default async function SubscriptionsPage({
                 Roster access + campaign matching
               </p>
             </div>
-            <div className="border border-[#ff007f]/50 p-4">
+            <div className="border border-[#1B449A]/50 p-4">
               <span className="font-bold">{t("pro")}</span>
               <p className="mt-2 text-sm text-white/45">
                 {t("perks")} + priority booking
@@ -101,7 +101,7 @@ export default async function SubscriptionsPage({
           </div>
           <Link
             href="/auth/register?role=creator"
-            className="mt-8 inline-flex items-center gap-2 border border-white/25 px-5 py-3 text-sm font-bold hover:border-[#ff007f]"
+            className="mt-8 inline-flex items-center gap-2 border border-white/25 px-5 py-3 text-sm font-bold hover:border-[#1B449A]"
           >
             {t("creatorCta")} <ArrowRight className="size-4" />
           </Link>
@@ -124,14 +124,14 @@ function AccountView({
 }) {
   return (
     <main className="mx-auto max-w-5xl px-5 py-24 lg:px-8">
-      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ccff00]">
+      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
         Account overview
       </p>
       <h1 className="mt-4 text-6xl font-black tracking-[-0.07em]">{title}</h1>
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
         {items.map((item, index) => (
           <div key={item} className="border border-white/10 bg-white/[.03] p-6">
-            <Icon className="size-6 text-[#ccff00]" />
+            <Icon className="size-6 text-[#3AA7FD]" />
             <p className="mt-12 text-xl font-bold">{item}</p>
             <p className="mt-2 text-xs uppercase tracking-widest text-white/35">
               {index === 0
@@ -143,7 +143,7 @@ function AccountView({
           </div>
         ))}
       </div>
-      <button className="mt-8 inline-flex items-center gap-3 bg-[#ccff00] px-5 py-3 text-sm font-bold text-black">
+      <button className="mt-8 inline-flex items-center gap-3 bg-[#3AA7FD] px-5 py-3 text-sm font-bold text-black">
         {action} <CalendarDays className="size-4" />
       </button>
     </main>

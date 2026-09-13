@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Creator } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 export function HomeCreatorCarousel({
   creators,
   viewsLabel,
+  locale,
 }: {
   creators: Creator[];
   viewsLabel: string;
+  locale: "ar" | "en";
 }) {
   const cards = [...creators, ...creators];
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,7 +53,13 @@ export function HomeCreatorCarousel({
         onFocus={() => setIsPaused(true)}
         onBlur={() => setIsPaused(false)}
       >
-        <div className="creator-carousel-track" style={{ animationDelay }}>
+        <div
+          className={cn(
+            "creator-carousel-track",
+            locale === "ar" ? "ar-animation" : "en-animation",
+          )}
+          style={{ animationDelay }}
+        >
           {cards.map((creator, index) => (
             <Link
               href={`/creators/${creator.id}`}

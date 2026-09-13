@@ -46,7 +46,7 @@ export function CreatorDirectory({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={labels.search}
-            className="h-9 w-full border-b border-white/20 bg-transparent pl-8 text-xs outline-none focus:border-[#ccff00] sm:w-64"
+            className="h-9 w-full border-b border-white/20 bg-transparent pl-8 text-xs outline-none focus:border-[#3AA7FD] sm:w-64"
           />
         </label>
       </div>
@@ -90,7 +90,7 @@ export function CreatorDirectory({
             </div>
             <Link
               href={`/creators/${creator.id}`}
-              className="flex items-center justify-between p-4 text-xs font-bold text-[#ccff00]"
+              className="flex items-center justify-between p-4 text-xs font-bold text-[#3AA7FD]"
             >
               {labels.profile}
               <ArrowUpRight className="size-4" />

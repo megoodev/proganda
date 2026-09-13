@@ -75,7 +75,7 @@ export default async function BrandDetailPage({
       </section>
       <section className="mt-24 grid gap-10 border-t border-white/10 pt-10 lg:grid-cols-[.7fr_1.3fr]">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ff007f]">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
             {t("servicesUsed")}
           </p>
           <h2 className="mt-4 text-4xl font-black">{t("caseStudy")}</h2>
@@ -86,7 +86,7 @@ export default async function BrandDetailPage({
               key={service}
               className="flex gap-3 border border-white/10 p-5 text-sm text-white/70"
             >
-              <Check className="size-4 shrink-0 text-[#ccff00]" />
+              <Check className="size-4 shrink-0 text-[#3AA7FD]" />
               {service}
             </div>
           ))}
@@ -94,7 +94,7 @@ export default async function BrandDetailPage({
       </section>
       <Link
         href="/auth/register?role=brand"
-        className="mt-16 inline-flex items-center gap-3 bg-[#ccff00] px-5 py-3 text-sm font-bold text-black hover:bg-white"
+        className="mt-16 inline-flex items-center gap-3 bg-[#3AA7FD] px-5 py-3 text-sm font-bold text-black hover:bg-white"
       >
         {t("cta")} <ArrowUpRight className="size-4" />
       </Link>
