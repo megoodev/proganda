@@ -3,7 +3,9 @@ import { BrandDirectory } from "@/components/brand-directory";
 
 export default async function BrandsPage({
   params,
-}: PageProps<"/[locale]/brands">) {
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "brands" });
 

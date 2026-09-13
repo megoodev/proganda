@@ -1,4 +1,3 @@
-
 import {
   ArrowRight,
   BadgeCheck,
@@ -10,6 +9,7 @@ import {
 import { Link } from "@/i18n/navigation";
 import { validateSession } from "@/lib/auth";
 import { serviceTiers } from "@/lib/data";
+import { getTranslations } from "next-intl/server";
 
 export default async function SubscriptionsPage({
   params,

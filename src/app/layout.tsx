@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Raleway } from "next/font/google";
 import "./globals.css";
+import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 const ralewayHeading = Raleway({
@@ -29,7 +30,8 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang={routing.defaultLocale}
+      dir={routing.defaultLocale === "ar" ? "rtl" : "ltr"}
       className={cn(
         "h-full",
         "antialiased",
