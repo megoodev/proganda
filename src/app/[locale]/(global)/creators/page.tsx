@@ -11,10 +11,10 @@ export default async function CreatorsPage({
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
         {t("eyebrow")}
       </p>
-      <h1 className="max-w-3xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em]">
+      <h1 className="max-w-3xl text-[clamp(2.8rem,10vw,6rem)] font-black leading-[.9] tracking-[-0.07em] text-accent-foreground">
         {t("title")}
       </h1>
-      <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/50">
+      <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
         {t("description")}
       </p>
       <div className="mt-14">

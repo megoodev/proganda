@@ -2,6 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
+import { buttonVariants } from "./ui/button";
 
 export function LanguageSwitcher({
   locale,
@@ -18,7 +19,11 @@ export function LanguageSwitcher({
       href={pathname}
       locale={alternate}
       aria-label={label}
-      className="inline-flex size-10 items-center justify-center gap-2 border border-white/15 px-0 text-xs font-bold text-accent-foreground transition hover:border-[#3AA7FD] hover:text-[#3AA7FD] sm:h-auto sm:w-auto sm:px-3 sm:py-2"
+      className={buttonVariants({
+        variant: "outline",
+        size: "icon-lg",
+        className: "rounded-sm border-accent-foreground text-accent-foreground",
+      })}
     >
       <Languages className="size-3.5" />
       <span className="hidden sm:inline">{label}</span>

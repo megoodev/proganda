@@ -124,35 +124,43 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
         </div>
       </section>
       <Separator />
-      <section className=" bg-[#151515] px-5 py-20 lg:px-8 lg:py-24">
+      <section className="bg-background text-foreground px-5 py-20 lg:px-8 lg:py-24 transition-colors duration-200">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+          {/* Left Column: Text Content */}
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">
               {t("integrationsEyebrow")}
             </p>
-            <h2 className="max-w-xl text-5xl font-black leading-[.9] tracking-[-0.06em] sm:text-7xl text-secondary-foreground">
+            <h2 className="max-w-xl text-5xl font-black leading-[.9] tracking-[-0.06em] sm:text-7xl text-foreground">
               {t("integrationsTitle")}
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-white/50">
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
               {t("integrationsDescription")}
             </p>
             <Link
               href="/services"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
             >
-              {t("integrationsCta")} <ArrowRight className="size-4" />
+              {t("integrationsCta")}{" "}
+              <ArrowRight className="size-4 rtl:rotate-180" />
             </Link>
           </div>
+
+          {/* Right Column: Grid Layout */}
           <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-[70%] -translate-x-1/2 bg-primary/30 sm:block" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[70%] w-px -translate-y-1/2 bg-[#1B449A]/30 sm:block" />
-            <div className="col-span-2 row-span-2 flex min-h-44 items-center justify-center border border-[#3AA7FD]/50 bg-[#0d0d0d] p-6 sm:col-span-2 sm:row-span-2">
+            {/* Decorative Lines */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-[70%] -translate-x-1/2 bg-primary/20 sm:block" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[70%] w-px -translate-y-1/2 bg-primary/20 sm:block" />
+
+            {/* Central Main Logo Box */}
+            <div className="col-span-2 row-span-2 flex min-h-44 items-center justify-center border border-primary/40 bg-card p-6 shadow-sm sm:col-span-2 sm:row-span-2">
               <div className="text-center">
-                <div className="mx-auto flex size-20 items-center justify-center overflow-hidden bg-white p-2">
+                <div className="mx-auto flex size-20 items-center justify-center overflow-hidden rounded-xl bg-accent p-2">
                   <img
                     src="/assits/logos/IMG_1531.PNG"
                     alt="ProGanda"
-                    className="size-full object-contain"
+                    /* Inverts dark-colored logo pixels in dark mode, keeps normal in light mode */
+                    className="size-full object-contain dark:invert"
                   />
                 </div>
                 <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-primary">
@@ -160,21 +168,26 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
                 </p>
               </div>
             </div>
+
+            {/* Partner Logos */}
             {["IMG_0092.JPG.jpeg", "IMG_9506.JPG.jpeg", "IMG_9508.PNG"].map(
               (logo, index) => (
                 <div
                   key={logo}
-                  className="relative z-10 flex min-h-20 items-center justify-center border border-white/10 bg-[#1d1d1d] p-4 transition hover:border-[#3AA7FD] hover:bg-[#222222]"
+                  className="relative z-10 flex min-h-20 items-center justify-center border border-border bg-card p-4 transition hover:border-primary hover:bg-accent/50 shadow-sm"
                 >
                   <img
                     src={`/assits/logos/${logo}`}
                     alt={`Integration ${index + 1}`}
-                    className="max-h-14 w-full object-contain mix-blend-screen"
+                    /* Replaces 'mix-blend-screen' with theme-driven inversion filter */
+                    className="max-h-14 w-full object-contain dark:invert"
                   />
                 </div>
               ),
             )}
-            <div className="relative z-10 flex min-h-20 items-center justify-center border border-[#1B449A]/40 bg-[#1B449A]/10 p-4 text-center text-[10px] font-black uppercase tracking-[0.16em] text-[#1B449A]">
+
+            {/* Badge Box */}
+            <div className="relative z-10 flex min-h-20 items-center justify-center border border-primary/30 bg-primary/10 p-4 text-center text-[10px] font-black uppercase tracking-[0.16em] text-primary">
               Strategy + creators + production
             </div>
           </div>

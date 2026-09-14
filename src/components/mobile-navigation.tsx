@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, Languages, Menu, X } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "@/i18n/navigation";
+import { Button, buttonVariants } from "./ui/button";
+import { Badge } from "./ui/badge";
 
 export function MobileNavigation({
   labels,
@@ -14,7 +16,6 @@ export function MobileNavigation({
     creators: string;
     brands: string;
     services: string;
-    subscriptions: string;
     contact: string;
     register: string;
     language: string;
@@ -41,15 +42,17 @@ export function MobileNavigation({
 
   return (
     <div className="md:hidden">
-      <button
+      <Button
         type="button"
         aria-label="Open navigation"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
-        className="flex size-10 items-center justify-center border border-white/15  transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
+        variant='outline'
+        size='icon-lg'
+        className="rounded-sm"
       >
-        <Menu className="size-4" />
-      </button>
+        <Menu className="size-4 text-accent-foreground border-accent-foreground" />
+      </Button>
       {isOpen && (
         <div
           className="fixed inset-0 z-100 bg-black/70 text-white backdrop-blur-sm"
@@ -67,19 +70,21 @@ export function MobileNavigation({
                   onClick={close}
                   className="text-lg font-black tracking-[-0.08em]"
                 >
-                  PRO<span className="text-[#3AA7FD]">GANDA</span>
+                  <span className="text-accent-foreground">Pro</span>
+                  <span className="text-[#3AA7FD]">Ganda</span>
                   <span className="text-[#1B449A]">.</span>
                 </Link>
-                <button
+                <Button
                   type="button"
+                  size="icon-lg"
+                  variant="ghost"
                   aria-label="Close navigation"
                   onClick={close}
-                  className="flex size-10 items-center justify-center text-[#1B449A] transition hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#1B449A]"
                 >
-                  <X className="size-5" />
-                </button>
+                  <X className="size-5 text-destructive" />
+                </Button>
               </div>
-              <nav className="mt-20 grid gap-2" aria-label="Mobile navigation">
+              <nav className="mt-10 grid gap-1" aria-label="Mobile navigation">
                 {[
                   ["/about", labels.about],
                   ["/creators", labels.creators],
@@ -91,12 +96,12 @@ export function MobileNavigation({
                     key={href}
                     href={href as "/about"}
                     onClick={close}
-                    className="group flex items-center justify-between border-b border-white/10 py-4 text-[clamp(1.8rem,8vw,3rem)] font-black tracking-[-0.06em] transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
+                    className="group flex items-center justify-between border-b border-white/10 py-2 text-[clamp(1.8rem,8vw,3rem)] font-black tracking-[-0.06em] transition hover:border-[#3AA7FD] hover:text-[#3AA7FD] text-accent-foreground"
                   >
                     <span>{label}</span>
-                    <span className="text-sm font-bold text-white/25 transition group-hover:text-[#1B449A]">
+                    <Badge variant="outline" className="rounded-sm ">
                       0{index + 1}
-                    </span>
+                    </Badge>
                   </Link>
                 ))}
               </nav>
@@ -105,14 +110,17 @@ export function MobileNavigation({
                   href={pathname}
                   locale={alternateLocale}
                   onClick={close}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-white/55 hover:text-[#3AA7FD]"
+                  className={buttonVariants({
+                    variant: "secondary",
+                    className: "rounded-sm py-5",
+                  })}
                 >
                   <Languages className="size-4" /> {labels.language}
                 </Link>
                 <Link
                   href="/auth/register"
                   onClick={close}
-                  className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 text-sm font-black text-black hover:bg-white"
+                  className={buttonVariants({ className: "rounded-sm py-5" })}
                 >
                   {labels.register} <ArrowUpRight className="size-4" />
                 </Link>

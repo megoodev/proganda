@@ -29,6 +29,9 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           <Link href="/creators" className="transition hover:text-[#3AA7FD]">
             {t("creators")}
           </Link>
+          <Link href="/services" className="transition hover:text-[#3AA7FD]">
+            {t("services")}
+          </Link>
           <Link href="/brands" className="transition hover:text-[#3AA7FD]">
             {t("brands")}
           </Link>
@@ -37,15 +40,14 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           </Link>
         </div>
         <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-          <ThemeToggle />
           <LanguageSwitcher locale={locale} label={t("language")} />
+          <ThemeToggle />
           <MobileNavigation
             labels={{
               about: t("about"),
               creators: t("creators"),
               brands: t("brands"),
               services: t("services"),
-              subscriptions: t("subscriptions"),
               contact: t("contact"),
               register: t("register"),
               language: t("language"),
