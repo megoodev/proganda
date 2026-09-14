@@ -46,7 +46,7 @@ export function MobileNavigation({
         aria-label="Open navigation"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
-        className="flex size-10 items-center justify-center border border-white/15 text-white/75 transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
+        className="flex size-10 items-center justify-center border border-white/15  transition hover:border-[#3AA7FD] hover:text-[#3AA7FD]"
       >
         <Menu className="size-4" />
       </button>

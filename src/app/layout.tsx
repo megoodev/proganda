@@ -8,7 +8,7 @@ const ralewayHeading = Raleway({
   subsets: ["latin"],
   variable: "--font-heading",
 });
-
+import { TooltipProvider } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -42,7 +42,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         ralewayHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
     </html>
   );
 }

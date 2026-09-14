@@ -8,8 +8,8 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
   const alternate = locale === "en" ? "ar" : "en";
-  const brandFirstPart = locale === "en" ? "PRO" : "برو";
-  const brandSecondPart = locale === "en" ? "GANDA" : "غاندا";
+  const brandFirstPart = locale === "en" ? "Pro" : "برو";
+  const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0d0d0d]/90 backdrop-blur-xl">
