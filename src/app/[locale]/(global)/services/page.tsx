@@ -1,16 +1,23 @@
-import React from "react";
-import Link from "next/link";
-import { Sparkles, CheckCircle2, ArrowRight, Building2, User, PhoneCall } from "lucide-react";
+import {
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  Building2,
+  User,
+  PhoneCall,
+} from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
-export default async function ServicesPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function ServicesPage({ params }: Props) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "services" });
 
-  // Extract translation arrays using t.raw()
   const brandServices: string[] = t.raw("brandServices");
   const creatorServices: string[] = t.raw("creatorServices");
 
@@ -33,9 +40,7 @@ export default async function ServicesPage({
           </p>
         </div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Brand Services Box */}
           <div className="rounded-2xl border border-border/60 bg-card/40 p-8 sm:p-10 flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
             <div>
               <div className="flex items-center gap-4 mb-6">
@@ -54,7 +59,10 @@ export default async function ServicesPage({
 
               <ul className="space-y-3.5">
                 {brandServices.map((service, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-foreground/90">
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 text-sm sm:text-base text-foreground/90"
+                  >
                     <CheckCircle2 className="size-5 text-primary shrink-0 mt-0.5" />
                     <span>{service}</span>
                   </li>
@@ -64,7 +72,7 @@ export default async function ServicesPage({
 
             <div className="mt-8 pt-6 border-t border-border/40">
               <Link
-                href={`/${locale}/contact`}
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity"
               >
                 <span>{t("brandCta")}</span>
@@ -73,7 +81,6 @@ export default async function ServicesPage({
             </div>
           </div>
 
-          {/* Creator Services Box */}
           <div className="rounded-2xl border border-border/60 bg-card/40 p-8 sm:p-10 flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
             <div>
               <div className="flex items-center gap-4 mb-6">
@@ -81,7 +88,9 @@ export default async function ServicesPage({
                   <User className="size-7" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold">{t("creatorsBoxTitle")}</h2>
+                  <h2 className="text-2xl font-bold">
+                    {t("creatorsBoxTitle")}
+                  </h2>
                   <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
                     {t("creatorsBoxSubtitle")}
                   </p>
@@ -92,7 +101,10 @@ export default async function ServicesPage({
 
               <ul className="space-y-3.5">
                 {creatorServices.map((service, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-foreground/90">
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 text-sm sm:text-base text-foreground/90"
+                  >
                     <CheckCircle2 className="size-5 text-primary shrink-0 mt-0.5" />
                     <span>{service}</span>
                   </li>
@@ -102,7 +114,7 @@ export default async function ServicesPage({
 
             <div className="mt-8 pt-6 border-t border-border/40">
               <Link
-                href={`/${locale}/contact`}
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-card border border-border hover:bg-accent font-bold text-sm transition-colors"
               >
                 <span>{t("creatorCta")}</span>
@@ -112,7 +124,6 @@ export default async function ServicesPage({
           </div>
         </div>
 
-        {/* Custom Scope / CTA Banner Box */}
         <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
           <div className="max-w-2xl">
             <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
@@ -123,7 +134,7 @@ export default async function ServicesPage({
             </p>
           </div>
           <Link
-            href={`/${locale}/contact`}
+            href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-extrabold text-sm hover:opacity-90 transition-opacity shrink-0 shadow-lg shadow-primary/20"
           >
             <PhoneCall className="size-4" />

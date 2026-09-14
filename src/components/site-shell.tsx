@@ -4,6 +4,7 @@ import { ArrowUpRight, Languages } from "lucide-react";
 import { MobileNavigation } from "@/components/mobile-navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { buttonVariants } from "./ui/button";
 
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
@@ -19,8 +20,8 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           className="shrink-0 text-lg font-black tracking-[-0.08em]"
         >
           <span className="text-accent-foreground">{brandFirstPart}</span>
-          <span className="text-[#3AA7FD]">{brandSecondPart}</span>
-          <span className="text-[#1B449A]">.</span>
+          <span className="text-primary">{brandSecondPart}</span>
+          <span className="text-destructive">.</span>
         </Link>
         <div className="hidden items-center gap-7 text-xs font-bold uppercase tracking-[0.16em] text-accent-foreground md:flex">
           <Link href="/about" className="transition hover:text-[#3AA7FD]">
@@ -40,8 +41,8 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           </Link>
         </div>
         <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-          <LanguageSwitcher locale={locale} label={t("language")} />
           <ThemeToggle />
+          <LanguageSwitcher locale={locale} label={t("language")} />
           <MobileNavigation
             labels={{
               about: t("about"),
@@ -57,7 +58,7 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Link
               href="/auth/register"
-              className="hidden items-center gap-2 bg-primary px-4 py-2.5 text-xs font-black uppercase text-white!    transition hover:bg-white sm:inline-flex"
+              className={buttonVariants({variant: 'secondary',size: 'lg', className: 'rounded-sm py-2 sm:py-3 bg-secoundry'})}
             >
               {t("register")} <ArrowUpRight className="size-3.5" />
             </Link>
@@ -77,9 +78,9 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
     <footer className="border-t border-white/10 px-5 py-8 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-xs text-white/35 sm:flex-row">
         <span className="font-black tracking-tighter text-white">
-          <span className="text-[#1B449A]">{brandFirstPart}</span>
-          <span className="text-[#3AA7FD]">{brandSecondPart}</span>
-          <span className="text-white">.</span>
+          <span className="text-accent-foreground">{brandFirstPart}</span>
+          <span className="text-primary">{brandSecondPart}</span>
+          <span className="text-destructive">.</span>
         </span>
         <span>{t("note")}</span>
         <span>{t("contact")}</span>

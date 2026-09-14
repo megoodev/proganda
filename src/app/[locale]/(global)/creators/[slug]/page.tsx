@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   ArrowLeft,
@@ -15,10 +16,10 @@ import {
   TrendingUp,
   Video,
 } from "lucide-react";
+
 import { Link } from "@/i18n/navigation";
 import { creators } from "@/lib/data";
 
-// ─── Shadcn UI Components Imports ──────────────────────────────
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -147,30 +148,36 @@ export default async function CreatorProfile({
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       {/* Back Button */}
-      <Button variant="ghost" size="sm" asChild className="mb-8">
+      <Button variant="ghost" size="sm" asChild className="mb-6 sm:mb-8">
         <Link href="/creators" className="gap-2 text-muted-foreground">
           <ArrowLeft className="size-4" /> {t("profile")}
         </Link>
       </Button>
 
       {/* Main Profile Header & Hero Section */}
-      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
         {/* Profile Card & Avatar */}
-        <Card className="overflow-hidden p-0">
-          <div className="relative aspect-[4/5] max-h-[580px] w-full overflow-hidden">
-            <img
+        <Card className="overflow-hidden p-0 lg:col-span-5 flex flex-col justify-between">
+          <div className="relative aspect-[4/5] min-h-[420px] w-full overflow-hidden">
+            <Image
               src={creator.image}
               alt={creator.name}
-              className="size-full object-cover transition duration-500 hover:scale-105"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover transition duration-500 hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
-              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30 uppercase tracking-widest">
+              <Badge
+                variant="outline"
+                className="border-primary/30 bg-primary/10 uppercase tracking-widest text-primary"
+              >
                 {creator.niche}
               </Badge>
-              <h1 className="mt-2 text-4xl font-black text-foreground sm:text-5xl">
+              <h1 className="mt-2 text-3xl font-black text-foreground sm:text-4xl">
                 {creator.name}
               </h1>
               <p className="mt-1 text-sm font-medium text-muted-foreground">
@@ -180,16 +187,16 @@ export default async function CreatorProfile({
           </div>
 
           {/* Quick Action Buttons */}
-          <div className="grid grid-cols-2 gap-px bg-border">
+          <div className="grid grid-cols-2 divide-x divide-border bg-border">
             <Button
               variant="secondary"
-              className="rounded-none py-6 font-bold uppercase tracking-wider text-xs gap-2"
+              className="h-12 rounded-none gap-2 text-xs font-bold uppercase tracking-wider"
             >
               <Mail className="size-4" /> Book Creator
             </Button>
             <Button
               variant="ghost"
-              className="rounded-none py-6 font-bold uppercase tracking-wider text-xs gap-2 bg-card hover:bg-accent"
+              className="h-12 rounded-none gap-2 bg-card text-xs font-bold uppercase tracking-wider hover:bg-accent"
             >
               <Share2 className="size-4" /> Share Profile
             </Button>
@@ -197,28 +204,28 @@ export default async function CreatorProfile({
         </Card>
 
         {/* Creator Info & Performance Stats */}
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between lg:col-span-7">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="text-xs font-bold uppercase tracking-widest text-primary">
                 {creator.location} / Verified Creator
               </span>
-              <Badge variant="secondary" className="gap-1 font-semibold text-amber-500">
+              <Badge variant="secondary" className="gap-1.5 font-semibold text-amber-500">
                 <Star className="size-3.5 fill-amber-500" />
                 <span>4.95</span>
-                <span className="text-muted-foreground ml-1">(28 Reviews)</span>
+                <span className="text-muted-foreground">(28 Reviews)</span>
               </Badge>
             </div>
 
-            <h2 className="mt-4 text-4xl font-black tracking-tight text-foreground sm:text-6xl">
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Built for high-converting content.
             </h2>
 
-            <p className="mt-6 leading-relaxed text-muted-foreground">
+            <p className="mt-4 leading-relaxed text-muted-foreground">
               {creatorDetails.bio}
             </p>
 
-            {/* Main Key Stats Grid using Shadcn Cards */}
+            {/* Main Key Stats Grid */}
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {[
                 [t("reach"), creator.reach, "Total Audience"],
@@ -235,14 +242,20 @@ export default async function CreatorProfile({
             </div>
 
             {/* Verification & Trust Badges */}
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Badge variant="outline" className="gap-2 py-1.5 px-3 border-primary/30 bg-primary/5 text-primary font-medium">
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <Badge
+                variant="outline"
+                className="gap-2 border-primary/30 bg-primary/5 px-3 py-1.5 font-medium text-primary"
+              >
                 <BadgeCheck className="size-4" /> Usage rights ready
               </Badge>
-              <Badge variant="outline" className="gap-2 py-1.5 px-3 border-emerald-500/30 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 font-medium">
+              <Badge
+                variant="outline"
+                className="gap-2 border-emerald-500/30 bg-emerald-500/5 px-3 py-1.5 font-medium text-emerald-600 dark:text-emerald-400"
+              >
                 <ShieldCheck className="size-4" /> Brand safety verified
               </Badge>
-              <Badge variant="secondary" className="gap-2 py-1.5 px-3 font-medium">
+              <Badge variant="secondary" className="gap-2 px-3 py-1.5 font-medium">
                 <Clock className="size-4 text-muted-foreground" /> Fast Turnaround
               </Badge>
             </div>
@@ -254,12 +267,12 @@ export default async function CreatorProfile({
             <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
               Active Platforms & Handles
             </p>
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-2.5">
               {creator.platforms.map((platform) => (
                 <Badge
                   key={platform}
                   variant="outline"
-                  className="gap-2 py-2 px-3.5 text-xs font-medium text-foreground bg-card shadow-sm"
+                  className="gap-2 bg-card px-3.5 py-2 text-xs font-medium text-foreground shadow-sm"
                 >
                   {renderSocialIcon(platform)}
                   {platform}
@@ -271,10 +284,10 @@ export default async function CreatorProfile({
       </div>
 
       {/* Audience Demographics Section */}
-      <section className="mt-20">
-        <Separator className="mb-12" />
-        <div className="flex flex-col gap-2">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <section className="mt-16 sm:mt-20">
+        <Separator className="mb-10 sm:mb-12" />
+        <div className="flex flex-col gap-1">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Audience Insights
           </p>
           <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
@@ -282,23 +295,23 @@ export default async function CreatorProfile({
           </h3>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-xs font-bold uppercase text-muted-foreground">
+              <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 Gender Breakdown
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <div className="flex justify-between text-xs font-semibold text-foreground mb-1.5">
+                <div className="mb-1.5 flex justify-between text-xs font-semibold text-foreground">
                   <span>Female</span>
                   <span>{creatorDetails.demographics.gender.female}%</span>
                 </div>
                 <Progress value={creatorDetails.demographics.gender.female} />
               </div>
               <div>
-                <div className="flex justify-between text-xs font-semibold text-foreground mb-1.5">
+                <div className="mb-1.5 flex justify-between text-xs font-semibold text-foreground">
                   <span>Male</span>
                   <span>{creatorDetails.demographics.gender.male}%</span>
                 </div>
@@ -309,7 +322,7 @@ export default async function CreatorProfile({
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-xs font-bold uppercase text-muted-foreground">
+              <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 Top Geographies
               </CardTitle>
             </CardHeader>
@@ -325,9 +338,9 @@ export default async function CreatorProfile({
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="sm:col-span-2 lg:col-span-1">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xs font-bold uppercase text-muted-foreground">
+              <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 Age Distribution
               </CardTitle>
             </CardHeader>
@@ -344,10 +357,10 @@ export default async function CreatorProfile({
       </section>
 
       {/* Case Studies / Proven Results Section */}
-      <section className="mt-20">
-        <Separator className="mb-12" />
-        <div className="flex flex-col gap-2">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <section className="mt-16 sm:mt-20">
+        <Separator className="mb-10 sm:mb-12" />
+        <div className="flex flex-col gap-1">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Track Record
           </p>
           <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
@@ -362,7 +375,7 @@ export default async function CreatorProfile({
                 <CardTitle className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   {study.brand}
                 </CardTitle>
-                <Badge variant="secondary" className="gap-1 bg-primary/10 text-primary font-bold">
+                <Badge variant="secondary" className="gap-1.5 bg-primary/10 font-bold text-primary">
                   <TrendingUp className="size-3.5" /> {study.metric}
                 </Badge>
               </CardHeader>
@@ -375,34 +388,53 @@ export default async function CreatorProfile({
       </section>
 
       {/* Portfolio / Sample Reels Section */}
-      <section className="mt-20">
-        <Separator className="mb-12" />
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              Portfolio & Creative Style
-            </p>
-            <h3 className="mt-1 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-              Sample Reels & Ads
-            </h3>
-          </div>
+      <section className="mt-16 sm:mt-20">
+        <Separator className="mb-10 sm:mb-12" />
+        <div className="flex flex-col gap-1">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+            Portfolio & Creative Style
+          </p>
+          <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
+            Sample Reels & Ads
+          </h3>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { title: "Product Unboxing", views: "45K", type: "TikTok Ad" },
-            { title: "Problem / Solution", views: "120K", type: "Instagram Reel" },
-            { title: "Testimonial & Review", views: "88K", type: "Spark Ad" },
+            {
+              title: "Product Unboxing",
+              views: "45K",
+              type: "TikTok Ad",
+              img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=80&auto=format&fit=crop",
+            },
+            {
+              title: "Problem / Solution",
+              views: "120K",
+              type: "Instagram Reel",
+              img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80&auto=format&fit=crop",
+            },
+            {
+              title: "Testimonial & Review",
+              views: "88K",
+              type: "Spark Ad",
+              img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=80&auto=format&fit=crop",
+            },
           ].map((reel) => (
             <Card
               key={reel.title}
-              className="group relative flex aspect-[9/16] items-end overflow-hidden p-5 transition hover:border-primary border-border"
+              className="group relative flex aspect-[9/16] items-end overflow-hidden p-5 transition border-border hover:border-primary"
             >
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=80&auto=format&fit=crop')] bg-cover bg-center transition duration-500 group-hover:scale-105" />
+              <Image
+                src={reel.img}
+                alt={reel.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
               <div className="relative z-10 w-full">
-                <Badge variant="default" className="text-[10px] font-bold uppercase tracking-widest mb-1">
+                <Badge variant="default" className="mb-1 text-[10px] font-bold uppercase tracking-widest">
                   {reel.type}
                 </Badge>
                 <h4 className="text-lg font-bold text-foreground">{reel.title}</h4>
@@ -410,7 +442,7 @@ export default async function CreatorProfile({
                   <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <Eye className="size-3.5" /> {reel.views}
                   </span>
-                  <Button size="icon" className="rounded-full size-9 transition group-hover:scale-110">
+                  <Button size="icon" className="size-9 rounded-full transition group-hover:scale-110">
                     <Play className="ml-0.5 size-4 fill-current" />
                   </Button>
                 </div>
@@ -421,10 +453,10 @@ export default async function CreatorProfile({
       </section>
 
       {/* Pricing & Deliverables Section */}
-      <section className="mt-20">
-        <Separator className="mb-12" />
-        <div className="flex flex-col gap-2">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+      <section className="mt-16 sm:mt-20">
+        <Separator className="mb-10 sm:mb-12" />
+        <div className="flex flex-col gap-1">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Services & Packages
           </p>
           <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
@@ -441,7 +473,7 @@ export default async function CreatorProfile({
               }`}
             >
               {pkg.popular && (
-                <Badge className="absolute -top-3 right-6 bg-primary text-primary-foreground font-bold uppercase tracking-wider text-[10px]">
+                <Badge className="absolute -top-3 right-6 bg-primary text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
                   Most Popular
                 </Badge>
               )}
@@ -460,7 +492,7 @@ export default async function CreatorProfile({
                 </div>
               </CardContent>
 
-              <CardFooter className="flex-col items-stretch border-t border-border pt-6 mt-auto">
+              <CardFooter className="mt-auto flex-col items-stretch border-t border-border pt-6">
                 <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
                   <Clock className="size-3.5 text-primary" />
                   <span>Turnaround: {pkg.turnaround}</span>
@@ -478,7 +510,7 @@ export default async function CreatorProfile({
       </section>
 
       {/* Past Collaborations Footer Bar */}
-      <section className="mt-20">
+      <section className="mt-16 sm:mt-20">
         <Separator className="mb-8" />
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-2 font-semibold">
