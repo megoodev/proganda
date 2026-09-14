@@ -21,7 +21,6 @@ export function LanguageSwitcher({
       aria-label={label}
       className={buttonVariants({
         variant: "outline",
-        size: "icon-lg",
         className: "rounded-sm border-accent-foreground text-accent-foreground",
       })}
     >
