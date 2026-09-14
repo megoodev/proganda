@@ -28,7 +28,7 @@ export const InstagramIcon = ({
   </svg>
 );
 
-export const LinkedinIcon = ({
+export const TiktokIcon = ({
   size = 24,
   className,
   ...props
@@ -37,43 +37,11 @@ export const LinkedinIcon = ({
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    fill="currentColor"
     className={className}
     {...props}
   >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-export const YoutubeIcon = ({
-  size = 24,
-  className,
-  ...props
-}: SocialIconProps) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    {...props}
-  >
-    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-    <polygon
-      points="10 15 15 12 10 9 10 15"
-      fill="currentColor"
-      stroke="none"
-    />
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.83V7.62a6.34 6.34 0 1 0 6.34 6.34V8.45a8.28 8.28 0 0 0 4.77 1.48V6.69z" />
   </svg>
 );
 
@@ -99,64 +67,17 @@ export const WhatsappIcon = ({
   </svg>
 );
 
-export const TelegramIcon = ({
-  size = 24,
-  className,
-  ...props
-}: SocialIconProps) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    {...props}
-  >
-    <path d="M21.5 2L2 9.5l7 3 1.5 6.5 3.5-3.5 5 4.5L21.5 2z" />
-  </svg>
-);
-
-export const XTwitterIcon = ({
-  size = 24,
-  className,
-  ...props
-}: SocialIconProps) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    {...props}
-  >
-    <path d="M4 4l16 16M4 20L20 4" />
-  </svg>
-);
-
 export const SocialLinks = () => {
   const links = [
     {
-      href: "https://instagram.com/yourbrand",
+      href: "https://www.instagram.com/proganda1?stkn=ZWw5ZjdvcTNxOW95",
       icon: InstagramIcon,
       label: "Instagram",
     },
     {
-      href: "https://linkedin.com/company/yourbrand",
-      icon: LinkedinIcon,
-      label: "LinkedIn",
-    },
-    {
-      href: "https://youtube.com/channel/yourbrand",
-      icon: YoutubeIcon,
-      label: "YouTube",
+      href: "https://www.tiktok.com",
+      icon: TiktokIcon,
+      label: "TikTok",
     },
   ];
 
@@ -169,7 +90,7 @@ export const SocialLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="text-white/70 hover:text-[#3AA7FD] transition-colors"
+          className="text-white/70 hover:text-primary transition-colors"
         >
           <Icon size={24} />
         </a>

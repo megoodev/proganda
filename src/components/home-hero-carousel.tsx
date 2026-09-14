@@ -52,7 +52,7 @@ export function HomeHeroCarousel({
         <p className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.28em] text-[#3AA7FD]">
           <Sparkles className="size-4" /> {eyebrow}
         </p>
-        <h1 className="max-w-5xl text-[clamp(3.6rem,10vw,9rem)] text-white/80 dark:text-white  font-black uppercase leading-[.84] tracking-[-0.09em]">
+        <h1 className="max-w-5xl text-[clamp(3.6rem,10vw,9rem)] text-white  font-black uppercase leading-[.84] tracking-[-0.09em]">
           {title}
         </h1>
         <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -62,13 +62,13 @@ export function HomeHeroCarousel({
           <div className="flex flex-wrap gap-3">
             <Link
               href="/creators"
-              className="inline-flex items-center gap-3 bg-[#3AA7FD] px-5 py-3 text-sm font-bold text-black transition hover:bg-white"
+              className="inline-flex items-center gap-3 bg-primary px-5 py-3 text-sm font-bold text-black transition hover:bg-white"
             >
               {primaryCta} <ArrowRight className="size-4" />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center gap-3 border border-[#3AA7FD] text-[#3AA7FD] bg-black/20 px-5 py-3 text-sm font-bold transition hover:text-black hover:bg-[#3AA7FD] transition-all duration-300 "
+              className="inline-flex items-center gap-3 border border-[#3AA7FD] text-[#3AA7FD] bg-black/20 px-5 py-3 text-sm font-bold transition hover:text-black hover:bg-primary transition-all duration-300 "
             >
               {secondaryCta} <ArrowDownRight className="size-4" />
             </Link>
@@ -82,7 +82,7 @@ export function HomeHeroCarousel({
               aria-label={`Show slide ${index + 1}`}
               aria-current={index === activeSlide ? "true" : undefined}
               onClick={() => setActiveSlide(index)}
-              className={`h-1 transition-all duration-300 ${index === activeSlide ? "w-12 bg-[#3AA7FD]" : "w-5 bg-white/40 hover:bg-white"}`}
+              className={`h-1 transition-all duration-300 ${index === activeSlide ? "w-12 bg-primary" : "w-5 bg-white/40 hover:bg-white"}`}
             />
           ))}
         </div>

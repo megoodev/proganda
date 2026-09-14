@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Raleway } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Raleway, Cairo } from "next/font/google";
 import "./globals.css";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+});
 
 const ralewayHeading = Raleway({
   subsets: ["latin"],
   variable: "--font-heading",
 });
-import { TooltipProvider } from "@/components/ui/tooltip";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -40,6 +46,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         "font-sans",
         inter.variable,
         ralewayHeading.variable,
+        cairo.variable,
       )}
     >
       <body className="min-h-full flex flex-col">

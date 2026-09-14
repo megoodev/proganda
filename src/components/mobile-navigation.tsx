@@ -112,7 +112,7 @@ export function MobileNavigation({
                 <Link
                   href="/auth/register"
                   onClick={close}
-                  className="inline-flex items-center justify-center gap-2 bg-[#3AA7FD] px-5 py-3 text-sm font-black text-black hover:bg-white"
+                  className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 text-sm font-black text-black hover:bg-white"
                 >
                   {labels.register} <ArrowUpRight className="size-4" />
                 </Link>

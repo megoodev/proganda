@@ -58,7 +58,7 @@ export function ServicePlans({
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setAudience("brand")}
-            className={`px-5 py-3 text-sm font-bold ${audience === "brand" ? "bg-[#3AA7FD] text-black" : "border border-white/15 text-white/55"}`}
+            className={`px-5 py-3 text-sm font-bold ${audience === "brand" ? "bg-primary text-black" : "border border-white/15 text-white/55"}`}
           >
             {labels.brandsTab}
           </button>
@@ -74,10 +74,10 @@ export function ServicePlans({
             <button
               key={serviceKeys[index]}
               onClick={() => toggleService(service)}
-              className={`flex min-h-20 items-start gap-3 border p-4 text-start text-sm transition ${selectedServices.includes(service) ? "border-[#3AA7FD] bg-[#3AA7FD]/10 text-white" : "border-white/10 text-white/55 hover:border-white/35"}`}
+              className={`flex min-h-20 items-start gap-3 border p-4 text-start text-sm transition ${selectedServices.includes(service) ? "border-[#3AA7FD] bg-primary/10 text-white" : "border-white/10 text-white/55 hover:border-white/35"}`}
             >
               <span
-                className={`mt-0.5 flex size-4 shrink-0 items-center justify-center border text-[10px] ${selectedServices.includes(service) ? "border-[#3AA7FD] bg-[#3AA7FD] text-black" : "border-white/25"}`}
+                className={`mt-0.5 flex size-4 shrink-0 items-center justify-center border text-[10px] ${selectedServices.includes(service) ? "border-[#3AA7FD] bg-primary text-black" : "border-white/25"}`}
               >
                 {selectedServices.includes(service) ? "✓" : ""}
               </span>
@@ -130,7 +130,7 @@ export function ServicePlans({
               </ul>
               <button
                 onClick={() => setActive(item.id)}
-                className="mt-auto inline-flex items-center justify-between border border-white/20 px-4 py-3 text-sm font-bold transition hover:border-[#3AA7FD] hover:bg-[#3AA7FD] hover:text-black"
+                className="mt-auto inline-flex items-center justify-between border border-white/20 px-4 py-3 text-sm font-bold transition hover:border-[#3AA7FD] hover:bg-primary hover:text-black"
               >
                 {labels.select}
                 <ArrowRight className="size-4" />

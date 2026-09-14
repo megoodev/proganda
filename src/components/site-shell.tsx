@@ -18,11 +18,11 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           href="/"
           className="shrink-0 text-lg font-black tracking-[-0.08em]"
         >
-          <span className="text-white">{brandFirstPart}</span>
+          <span className="text-accent-foreground">{brandFirstPart}</span>
           <span className="text-[#3AA7FD]">{brandSecondPart}</span>
           <span className="text-[#1B449A]">.</span>
         </Link>
-        <div className="hidden items-center gap-7 text-xs font-bold uppercase tracking-[0.16em] text-white/55 md:flex">
+        <div className="hidden items-center gap-7 text-xs font-bold uppercase tracking-[0.16em] text-accent-foreground md:flex">
           <Link href="/about" className="transition hover:text-[#3AA7FD]">
             {t("about")}
           </Link>
@@ -55,7 +55,7 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Link
               href="/auth/register"
-              className="hidden items-center gap-2 bg-[#3AA7FD] px-4 py-2.5 text-xs font-black uppercase text-white!    transition hover:bg-white sm:inline-flex"
+              className="hidden items-center gap-2 bg-primary px-4 py-2.5 text-xs font-black uppercase text-white!    transition hover:bg-white sm:inline-flex"
             >
               {t("register")} <ArrowUpRight className="size-3.5" />
             </Link>

@@ -7,7 +7,7 @@ interface FreeConsultBannerProps {
 
 export default function FreeConsultBanner({ text }: FreeConsultBannerProps) {
   return (
-    <section className="mb-8 rounded border border-[#3AA7FD] bg-[#3AA7FD]/10 p-4 text-center text-[#3AA7FD]">
+    <section className="mb-8 rounded border border-[#3AA7FD] bg-primary/10 p-4 text-center text-[#3AA7FD]">
       <p className="text-sm font-medium">{text}</p>
     </section>
   );

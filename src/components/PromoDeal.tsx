@@ -4,10 +4,10 @@ import { Sparkles, ArrowUpRight } from "lucide-react";
 
 export const PromoDeal = () => {
   return (
-    <div className="relative mb-8 overflow-hidden border border-[#3AA7FD]/40 bg-[#3AA7FD]/10 p-4 sm:p-5 backdrop-blur-md">
+    <div className="relative mb-8 overflow-hidden border border-[#3AA7FD]/40 bg-primary/10 p-4 sm:p-5 backdrop-blur-md">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
-          <div className="flex size-10 shrink-0 items-center justify-center border border-[#3AA7FD] bg-[#3AA7FD] text-black">
+          <div className="flex size-10 shrink-0 items-center justify-center border border-[#3AA7FD] bg-primary text-black">
             <Sparkles className="size-5" />
           </div>
           <div>

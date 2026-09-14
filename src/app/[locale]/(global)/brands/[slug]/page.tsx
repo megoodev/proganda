@@ -94,7 +94,7 @@ export default async function BrandDetailPage({
       </section>
       <Link
         href="/auth/register?role=brand"
-        className="mt-16 inline-flex items-center gap-3 bg-[#3AA7FD] px-5 py-3 text-sm font-bold text-black hover:bg-white"
+        className="mt-16 inline-flex items-center gap-3 bg-primary px-5 py-3 text-sm font-bold text-black hover:bg-white"
       >
         {t("cta")} <ArrowUpRight className="size-4" />
       </Link>

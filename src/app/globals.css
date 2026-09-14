@@ -347,25 +347,6 @@ html[data-theme="light"] .bg-\[\#191919\] {
   background-color: #e4e1eb;
 }
 
-html[data-theme="light"] .text-white {
-  color: #202027;
-}
-
-html[data-theme="light"] .text-white\/55,
-html[data-theme="light"] .text-white\/45,
-html[data-theme="light"] .text-white\/40,
-html[data-theme="light"] .text-white\/35 {
-  color: rgb(32 32 39 / 62%);
-}
-
-html[data-theme="light"] .text-white\/70,
-html[data-theme="light"] .text-white\/65,
-html[data-theme="light"] .text-white\/60,
-html[data-theme="light"] .text-white\/50,
-html[data-theme="light"] .text-white\/25 {
-  color: rgb(32 32 39 / 78%);
-}
-
 html[data-theme="light"] .creator-carousel-arrow {
   color: rgb(32 32 39 / 82%);
 }
