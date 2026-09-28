@@ -1,179 +1,225 @@
 import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
-  ArrowUpRight,
-  Lightbulb,
-  Send,
-  Scissors,
-  Users,
   Camera,
   Clapperboard,
+  Lightbulb,
+  Scissors,
+  Send,
+  Sparkles,
+  Users,
+  WandSparkles,
 } from "lucide-react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+// Importing shadcn/ui components
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export default async function AboutPage({
   params,
 }: PageProps<"/[locale]/about">) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  const timeline = t.raw("timelineItems") as string[];
-  const teamMembers = t.raw("teamMembers") as Array<{
+  
+  const timeline = (t.raw("timelineItems") as string[]) || [];
+  const teamMembers = (t.raw("teamMembers") as Array<{
     name: string;
     role: string;
     specialty: string;
     handle: string;
     image: string;
     accent: string;
-  }>;
+  }>) || [];
+
   const timelineIcons = [Lightbulb, Users, Camera, Scissors, Send];
+  
   const capabilities = [
-    { icon: Lightbulb, label: "Creative strategy", accent: "#3AA7FD" },
-    { icon: Camera, label: "Studio production", accent: "#1B449A" },
-    { icon: Scissors, label: "Edit + post", accent: "#8a2be2" },
-    { icon: Clapperboard, label: "Distribution", accent: "#00e5ff" },
+    { icon: Lightbulb, label: "Creative strategy", accent: "text-sky-500", bgAccent: "bg-sky-500/10" },
+    { icon: Camera, label: "Studio production", accent: "text-indigo-500", bgAccent: "bg-indigo-500/10" },
+    { icon: Scissors, label: "Edit + post", accent: "text-purple-500", bgAccent: "bg-purple-500/10" },
+    { icon: Clapperboard, label: "Distribution", accent: "text-cyan-500", bgAccent: "bg-cyan-500/10" },
   ];
+
+  const metricsData = [
+    ["18+", t("campaigns")],
+    ["54M", t("impressions")],
+    ["11.8%", t("engagement")],
+    ["4.8x", t("roi")],
+  ];
+
   return (
-    <main className="flex flex-col">
-      <section className="order-1 relative overflow-hidden border-b border-white/10 px-5 pb-24 pt-20 lg:px-8">
-        <div className="workflow-grid pointer-events-none absolute inset-0 opacity-20" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+    <main className="relative w-full overflow-hidden bg-background text-foreground transition-colors duration-300">
+      
+      {/* 1. HERO SECTION */}
+      <section className="relative border-b border-border/60 px-6 py-20 lg:px-8 lg:py-28">
+        {/* Subtle Ambient Background Lighting */}
+        <div className="absolute -top-32 -left-32 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div>
-            <div className="mb-8 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
-              <span className="size-2 bg-[#1B449A]" />
-              <span>{t("eyebrow")}</span>
-            </div>
-            <h1 className="max-w-5xl text-[clamp(2.8rem,10vw,9rem)] font-black text-accent-foreground uppercase leading-[.84] tracking-[-0.08em]">
+            <Badge 
+              variant="outline" 
+              className="mb-4 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+            >
+              <Sparkles className="size-3.5" />
+              {t("eyebrow")}
+            </Badge>
+
+            <h1 className="max-w-4xl text-4xl font-black tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.08]">
               {t("title")}
             </h1>
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-accent-foreground/55 sm:text-xl">
+
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {t("description")}
             </p>
           </div>
-          <Card className="border-s-2 rounded-none border-[#3AA7FD] py-6 px-3  backdrop-blur-sm lg:mb-2">
-            <CardHeader>
-              <p className="text-[10px] font-black uppercase text-secondary-foreground tracking-[0.22em] ">
+
+          {/* Quick Core Capabilities Card */}
+          <Card className="border border-border/80 bg-card/80 p-6 shadow-xl backdrop-blur-xl">
+            <CardHeader className="p-0 pb-6 border-b border-border/60">
+              <CardTitle className="text-xs font-black uppercase tracking-widest text-primary flex items-center gap-2">
+                <WandSparkles className="size-4" />
                 {t("capabilityMeta")}
-              </p>
+              </CardTitle>
             </CardHeader>
-            <CardContent className="mt-8 grid gap-4 ">
-              {capabilities
-                .slice(0, 3)
-                .map(({ icon: Icon, label, accent }, index) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-3 border-b border-white/10 pb-3"
-                  >
-                    <span
-                      className="text-xs font-black"
-                      style={{ color: accent }}
-                    >
-                      0{index + 1}
-                    </span>
-                    <Icon className="size-4" style={{ color: accent }} />
-                    <span className="text-sm font-bold text-accent-foreground/75">
-                      {label}
-                    </span>
+            <CardContent className="p-0 pt-6 grid gap-4">
+              {capabilities.slice(0, 3).map(({ icon: Icon, label, accent }, index) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-4 rounded-lg border border-border/40 bg-muted/20 p-3 transition-colors hover:border-primary/40"
+                >
+                  <span className={`text-xs font-black ${accent}`}>
+                    0{index + 1}
+                  </span>
+                  <div className={`flex size-8 items-center justify-center rounded-md border border-border/60 bg-background ${accent}`}>
+                    <Icon className="size-4" />
                   </div>
-                ))}
+                  <span className="text-sm font-bold text-foreground">
+                    {label}
+                  </span>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </div>
       </section>
-      <section className="order-4 border-y border-white/10 bg-[#151515] px-5 py-24 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.7fr_1.3fr]">
-          <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
-              {t("studio")}
-            </p>
-            <h2 className="text-[clamp(2.3rem,6vw,4rem)] font-black tracking-[-0.06em] text-secondary-foreground">
-              {t("studioDescription")}
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 gap-px border border-white/10 bg-white/10">
-            {capabilities.map(({ icon: Icon, label }) => (
-              <div key={label} className="bg-[#151515] p-7 text-center">
-                <Icon className="size-6 text-[#3AA7FD] mx-auto" />
-                <h3 className="mt-16 text-xl font-bold text-accent-foreground">
-                  {label}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="order-2 mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#8a2be2]">
+
+      {/* 2. METRICS SECTION */}
+      <section className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <p className="mb-6 text-xs font-black uppercase tracking-widest text-primary">
           {t("metrics")}
         </p>
-        <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-4">
-          {[
-            ["18+", t("campaigns")],
-            ["54M", t("impressions")],
-            ["11.8%", t("engagement")],
-            ["4.8x", t("roi")],
-          ].map(([value, label]) => (
-            <div key={label} className="bg-[#0d0d0d] p-6">
-              <p className="text-4xl font-black text-[#3AA7FD]">{value}</p>
-              <p className="mt-3 text-xs uppercase tracking-widest text-accent-foreground/40">
-                {label}
-              </p>
-            </div>
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {metricsData.map(([value, label]) => (
+            <Card key={label} className="border-border/60 bg-card/60 p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-md">
+              <CardContent className="p-0">
+                <p className="text-4xl font-black text-primary sm:text-5xl">{value}</p>
+                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  {label}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
 
-      <section className="workflow-section order-5 border-t border-white/10 bg-[#151515] px-5 py-24 lg:px-8">
+      <Separator />
+
+      {/* 3. CAPABILITIES GRID SECTION */}
+      <section className="relative bg-muted/20 px-6 py-20 lg:px-8 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
+          <div>
+            <p className="mb-3 text-xs font-black uppercase tracking-widest text-primary">
+              {t("studio")}
+            </p>
+            <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl leading-tight">
+              {t("studioDescription")}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {capabilities.map(({ icon: Icon, label, accent, bgAccent }) => (
+              <Card key={label} className="group border-border/60 bg-card/80 p-8 transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                <CardContent className="flex flex-col items-start p-0">
+                  <div className={`flex size-12 items-center justify-center rounded-xl ${bgAccent} ${accent} transition-transform duration-300 group-hover:scale-110`}>
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mt-8 text-xl font-bold text-foreground">
+                    {label}
+                  </h3>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* 4. WORKFLOW TIMELINE SECTION */}
+      <section className="relative px-6 py-20 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
+          <p className="mb-4 text-xs font-black uppercase tracking-widest text-primary">
             {t("timeline")}
           </p>
-          <div className="workflow-board relative mt-8 overflow-hidden border border-white/10 bg-[#171717] p-5 sm:p-8">
-            <div className="workflow-grid absolute inset-0 opacity-30" />
-            <div className="relative flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
+
+          <Card className="relative overflow-hidden border border-border/60 bg-card/80 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+            {/* Board Header */}
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3AA7FD]">
+                <Badge variant="secondary" className="gap-2 bg-emerald-500/10 text-[10px] font-bold uppercase text-emerald-500 border-emerald-500/20">
+                  <span className="size-2 animate-pulse rounded-full bg-emerald-500" />
                   campaign signal / live
-                </p>
-                <p className="mt-1 text-sm text-accent-foreground/55">
+                </Badge>
+                <p className="mt-2 text-sm text-muted-foreground">
                   One connected team from brief to broadcast.
                 </p>
               </div>
-              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-accent-foreground/60">
-                <span className="size-2 animate-pulse rounded-full bg-[#1B449A]" />{" "}
-                in motion
+
+              <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                100% In-House Pipeline
               </span>
             </div>
-            <div className="workflow-track relative mt-8">
-              <div className="workflow-line absolute left-5 right-5 top-5 hidden h-px bg-primary/30 md:block" />
-              <div className="grid gap-7 md:grid-cols-5 md:gap-2">
+
+            {/* Steps Track */}
+            <div className="relative mt-10">
+              <div className="absolute left-6 right-6 top-5 hidden h-0.5 bg-border/80 md:block" />
+
+              <div className="grid gap-6 md:grid-cols-5 md:gap-3">
                 {timeline.map((item, index) => {
-                  const Icon = timelineIcons[index];
+                  const Icon = timelineIcons[index] || Lightbulb;
                   return (
                     <div
                       key={item}
-                      className="workflow-step relative flex items-center gap-4 md:block md:text-center"
-                      style={{ animationDelay: `${index * 140}ms` }}
+                      className="group relative flex items-center gap-4 rounded-xl border border-border/40 bg-muted/20 p-4 transition-all duration-300 hover:border-primary/50 md:flex-col md:items-center md:border-0 md:bg-transparent md:p-0 md:text-center"
                     >
-                      <span className="relative z-10 flex size-10 shrink-0 items-center justify-center border border-[#3AA7FD] bg-[#171717] text-[#3AA7FD]">
+                      {/* Step Circle */}
+                      <div className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-xl border border-primary/40 bg-background text-primary shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
                         <Icon className="size-4" />
-                      </span>
+                      </div>
+
+                      {/* Content */}
                       <div className="md:mt-4">
-                        <span className="text-[10px] font-bold tracking-widest text-[#3AA7FD]">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-primary">
                           0{index + 1}
                         </span>
-                        <h3 className="mt-1 text-lg font-bold text-accent-foreground">
+                        <h3 className="mt-1 text-base font-bold text-foreground">
                           {item}
                         </h3>
                       </div>
-                      <ArrowRight className="ml-auto size-4 text-accent-foreground/25 md:mx-auto md:mt-5" />
+
+                      <ArrowRight className="ml-auto size-4 text-muted-foreground/40 transition-transform duration-200 group-hover:translate-x-1 md:mx-auto md:mt-4 md:rotate-0 rtl:rotate-180" />
                     </div>
                   );
                 })}
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </section>
+
     </main>
   );
 }

@@ -53,7 +53,7 @@ export default async function ContactPage({
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-primary">
               {t("eyebrow")}
             </p>
-            <h1 className="max-w-4xl text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[.84] tracking-[-0.08em] text-accent-foreground">
+            <h1 className="max-w-4xl text-[clamp(2.6rem,6.5vw,5rem)] font-black leading-[1.04] tracking-tight text-accent-foreground">
               {t("title")}
             </h1>
           </div>

@@ -1,10 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, Languages } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { MobileNavigation } from "@/components/mobile-navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { buttonVariants } from "./ui/button";
+
+// Importing shadcn/ui components
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
@@ -12,37 +15,48 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const brandFirstPart = locale === "en" ? "Pro" : "برو";
   const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
 
+  const navItems = [
+    { href: "/about", label: t("about") },
+    { href: "/creators", label: t("creators") },
+    { href: "/services", label: t("services") },
+    { href: "/brands", label: t("brands") },
+    { href: "/contact", label: t("contact") },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0d0d0d]/90 backdrop-blur-xl">
-      <nav className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-5 sm:px-5 lg:px-8">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl transition-colors duration-200">
+      <nav className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        
+        {/* Brand Logo */}
         <Link
           href="/"
-          className="shrink-0 text-lg font-black tracking-[-0.08em]"
+          className="group shrink-0 text-xl font-black tracking-tighter transition-transform duration-200 active:scale-95"
         >
-          <span className="text-accent-foreground">{brandFirstPart}</span>
+          <span className="text-foreground">{brandFirstPart}</span>
           <span className="text-primary">{brandSecondPart}</span>
-          <span className="text-destructive">.</span>
+          <span className="text-destructive inline-block transition-transform duration-200 group-hover:translate-y-[-2px]">
+            .
+          </span>
         </Link>
-        <div className="hidden items-center gap-7 text-xs font-bold uppercase tracking-[0.16em] text-accent-foreground md:flex">
-          <Link href="/about" className="transition hover:text-[#3AA7FD]">
-            {t("about")}
-          </Link>
-          <Link href="/creators" className="transition hover:text-[#3AA7FD]">
-            {t("creators")}
-          </Link>
-          <Link href="/services" className="transition hover:text-[#3AA7FD]">
-            {t("services")}
-          </Link>
-          <Link href="/brands" className="transition hover:text-[#3AA7FD]">
-            {t("brands")}
-          </Link>
-          <Link href="/contact" className="transition hover:text-[#3AA7FD]">
-            {t("contact")}
-          </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-8 text-xs font-bold uppercase tracking-widest text-muted-foreground md:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="transition-colors hover:text-primary active:text-primary/80"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
-        <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+
+        {/* Action Tools & Utilities */}
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <ThemeToggle />
           <LanguageSwitcher locale={locale} label={t("language")} />
+
           <MobileNavigation
             labels={{
               about: t("about"),
@@ -55,14 +69,18 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
             }}
             alternateLocale={alternate}
           />
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <Link
-              href="/auth/register"
-              className={buttonVariants({variant: 'secondary',size: 'lg', className: 'rounded-sm py-2 sm:py-3 bg-secoundry'})}
-            >
-              {t("register")} <ArrowUpRight className="size-3.5" />
+
+          <Button
+            asChild
+            variant="secondary"
+            size="sm"
+            className="hidden font-bold sm:inline-flex rounded-md shadow-xs gap-1.5"
+          >
+            <Link href="/auth/register">
+              {t("register")} 
+              <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:rotate-90" />
             </Link>
-          </div>
+          </Button>
         </div>
       </nav>
     </header>
@@ -71,19 +89,76 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
 
 export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "footer" });
+  const common = await getTranslations({ locale, namespace: "common" });
   const brandFirstPart = locale === "en" ? "PRO" : "برو";
   const brandSecondPart = locale === "en" ? "GANDA" : "غاندا";
 
+  const navItems = [
+    { href: "/about", label: common("about") },
+    { href: "/creators", label: common("creators") },
+    { href: "/services", label: common("services") },
+    { href: "/brands", label: common("brands") },
+    { href: "/contact", label: common("contact") },
+  ];
+
   return (
-    <footer className="border-t border-white/10 px-5 py-8 lg:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-xs text-white/35 sm:flex-row">
-        <span className="font-black tracking-tighter text-white">
-          <span className="text-accent-foreground">{brandFirstPart}</span>
-          <span className="text-primary">{brandSecondPart}</span>
-          <span className="text-destructive">.</span>
-        </span>
-        <span>{t("note")}</span>
-        <span>{t("contact")}</span>
+    <footer className="border-t border-border bg-muted/40 px-6 pb-12 pt-16 lg:px-8 transition-colors duration-200">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_.6fr]">
+          
+          {/* Brand Info & Primary CTA */}
+          <div className="max-w-xl">
+            <Link href="/" className="inline-block text-2xl font-black tracking-tighter text-foreground">
+              <span className="text-foreground">{brandFirstPart}</span>
+              <span className="text-primary">{brandSecondPart}</span>
+              <span className="text-destructive">.</span>
+            </Link>
+            
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              {t("tagline")}
+            </p>
+
+            <Button asChild size="lg" className="mt-8 font-bold uppercase tracking-wider rounded-lg shadow-md gap-2">
+              <Link href="/contact">
+                {t("cta")} 
+                <ArrowUpRight className="size-4 rtl:rotate-90" />
+              </Link>
+            </Button>
+          </div>
+
+          {/* Navigation & Contact Links */}
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary">
+              {t("navigate")}
+            </p>
+            
+            <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-semibold text-foreground/80 transition-colors hover:text-primary"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <a
+              href={`mailto:${t("contact")}`}
+              className="mt-8 inline-block text-sm font-bold text-primary transition-opacity hover:opacity-80"
+            >
+              {t("contact")}
+            </a>
+          </div>
+        </div>
+
+        <Separator className="my-8" />
+
+        {/* Bottom Footer Note */}
+        <div className="flex flex-col justify-between gap-4 text-xs font-medium text-muted-foreground sm:flex-row">
+          <span>{t("note")}</span>
+        </div>
       </div>
     </footer>
   );
@@ -97,9 +172,9 @@ export async function LocaleShell({
   locale: "en" | "ar";
 }) {
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white">
+    <div className="flex min-h-screen flex-col bg-background text-foreground antialiased transition-colors duration-200">
       <SiteHeader locale={locale} />
-      {children}
+      <div className="flex-1">{children}</div>
       <SiteFooter locale={locale} />
     </div>
   );

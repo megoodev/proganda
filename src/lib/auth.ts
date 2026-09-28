@@ -1,25 +1,51 @@
-// src/lib/auth.ts
 import { betterAuth } from "better-auth";
-import { Pool } from "pg";
-
-export type SessionRole = "brand" | "blogger" | "creator" | "team";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { nextCookies } from "better-auth/next-js";
+import { admin } from "better-auth/plugins";
+import { prisma } from "@/lib/prisma";
+import {
+  isAdminRole,
+  isStaffRole,
+  sanitizeSignupRole,
+  type SessionRole,
+} from "@/lib/roles";
 
 export type AuthResult =
   | { authorized: true; role: SessionRole; token: string }
   | { authorized: false; reason: "UNAUTHORIZED" | "FORBIDDEN" };
 
+const appUrl =
+  process.env.BETTER_AUTH_URL ||
+  process.env.NEXT_PUBLIC_BETTER_AUTH_URL ||
+  "http://localhost:3000";
+
 export const auth = betterAuth({
-  database: new Pool({
-    connectionString:
-      process.env.DATABASE_URL ||
-      "postgresql://postgres:postgres@localhost:5432/proganda",
-    ssl:
-      process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : undefined,
+  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL: appUrl,
+  trustedOrigins: [appUrl],
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
   }),
   emailAndPassword: {
     enabled: true,
+    minPasswordLength: 8,
+    maxPasswordLength: 128,
+  },
+  session: {
+    expiresIn: 60 * 60 * 24 * 7,
+    updateAge: 60 * 60 * 12,
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 5,
+    },
+  },
+  advanced: {
+    useSecureCookies: process.env.NODE_ENV === "production",
+    defaultCookieAttributes: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
   },
   user: {
     additionalFields: {
@@ -27,6 +53,7 @@ export const auth = betterAuth({
         type: "string",
         required: false,
         defaultValue: "brand",
+        // Public signup may send brand/blogger; privileged roles are stripped in databaseHooks.
         input: true,
       },
       phone: {
@@ -34,7 +61,6 @@ export const auth = betterAuth({
         required: false,
         input: true,
       },
-      // Brand-specific fields
       company: {
         type: "string",
         required: false,
@@ -60,7 +86,6 @@ export const auth = betterAuth({
         required: false,
         input: true,
       },
-      // Blogger-specific fields
       niche: {
         type: "string",
         required: false,
@@ -83,39 +108,51 @@ export const auth = betterAuth({
       },
     },
   },
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user, ctx) => {
+          const requested = ctx?.body?.role;
+          return {
+            data: {
+              ...user,
+              role: sanitizeSignupRole(requested),
+            },
+          };
+        },
+      },
+    },
+  },
+  plugins: [
+    // Staff gating for the CMS is handled in src/lib/roles.ts (requireStaff);
+    // better-auth's admin plugin only needs its default "admin" role.
+    admin({
+      defaultRole: "brand",
+    }),
+    nextCookies(),
+  ],
 });
+
+export async function getAuthSession(requestHeaders?: Headers) {
+  const headersToPass =
+    requestHeaders ?? (await (await import("next/headers")).headers());
+  return auth.api.getSession({ headers: headersToPass });
+}
 
 export async function validateSession(
   requiredRole?: SessionRole,
   requestHeaders?: Headers,
 ): Promise<AuthResult> {
   try {
-    let headersToPass: Headers;
-    if (requestHeaders) {
-      headersToPass = requestHeaders;
-    } else {
-      const { headers } = await import("next/headers");
-      headersToPass = await headers();
-    }
-
-    const session = await auth.api.getSession({
-      headers: headersToPass,
-    });
-
-    if (!session || !session.user) {
-      const actionToken = process.env.PROGANDA_ACTION_TOKEN;
-      if (actionToken) {
-        const fallbackRole = (process.env.PROGANDA_SESSION_ROLE ?? "brand") as SessionRole;
-        if (requiredRole && fallbackRole !== requiredRole && fallbackRole !== "team") {
-          return { authorized: false, reason: "FORBIDDEN" };
-        }
-        return { authorized: true, role: fallbackRole, token: actionToken };
-      }
+    const session = await getAuthSession(requestHeaders);
+    if (!session?.user) {
       return { authorized: false, reason: "UNAUTHORIZED" };
     }
 
-    const role = ((session.user as { role?: string }).role ?? "brand") as SessionRole;
-    if (requiredRole && role !== requiredRole && role !== "team") {
+    const role = ((session.user as { role?: string }).role ??
+      "brand") as SessionRole;
+
+    if (requiredRole && role !== requiredRole && !isStaffRole(role)) {
       return { authorized: false, reason: "FORBIDDEN" };
     }
 
@@ -125,14 +162,36 @@ export async function validateSession(
       token: session.session.token,
     };
   } catch {
-    const actionToken = process.env.PROGANDA_ACTION_TOKEN;
-    if (actionToken) {
-      const fallbackRole = (process.env.PROGANDA_SESSION_ROLE ?? "brand") as SessionRole;
-      return { authorized: true, role: fallbackRole, token: actionToken };
-    }
     return { authorized: false, reason: "UNAUTHORIZED" };
   }
 }
 
+export async function requireStaff(requestHeaders?: Headers) {
+  // Demo mode: every visitor is treated as an admin against the in-memory
+  // demo store, so the CMS can be explored without a database.
+  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+    return {
+      id: "demo-admin",
+      email: "admin@proganda.studio",
+      name: "Demo Admin",
+      role: "admin" as const,
+    };
+  }
+  const session = await getAuthSession(requestHeaders);
+  const role = (session?.user as { role?: string } | undefined)?.role;
+  if (!session?.user || !isStaffRole(role)) {
+    return null;
+  }
+  return {
+    id: session.user.id,
+    email: session.user.email,
+    name: session.user.name,
+    role,
+  };
+}
 
-
+export async function requireAdmin(requestHeaders?: Headers) {
+  const staff = await requireStaff(requestHeaders);
+  if (!staff || !isAdminRole(staff.role)) return null;
+  return staff;
+}

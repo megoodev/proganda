@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   // Initialise theme from localStorage on mount
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("proganda-theme");
-    const dark = savedTheme !== "light";
+    const dark = savedTheme === "dark";
     const timer = setTimeout(() => {
       setIsDark(dark);
     }, 0);

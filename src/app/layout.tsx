@@ -49,6 +49,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         cairo.variable,
       )}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{document.documentElement.dataset.theme=localStorage.getItem("proganda-theme")==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <TooltipProvider>{children}</TooltipProvider>
       </body>

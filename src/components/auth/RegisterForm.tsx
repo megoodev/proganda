@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, Link } from "@/i18n/navigation";
-import { authClient } from "@/lib/auth-client";
+import { useActionState, useState } from "react";
+import { Link } from "@/i18n/navigation";
+import { signUpAction, type AuthActionState } from "@/app/auth-actions";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -73,11 +73,12 @@ export function RegisterForm({
     errorDefault: string;
   };
 }) {
-  const router = useRouter();
+  const initialAuthState: AuthActionState = {};
+  const [state, formAction, pending] = useActionState(
+    signUpAction,
+    initialAuthState,
+  );
   const [role, setRole] = useState<"brand" | "blogger">(initialRole);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
 
   // Common credentials
   const [name, setName] = useState("");
@@ -98,45 +99,7 @@ export function RegisterForm({
   const [portfolio, setPortfolio] = useState("");
   const [monthlyViews, setMonthlyViews] = useState("50K - 200K");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    const payload = {
-      email,
-      password,
-      name,
-      role,
-      phone,
-      ...(role === "brand"
-        ? { company, industry, budget, goal, website }
-        : { niche, handles, portfolio, monthlyViews }),
-    };
-
-    try {
-      const res = await authClient.signUp.email(payload);
-
-      if (res.error) {
-        setError(res.error.message || labels.errorDefault);
-        setLoading(false);
-        return;
-      }
-
-      setSuccess(true);
-      setLoading(false);
-      setTimeout(() => {
-        router.push("/");
-        router.refresh();
-      }, 1800);
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : labels.errorDefault;
-      setError(message);
-      setLoading(false);
-    }
-  };
-
-  if (success) {
+  if (state.success) {
     return (
       <div className="rounded-xl border border-gray-200 dark:border-zinc-800 p-10 text-center shadow-lg dark:shadow-2xl relative overflow-hidden transition-colors">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -147,6 +110,12 @@ export function RegisterForm({
         <p className="mt-3 text-sm text-gray-500 dark:text-zinc-400 max-w-md mx-auto">
           {labels.successMessage}
         </p>
+        <Button asChild className="mt-6">
+          <Link href="/auth/login">
+            {labels.login}
+            <ArrowRight className="size-4" />
+          </Link>
+        </Button>
       </div>
     );
   }
@@ -210,11 +179,12 @@ export function RegisterForm({
           </div>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="grid gap-6">
-            {error && (
+          <form action={formAction} className="grid gap-6">
+            <input type="hidden" name="role" value={role} />
+            {state.error && (
               <div className="flex items-center gap-3 p-3.5 rounded-lg border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/40 text-xs text-red-600 dark:text-red-400 font-semibold">
                 <AlertCircle className="size-4 shrink-0" />
-                <span>{error}</span>
+                <span>{state.error}</span>
               </div>
             )}
 
@@ -239,6 +209,7 @@ export function RegisterForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="register-name"
+                      name="name"
                       type="text"
                       required
                       value={name}
@@ -258,6 +229,7 @@ export function RegisterForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="register-email"
+                      name="email"
                       required
                       type="email"
                       value={email}
@@ -277,6 +249,7 @@ export function RegisterForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="register-password"
+                      name="password"
                       required
                       type="password"
                       minLength={8}
@@ -297,6 +270,7 @@ export function RegisterForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="register-phone"
+                      name="phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
@@ -334,6 +308,7 @@ export function RegisterForm({
                       </InputGroupAddon>
                       <InputGroupInput
                         id="company"
+                        name="company"
                         required
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
@@ -350,7 +325,8 @@ export function RegisterForm({
                       <InputGroupAddon>
                         <Layers className="size-4 text-gray-400 dark:text-zinc-500" />
                       </InputGroupAddon>
-                      <Select value={industry} onValueChange={setIndustry}>
+                      <input type="hidden" name="industry" value={industry} />
+                    <Select value={industry} onValueChange={setIndustry}>
                         <SelectTrigger className="border-0 shadow-none focus:ring-0 rounded-none bg-transparent h-full">
                           <SelectValue placeholder="Select industry" />
                         </SelectTrigger>
@@ -385,7 +361,8 @@ export function RegisterForm({
                       <InputGroupAddon>
                         <DollarSign className="size-4 text-gray-400 dark:text-zinc-500" />
                       </InputGroupAddon>
-                      <Select value={budget} onValueChange={setBudget}>
+                      <input type="hidden" name="budget" value={budget} />
+                    <Select value={budget} onValueChange={setBudget}>
                         <SelectTrigger className="border-0 shadow-none focus:ring-0 rounded-none bg-transparent h-full">
                           <SelectValue placeholder="Select budget" />
                         </SelectTrigger>
@@ -411,7 +388,8 @@ export function RegisterForm({
                       <InputGroupAddon>
                         <Target className="size-4 text-gray-400 dark:text-zinc-500" />
                       </InputGroupAddon>
-                      <Select value={goal} onValueChange={setGoal}>
+                      <input type="hidden" name="goal" value={goal} />
+                    <Select value={goal} onValueChange={setGoal}>
                         <SelectTrigger className="border-0 shadow-none focus:ring-0 rounded-none bg-transparent h-full">
                           <SelectValue placeholder="Select goal" />
                         </SelectTrigger>
@@ -441,6 +419,7 @@ export function RegisterForm({
                       </InputGroupAddon>
                       <InputGroupInput
                         id="website"
+                        name="website"
                         value={website}
                         onChange={(e) => setWebsite(e.target.value)}
                         placeholder="https://brand.com"
@@ -456,7 +435,8 @@ export function RegisterForm({
                       <InputGroupAddon>
                         <Sparkles className="size-4 text-gray-400 dark:text-zinc-500" />
                       </InputGroupAddon>
-                      <Select value={niche} onValueChange={setNiche}>
+                      <input type="hidden" name="niche" value={niche} />
+                    <Select value={niche} onValueChange={setNiche}>
                         <SelectTrigger className="border-0 shadow-none focus:ring-0 rounded-none bg-transparent h-full">
                           <SelectValue placeholder="Select niche" />
                         </SelectTrigger>
@@ -497,6 +477,7 @@ export function RegisterForm({
                       </InputGroupAddon>
                       <InputGroupInput
                         id="handles"
+                        name="handles"
                         required
                         value={handles}
                         onChange={(e) => setHandles(e.target.value)}
@@ -515,6 +496,7 @@ export function RegisterForm({
                       </InputGroupAddon>
                       <InputGroupInput
                         id="portfolio"
+                        name="portfolio"
                         value={portfolio}
                         onChange={(e) => setPortfolio(e.target.value)}
                         placeholder="https://youtube.com/@channel"
@@ -530,6 +512,11 @@ export function RegisterForm({
                       <InputGroupAddon>
                         <BarChart className="size-4 text-gray-400 dark:text-zinc-500" />
                       </InputGroupAddon>
+                      <input
+                        type="hidden"
+                        name="monthlyViews"
+                        value={monthlyViews}
+                      />
                       <Select
                         value={monthlyViews}
                         onValueChange={setMonthlyViews}
@@ -558,10 +545,10 @@ export function RegisterForm({
 
             <Button
               type="submit"
-              disabled={loading}
+              disabled={pending}
               className="mt-4 font-bold uppercase tracking-wider text-xs h-12 w-full transition-all shadow-md"
             >
-              {loading ? (
+              {pending ? (
                 <span className="flex items-center gap-2">
                   <LoaderCircle className="size-4 animate-spin" />
                   {labels.signingUp}

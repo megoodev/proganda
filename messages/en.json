@@ -220,7 +220,18 @@
   },
   "footer": {
     "contact": "hello@proganda.studio",
-    "note": "Creative work for the attention economy / 2026"
+    "note": "Creative work for the attention economy / 2026",
+    "tagline": "Creator agency + in-house production house. Strategy, casting, and campaign production — one connected team.",
+    "navigate": "Explore",
+    "cta": "Start a campaign"
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": "This page went off-brief.",
+    "description": "The link may be broken or the page may have moved. Let's get you back to something that converts.",
+    "home": "Back to home",
+    "creators": "Browse creators",
+    "contact": "Contact the studio"
   },
   "contactPage": {
     "eyebrow": "Start a conversation",

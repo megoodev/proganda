@@ -1,17 +1,39 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, Check, WandSparkles } from "lucide-react";
-import { brandNames, creators, serviceTiers } from "@/lib/data";
+import { 
+  ArrowRight, 
+  Check, 
+  Layers, 
+  Sparkles, 
+  WandSparkles, 
+  Zap 
+} from "lucide-react";
+import { creators } from "@/lib/data";
 import { HomeCreatorCarousel } from "@/components/home-creator-carousel";
 import { HomeHeroCarousel } from "@/components/home-hero-carousel";
-import { Separator } from "./ui/separator";
+
+// Importing shadcn/ui components
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export async function HomePage({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "home" });
   const common = await getTranslations({ locale, namespace: "common" });
 
+  const pipelineSteps = [
+    { num: "01", label: "Spark", sub: "Idea Generation" },
+    { num: "02", label: "Match", sub: "Creator Casting" },
+    { num: "03", label: "Shoot", sub: "100% In-House" },
+    { num: "04", label: "Edit", sub: "Post-Production" },
+    { num: "05", label: "Launch", sub: "Campaign Live" },
+  ];
+
   return (
-    <main className="overflow-hidden">
+    <main className="relative w-full overflow-hidden bg-background text-foreground transition-colors duration-300">
+      
+      {/* 1. HERO SECTION */}
       <HomeHeroCarousel
         eyebrow={t("eyebrow")}
         title={t("title")}
@@ -19,180 +41,237 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
         primaryCta={t("primaryCta")}
         secondaryCta={t("secondaryCta")}
       />
+
       <Separator />
-      <div className=" bg-primary py-3 text-accent-foreground">
-        <div className="mx-auto flex max-w-7xl justify-between gap-5 overflow-hidden px-5 text-xs font-black uppercase tracking-[0.18em] lg:px-8">
-          <span>12.4B+ {t("views")}</span>
-          <span className="hidden sm:block">500+ campaigns shipped</span>
-          <span>100% in-house production</span>
+
+      {/* 2. STATS BANNER */}
+      <div className="relative border-y border-primary/20 bg-primary/10 py-4 text-primary backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 text-xs font-black uppercase tracking-widest sm:px-8">
+          <div className="flex items-center gap-2">
+            <Zap className="size-4 text-primary animate-pulse" />
+            <span>12.4B+ {t("views")}</span>
+          </div>
+          <div className="hidden items-center gap-2 sm:flex">
+            <span className="size-1.5 rounded-full bg-primary" />
+            <span>500+ Campaigns Shipped</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Sparkles className="size-4 text-primary" />
+            <span>100% In-House Production</span>
+          </div>
         </div>
       </div>
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <div className="mb-10 flex items-end justify-between">
+
+      {/* 3. CREATORS SHOWCASE SECTION */}
+      <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#1B449A]">
+            <Badge 
+              variant="outline" 
+              className="mb-3 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+            >
+              <Sparkles className="size-3.5" />
               {t("creatorsEyebrow")}
-            </p>
-            <h2 className="text-5xl font-black tracking-[-0.06em] sm:text-7xl text-accent-foreground">
+            </Badge>
+            <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl">
               {t("creatorsTitle")}
             </h2>
           </div>
-          <Link
-            href="/creators"
-            className="hidden text-sm font-bold text-primary sm:block"
-          >
-            {common("explore")} <ArrowRight className="inline size-4" />
-          </Link>
+
+          <Button asChild variant="ghost" className="group gap-2 font-bold text-primary hover:bg-primary/10 hover:text-primary">
+            <Link href="/creators">
+              {common("explore")} 
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+            </Link>
+          </Button>
         </div>
+
         <HomeCreatorCarousel
           creators={creators}
           viewsLabel={t("views")}
           locale={locale}
         />
       </section>
+
       <Separator />
-      <section className="workflow-section  bg-[#151515] px-5 py-24 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-          <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-primary">
+
+      {/* 4. WORKFLOW PIPELINE SECTION */}
+      <section className="relative overflow-hidden bg-muted/30 px-6 py-20 lg:px-8 lg:py-28">
+        {/* Subtle Background Lighting */}
+        <div className="absolute -top-24 -left-24 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-center">
+          
+          {/* Left Text Column */}
+          <div className="lg:col-span-5">
+            <Badge 
+              variant="outline" 
+              className="mb-4 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+            >
+              <Layers className="size-3.5" />
               {t("workflowEyebrow")}
-            </p>
-            <h2 className="text-5xl font-black tracking-[-0.06em] sm:text-7xl text-accent-foreground">
+            </Badge>
+
+            <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl">
               {t("workflowTitle")}
             </h2>
-            <p className="mt-7 max-w-sm text-sm leading-relaxed text-accent-foreground/60 sm:max-w-md lg:max-w-lg">
+
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               {t("workflowDescription")}
             </p>
-            <Link
-              href="/about"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:text-white"
-            >
-              {t("aboutCta")} <ArrowRight className="size-4" />
-            </Link>
+
+            <Button asChild variant="outline" className="group mt-8 gap-2 rounded-xl border-border/80 font-bold hover:border-primary">
+              <Link href="/about">
+                {t("aboutCta")}
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+              </Link>
+            </Button>
           </div>
-          <div className="workflow-board relative overflow-hidden border border-white/10 bg-[#171717] p-5 sm:p-8">
-            <div className="workflow-grid absolute inset-0 opacity-30" />
-            <div className="relative flex items-center justify-between border-b border-white/15 pb-5">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center bg-primary text-black">
-                  <WandSparkles className="size-5" />
-                </span>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
-                    live pipeline
-                  </p>
-                  <p className="text-sm font-bold text-accent-foreground">
-                    {t("reel")}
-                  </p>
-                </div>
-              </div>
-              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-accent-foreground">
-                <span className="size-2 animate-pulse rounded-full bg-primary" />{" "}
-                studio / live
-              </span>
-            </div>
-            <div className="workflow-track relative mt-8">
-              <div className="workflow-line absolute left-5 right-5 top-5 h-px bg-primary/30" />
-              <div className="relative grid grid-cols-5 gap-2">
-                {[
-                  ["01", "Spark"],
-                  ["02", "Match"],
-                  ["03", "Shoot"],
-                  ["04", "Edit"],
-                  ["05", "Launch"],
-                ].map(([number, label], index) => (
-                  <div
-                    className="workflow-step text-center"
-                    style={{ animationDelay: `${index * 140}ms` }}
-                    key={number}
-                  >
-                    <span className="mx-auto flex size-10 items-center justify-center border border-[#3AA7FD] bg-[#171717] text-xs font-black text-primary">
-                      {index === 4 ? <Check className="size-4" /> : number}
-                    </span>
-                    <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-accent-foreground">
-                      {label}
+
+          {/* Right Workflow Board Card */}
+          <div className="lg:col-span-7">
+            <Card className="relative overflow-hidden border border-border/60 bg-card/80 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+              
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-border/60 pb-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/20">
+                    <WandSparkles className="size-5" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-primary">
+                      Live Pipeline
+                    </p>
+                    <p className="text-base font-bold text-foreground">
+                      {t("reel")}
                     </p>
                   </div>
-                ))}
+                </div>
+
+                <Badge variant="secondary" className="gap-2 bg-emerald-500/10 text-[10px] font-bold uppercase text-emerald-500 border-emerald-500/20">
+                  <span className="size-2 animate-pulse rounded-full bg-emerald-500" />
+                  Studio / Live
+                </Badge>
               </div>
-            </div>
-            <div className="relative mt-10 flex items-center justify-between border-t border-white/15 pt-5 text-xs text-white/45">
-              <span>one sharp team</span>
-              <span className="text-primary">100% in-house production</span>
-            </div>
+
+              {/* Steps Track */}
+              <div className="relative mt-10">
+                <div className="absolute left-4 right-4 top-5 -z-0 h-0.5 bg-border sm:left-6 sm:right-6" />
+                
+                <div className="relative z-10 grid grid-cols-5 gap-2">
+                  {pipelineSteps.map((step, index) => {
+                    const isCompleted = index === 4;
+                    return (
+                      <div key={step.num} className="flex flex-col items-center text-center">
+                        <div 
+                          className={`flex size-10 items-center justify-center rounded-xl border transition-all duration-300 ${
+                            isCompleted 
+                              ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/30" 
+                              : "border-border bg-background text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          {isCompleted ? <Check className="size-5" /> : <span className="text-xs font-black">{step.num}</span>}
+                        </div>
+                        <p className="mt-3 text-xs font-bold uppercase text-foreground">{step.label}</p>
+                        <p className="hidden text-[10px] text-muted-foreground sm:block">{step.sub}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Footer info */}
+              <div className="mt-10 flex items-center justify-between border-t border-border/60 pt-4 text-xs text-muted-foreground">
+                <span className="font-semibold">One Sharp Team</span>
+                <span className="font-bold text-primary">100% In-House Production</span>
+              </div>
+            </Card>
           </div>
+
         </div>
       </section>
+
       <Separator />
-      <section className="bg-background text-foreground px-5 py-20 lg:px-8 lg:py-24 transition-colors duration-200">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-          {/* Left Column: Text Content */}
-          <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">
+
+      {/* 5. INTEGRATIONS & HUB SECTION */}
+      <section className="relative px-6 py-20 lg:px-8 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-center">
+          
+          {/* Left Text */}
+          <div className="lg:col-span-5">
+            <Badge 
+              variant="outline" 
+              className="mb-4 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+            >
+              <Zap className="size-3.5" />
               {t("integrationsEyebrow")}
-            </p>
-            <h2 className="max-w-xl text-5xl font-black leading-[.9] tracking-[-0.06em] sm:text-7xl text-foreground">
+            </Badge>
+
+            <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl">
               {t("integrationsTitle")}
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               {t("integrationsDescription")}
             </p>
-            <Link
-              href="/services"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
-            >
-              {t("integrationsCta")}{" "}
-              <ArrowRight className="size-4 rtl:rotate-180" />
-            </Link>
+
+            <Button asChild variant="link" className="group mt-6 p-0 font-bold text-primary hover:no-underline">
+              <Link href="/services" className="flex items-center gap-2">
+                {t("integrationsCta")}
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+              </Link>
+            </Button>
           </div>
 
-          {/* Right Column: Grid Layout */}
-          <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {/* Decorative Lines */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-[70%] -translate-x-1/2 bg-primary/20 sm:block" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[70%] w-px -translate-y-1/2 bg-primary/20 sm:block" />
+          {/* Right Bento Grid */}
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              
+              {/* Central Hub Logo Card */}
+              <Card className="col-span-2 row-span-2 border-primary/30 bg-gradient-to-br from-card to-muted/40 p-6 shadow-xl backdrop-blur-xl">
+                <CardContent className="flex h-full flex-col items-center justify-center p-0 text-center">
+                  <div className="flex size-24 items-center justify-center rounded-2xl bg-accent p-3 shadow-inner">
+                    <img
+                      src="/assits/logos/IMG_1531.PNG"
+                      alt="ProGanda"
+                      className="size-full object-contain dark:invert"
+                    />
+                  </div>
+                  <p className="mt-4 text-xs font-black uppercase tracking-widest text-primary">
+                    PROGANDA / HUB
+                  </p>
+                </CardContent>
+              </Card>
 
-            {/* Central Main Logo Box */}
-            <div className="col-span-2 row-span-2 flex min-h-44 items-center justify-center border border-primary/40 bg-card p-6 shadow-sm sm:col-span-2 sm:row-span-2">
-              <div className="text-center">
-                <div className="mx-auto flex size-20 items-center justify-center overflow-hidden rounded-xl bg-accent p-2">
-                  <img
-                    src="/assits/logos/IMG_1531.PNG"
-                    alt="ProGanda"
-                    /* Inverts dark-colored logo pixels in dark mode, keeps normal in light mode */
-                    className="size-full object-contain dark:invert"
-                  />
-                </div>
-                <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-primary">
-                  PROGANDA / HUB
-                </p>
-              </div>
-            </div>
-
-            {/* Partner Logos */}
-            {["IMG_0092.JPG.jpeg", "IMG_9506.JPG.jpeg", "IMG_9508.PNG"].map(
-              (logo, index) => (
-                <div
-                  key={logo}
-                  className="relative z-10 flex min-h-20 items-center justify-center border border-border bg-card p-4 transition hover:border-primary hover:bg-accent/50 shadow-sm"
+              {/* Partner Integration Cards */}
+              {["IMG_0092.JPG.jpeg", "IMG_9506.JPG.jpeg", "IMG_9508.PNG"].map((logo, index) => (
+                <Card 
+                  key={logo} 
+                  className="group flex min-h-[100px] items-center justify-center border-border/60 bg-card/60 p-4 transition-all duration-300 hover:border-primary/50 hover:bg-accent/40 hover:shadow-md"
                 >
-                  <img
-                    src={`/assits/logos/${logo}`}
-                    alt={`Integration ${index + 1}`}
-                    /* Replaces 'mix-blend-screen' with theme-driven inversion filter */
-                    className="max-h-14 w-full object-contain dark:invert"
-                  />
-                </div>
-              ),
-            )}
+                  <CardContent className="p-0">
+                    <img
+                      src={`/assits/logos/${logo}`}
+                      alt={`Integration ${index + 1}`}
+                      className="max-h-12 w-full object-contain grayscale transition duration-300 group-hover:grayscale-0 dark:invert"
+                    />
+                  </CardContent>
+                </Card>
+              ))}
 
-            {/* Badge Box */}
-            <div className="relative z-10 flex min-h-20 items-center justify-center border border-primary/30 bg-primary/10 p-4 text-center text-[10px] font-black uppercase tracking-[0.16em] text-primary">
-              Strategy + creators + production
+              {/* Special Badge Box */}
+              <Card className="col-span-2 sm:col-span-1 border-primary/30 bg-primary/10 p-4 shadow-sm">
+                <CardContent className="flex h-full items-center justify-center p-0 text-center text-[10px] font-black uppercase tracking-wider text-primary">
+                  Strategy + Creators + Production
+                </CardContent>
+              </Card>
+
             </div>
           </div>
+
         </div>
       </section>
+
     </main>
   );
 }

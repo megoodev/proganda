@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, Link } from "@/i18n/navigation";
-import { authClient } from "@/lib/auth-client";
+import { useActionState, useState } from "react";
+import { Link } from "@/i18n/navigation";
+import { signInAction, type AuthActionState } from "@/app/auth-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -22,8 +22,12 @@ import {
   UserCheck,
 } from "lucide-react";
 
+const initialAuthState: AuthActionState = {};
+
 export function LoginForm({
   labels,
+  locale,
+  next,
 }: {
   labels: {
     email: string;
@@ -34,38 +38,19 @@ export function LoginForm({
     signUp: string;
     errorDefault: string;
   };
+  locale: string;
+  next?: string;
 }) {
-  const router = useRouter();
+  const [state, formAction, pending] = useActionState(
+    signInAction,
+    initialAuthState,
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    try {
-      const res = await authClient.signIn.email({
-        email,
-        password,
-      });
-
-      if (res.error) {
-        setError(res.error.message || labels.errorDefault);
-        setLoading(false);
-        return;
-      }
-
-      router.push("/");
-      router.refresh();
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : labels.errorDefault;
-      setError(message);
-      setLoading(false);
-    }
-  };
+  const demoEnabled = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+  const demoEmail = "admin@proganda.studio";
+  const demoPassword = "demo12345";
 
   return (
     <div className="grid gap-8">
@@ -75,12 +60,41 @@ export function LoginForm({
         <div className="absolute -bottom-10 -left-10 size-40 bg-destructive/10 rounded-full blur-3xl pointer-events-none" />
 
         <CardContent className="p-6 sm:p-9">
-          <form onSubmit={handleSubmit} className="grid gap-6">
-            {error && (
+          <form action={formAction} className="grid gap-6">
+            <input type="hidden" name="locale" value={locale} />
+            {next ? <input type="hidden" name="next" value={next} /> : null}
+
+            {state.error && (
               <Alert variant="destructive">
                 <AlertCircle className="size-4 shrink-0" />
-                <AlertDescription>{error}</AlertDescription>
+                <AlertDescription>{state.error}</AlertDescription>
               </Alert>
+            )}
+
+            {demoEnabled && (
+              <div className="rounded-lg border border-dashed border-white/15 bg-white/5 p-4">
+                <div className="flex items-center gap-2">
+                  <UserCheck className="size-3.5 text-[#3AA7FD]" />
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
+                    Demo admin access
+                  </p>
+                </div>
+                <p className="mt-2 text-xs text-white/55">
+                  {demoEmail} / {demoPassword}
+                </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="mt-3"
+                  onClick={() => {
+                    setEmail(demoEmail);
+                    setPassword(demoPassword);
+                  }}
+                >
+                  Fill demo credentials
+                </Button>
+              </div>
             )}
 
             <div>
@@ -103,6 +117,7 @@ export function LoginForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="login-email"
+                      name="email"
                       type="email"
                       required
                       autoComplete="email"
@@ -123,6 +138,7 @@ export function LoginForm({
                     </InputGroupAddon>
                     <InputGroupInput
                       id="login-password"
+                      name="password"
                       type="password"
                       required
                       autoComplete="current-password"
@@ -137,10 +153,10 @@ export function LoginForm({
 
             <Button
               type="submit"
-              disabled={loading}
+              disabled={pending}
               className="mt-2 h-12 w-full font-bold uppercase tracking-wider text-xs shadow-md transition-all"
             >
-              {loading ? (
+              {pending ? (
                 <span className="flex items-center gap-2">
                   <LoaderCircle className="size-4 animate-spin" />
                   {labels.signingIn}

@@ -5,10 +5,13 @@ import { LoginForm } from "@/components/auth/LoginForm";
 
 export default async function LoginPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ next?: string }>;
 }) {
   const { locale } = await params;
+  const { next } = await searchParams;
   const t = await getTranslations({ locale, namespace: "auth" });
 
   return (
@@ -28,6 +31,8 @@ export default async function LoginPage({
       </div>
 
       <LoginForm
+        locale={locale}
+        next={next}
         labels={{
           email: t("email"),
           password: t("password"),
