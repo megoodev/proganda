@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { 
   ArrowRight, 
   ChevronLeft, 
   ChevronRight, 
-  Play, 
   Sparkles, 
   Zap 
 } from "lucide-react";
@@ -14,7 +14,9 @@ import { Link } from "@/i18n/navigation";
 // Importing shadcn/ui components
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Separator } from "@/components/ui/separator";
 
 const showcases = [
   {
@@ -46,7 +48,7 @@ const showcases = [
     description: "Track performance and user engagement in a unified dashboard.",
   },
   {
-    id: 4,
+    id: 5,
     url: "/assits/backgrounds/background-5.jpeg",
     category: "Analytics",
     title: "Real-time Metrics",
@@ -125,20 +127,23 @@ export function HomeHeroCarousel({
               </Button>
             </div>
 
-            {/* Slide Selector Buttons */}
-            <div className="mt-12 w-full border-t border-border/60 pt-6">
+            {/* Slide Selector Controls */}
+            <div className="mt-12 w-full pt-6">
+              <Separator className="mb-6 bg-border/60" />
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Featured Highlights
               </p>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-5 gap-2">
                 {showcases.map((item, idx) => (
-                  <button
+                  <Button
                     key={item.id}
+                    variant="ghost"
+                    size="sm"
                     onClick={() => {
                       setActiveSlide(idx);
                       setIsPaused(true);
                     }}
-                    className={`group relative h-1.5 overflow-hidden rounded-full transition-all duration-300 ${
+                    className={`group relative h-1.5 p-0 overflow-hidden rounded-full transition-all duration-300 ${
                       idx === activeSlide ? "bg-primary" : "bg-muted hover:bg-muted-foreground/40"
                     }`}
                     aria-label={`Select slide ${idx + 1}`}
@@ -146,20 +151,20 @@ export function HomeHeroCarousel({
                     {idx === activeSlide && !isPaused && (
                       <span className="absolute inset-0 bg-primary-foreground/40 animate-pulse" />
                     )}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Showcase Container */}
+          {/* Right Column: Visual Showcase Card */}
           <div 
             className="w-full lg:col-span-6 xl:col-span-6"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
             <Card className="relative overflow-hidden rounded-3xl border border-border/60 bg-card/50 p-2 shadow-2xl backdrop-blur-xl">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
+              <AspectRatio ratio={4 / 3} className="relative w-full overflow-hidden rounded-2xl bg-muted">
                 {showcases.map((item, index) => (
                   <div
                     key={item.id}
@@ -169,54 +174,59 @@ export function HomeHeroCarousel({
                         : "opacity-0 scale-105 z-0"
                     }`}
                   >
-                    <img
+                    <Image
                       src={item.url}
                       alt={item.title}
-                      className="h-full w-full object-cover"
+                      fill
+                      priority={index === 0}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent z-10" />
                   </div>
                 ))}
 
-                {/* Floating Content Box */}
-                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/50 p-4 backdrop-blur-md">
-                  <div>
-                    <Badge variant="outline" className="border-primary/40 bg-primary/20 text-[10px] text-primary-foreground">
-                      {currentItem.category}
-                    </Badge>
-                    <h3 className="mt-1 text-base font-bold text-white sm:text-lg">
-                      {currentItem.title}
-                    </h3>
-                    <p className="hidden text-xs text-white/70 sm:block">
-                      {currentItem.description}
-                    </p>
-                  </div>
+                {/* Overlay Floating Content Card */}
+                <Card className="absolute bottom-4 left-4 right-4 z-20 border border-white/10 bg-black/50 p-4 backdrop-blur-md shadow-none">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <Badge variant="outline" className="border-primary/40 bg-primary/20 text-[10px] text-primary-foreground">
+                        {currentItem.category}
+                      </Badge>
+                      <h3 className="mt-1 text-base font-bold text-white sm:text-lg">
+                        {currentItem.title}
+                      </h3>
+                      <p className="hidden text-xs text-white/70 sm:block">
+                        {currentItem.description}
+                      </p>
+                    </div>
 
-                  {/* Nav Arrows */}
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() =>
-                        setActiveSlide((prev) => (prev - 1 + showcases.length) % showcases.length)
-                      }
-                      className="h-9 w-9 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20"
-                    >
-                      <ChevronLeft className="size-4 rtl:rotate-180" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() =>
-                        setActiveSlide((prev) => (prev + 1) % showcases.length)
-                      }
-                      className="h-9 w-9 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20"
-                    >
-                      <ChevronRight className="size-4 rtl:rotate-180" />
-                    </Button>
+                    {/* Nav Navigation Buttons */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() =>
+                          setActiveSlide((prev) => (prev - 1 + showcases.length) % showcases.length)
+                        }
+                        className="h-9 w-9 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20"
+                      >
+                        <ChevronLeft className="size-4 rtl:rotate-180" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() =>
+                          setActiveSlide((prev) => (prev + 1) % showcases.length)
+                        }
+                        className="h-9 w-9 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20"
+                      >
+                        <ChevronRight className="size-4 rtl:rotate-180" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </Card>
+              </AspectRatio>
             </Card>
           </div>
 

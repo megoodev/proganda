@@ -54,7 +54,7 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
 
   const navItems = [
-    { href: "/home", label: common("home") },
+    { href: "/", label: common("home") },
     { href: "/about", label: common("about") },
     { href: "/creators", label: common("creators") },
     { href: "/services", label: common("services") },
