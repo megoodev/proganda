@@ -1,14 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { MobileNavigation } from "@/components/mobile-navigation";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { LanguageSwitcher } from "@/components/language-switcher";
-
-// Importing shadcn/ui components
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { SiteHeaderClient } from "./SiteHeaderClient";
 
+// 1️⃣ مكون السيرفر للهيدر (يستقبل locale فقط)
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
   const alternate = locale === "en" ? "ar" : "en";
@@ -23,70 +20,31 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
     { href: "/contact", label: t("contact") },
   ];
 
+  const mobileLabels = {
+    about: t("about"),
+    creators: t("creators"),
+    brands: t("brands"),
+    services: t("services"),
+    contact: t("contact"),
+    register: t("register"),
+    language: t("language"),
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl transition-colors duration-200">
-      <nav className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        
-        {/* Brand Logo */}
-        <Link
-          href="/"
-          className="group shrink-0 text-xl font-black tracking-tighter transition-transform duration-200 active:scale-95"
-        >
-          <span className="text-foreground">{brandFirstPart}</span>
-          <span className="text-primary">{brandSecondPart}</span>
-          <span className="text-destructive inline-block transition-transform duration-200 group-hover:translate-y-[-2px]">
-            .
-          </span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 text-xs font-bold uppercase tracking-widest text-muted-foreground md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-primary active:text-primary/80"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Action Tools & Utilities */}
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <ThemeToggle />
-          <LanguageSwitcher locale={locale} label={t("language")} />
-
-          <MobileNavigation
-            labels={{
-              about: t("about"),
-              creators: t("creators"),
-              brands: t("brands"),
-              services: t("services"),
-              contact: t("contact"),
-              register: t("register"),
-              language: t("language"),
-            }}
-            alternateLocale={alternate}
-          />
-
-          <Button
-            asChild
-            variant="secondary"
-            size="sm"
-            className="hidden font-bold sm:inline-flex rounded-md shadow-xs gap-1.5"
-          >
-            <Link href="/auth/register">
-              {t("register")} 
-              <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:rotate-90" />
-            </Link>
-          </Button>
-        </div>
-      </nav>
-    </header>
+    <SiteHeaderClient
+      locale={locale}
+      brandFirstPart={brandFirstPart}
+      brandSecondPart={brandSecondPart}
+      navItems={navItems}
+      registerLabel={t("register")}
+      languageLabel={t("language")}
+      alternateLocale={alternate}
+      mobileLabels={mobileLabels}
+    />
   );
 }
 
+// 2️⃣ الفوتر (Server Component)
 export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "footer" });
   const common = await getTranslations({ locale, namespace: "common" });
@@ -105,22 +63,28 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
     <footer className="border-t border-border bg-muted/40 px-6 pb-12 pt-16 lg:px-8 transition-colors duration-200">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_.6fr]">
-          
           {/* Brand Info & Primary CTA */}
           <div className="max-w-xl">
-            <Link href="/" className="inline-block text-2xl font-black tracking-tighter text-foreground">
+            <Link
+              href="/"
+              className="inline-block text-2xl font-black tracking-tighter text-foreground"
+            >
               <span className="text-foreground">{brandFirstPart}</span>
               <span className="text-primary">{brandSecondPart}</span>
               <span className="text-destructive">.</span>
             </Link>
-            
+
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {t("tagline")}
             </p>
 
-            <Button asChild size="lg" className="mt-8 font-bold uppercase tracking-wider rounded-lg shadow-md gap-2">
+            <Button
+              asChild
+              size="lg"
+              className="mt-8 font-bold uppercase tracking-wider rounded-lg shadow-md gap-2"
+            >
               <Link href="/contact">
-                {t("cta")} 
+                {t("cta")}
                 <ArrowUpRight className="size-4 rtl:rotate-90" />
               </Link>
             </Button>
@@ -131,7 +95,7 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
             <p className="text-[10px] font-black uppercase tracking-widest text-primary">
               {t("navigate")}
             </p>
-            
+
             <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
               {navItems.map((item) => (
                 <Link
@@ -164,6 +128,7 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   );
 }
 
+// 3️⃣ الـ Shell الرئيسي
 export async function LocaleShell({
   children,
   locale,
