@@ -83,7 +83,6 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
             </Link>
           </Button>
         </div>
-        <></>
         <HomeCreatorCarousel
           creators={creators}
           viewsLabel={t("views")}
@@ -106,7 +105,6 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
       <Separator />
 
       {/* 5. INTEGRATIONS & HUB SECTION */}
-
       <IntegrationsSection t={t} />
     </main>
   );

@@ -13,6 +13,7 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
 
   const navItems = [
+    { href: "/", label: t("home") },
     { href: "/about", label: t("about") },
     { href: "/creators", label: t("creators") },
     { href: "/services", label: t("services") },
@@ -21,6 +22,7 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   ];
 
   const mobileLabels = {
+    home: t("home"),
     about: t("about"),
     creators: t("creators"),
     brands: t("brands"),
@@ -48,10 +50,11 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
 export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "footer" });
   const common = await getTranslations({ locale, namespace: "common" });
-  const brandFirstPart = locale === "en" ? "PRO" : "برو";
-  const brandSecondPart = locale === "en" ? "GANDA" : "غاندا";
+  const brandFirstPart = locale === "en" ? "Pro" : "برو";
+  const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
 
   const navItems = [
+    { href: "/home", label: common("home") },
     { href: "/about", label: common("about") },
     { href: "/creators", label: common("creators") },
     { href: "/services", label: common("services") },
@@ -107,6 +110,7 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
                 </Link>
               ))}
             </div>
+
 
             <a
               href={`mailto:${t("contact")}`}
