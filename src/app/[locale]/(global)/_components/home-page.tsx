@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 import { creators } from "@/lib/data";
 import { HomeCreatorCarousel } from "@/app/[locale]/(global)/_components/home-creator-carousel";
-import { HomeHeroCarousel } from "@/components/home-hero-carousel";
+import { HomeHeroCarousel } from "@/app/[locale]/(global)/_components/home-hero-carousel";
 import { WorkflowSection } from "./WorkflowSection";
 
 // Importing shadcn/ui components
