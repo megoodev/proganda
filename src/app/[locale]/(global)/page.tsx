@@ -1,4 +1,4 @@
-import { HomePage } from "@/components/home-page";
+import { HomePage } from "@/app/[locale]/(global)/_components/home-page";
 
 export default async function Page({
   params,

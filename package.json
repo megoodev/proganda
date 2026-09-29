@@ -2,11 +2,12 @@
   "name": "proganda",
   "version": "0.1.0",
   "private": true,
-
   "scripts": {
-  "build": "prisma generate && next build",
-  "db:migrate": "prisma migrate deploy"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
     "@prisma/adapter-pg": "^7.10.0",

@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { PromoDeal } from "@/components/PromoDeal";
 import { SocialLinks } from "@/components/SocialLinks";
-import { LoginForm } from "@/components/auth/LoginForm";
+import { LoginForm } from "@/app/[locale]/(global)/auth/login/_components/LoginForm";
 
 export default async function LoginPage({
   params,

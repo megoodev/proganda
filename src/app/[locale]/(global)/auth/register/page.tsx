@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { PromoDeal } from "@/components/PromoDeal";
 import { SocialLinks } from "@/components/SocialLinks";
-import { RegisterForm } from "@/components/auth/RegisterForm";
+import { RegisterForm } from "@/app/[locale]/(global)/auth/register/_components/RegisterForm";
 
 export default async function RegisterPage({
   params,
@@ -35,7 +35,6 @@ export default async function RegisterPage({
       <RegisterForm
         initialRole={initialRole}
         labels={{
-          eyebrow: t("eyebrow"),
           brand: t("brand"),
           blogger: t("blogger"),
           brandDescription: t("brandDescription"),
@@ -46,7 +45,6 @@ export default async function RegisterPage({
           phone: t("phone"),
           company: t("company"),
           industry: t("industry"),
-          budget: t("budget"),
           goal: t("goal"),
           website: t("website"),
           handles: t("handles"),
@@ -59,7 +57,6 @@ export default async function RegisterPage({
           signingUp: t("signingUp"),
           successTitle: t("successTitle"),
           successMessage: t("successMessage"),
-          errorDefault: t("errorDefault"),
         }}
       />
 
