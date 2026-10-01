@@ -25,6 +25,10 @@ export default async function ServicesPage({ params }: Props) {
       scopeTitle={t("scopeTitle")}
       scopeDescription={t("scopeDescription")}
       consultation={t("consultation")}
+      stats={t.raw("stats")}
+      workflowSteps={t.raw("workflowSteps")}
+      howWeWork={t("howWeWork")}
+      journeyTitle={t("journeyTitle")}
     />
   );
 }

@@ -9,8 +9,8 @@ import { SiteHeaderClient } from "./SiteHeaderClient";
 export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "common" });
   const alternate = locale === "en" ? "ar" : "en";
-  const brandFirstPart = locale === "en" ? "Pro" : "برو";
-  const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
+  const brandFirstPart = t("brandFirstPart");
+  const brandSecondPart = t("brandSecondPart");
 
   const navItems = [
     { href: "/", label: t("home") },
@@ -30,6 +30,9 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
     contact: t("contact"),
     register: t("register"),
     language: t("language"),
+    openNavigation: t("openNavigation"),
+    closeNavigation: t("closeNavigation"),
+    mobileNavigation: t("mobileNavigation"),
   };
 
   return (
@@ -50,8 +53,8 @@ export async function SiteHeader({ locale }: { locale: "en" | "ar" }) {
 export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "footer" });
   const common = await getTranslations({ locale, namespace: "common" });
-  const brandFirstPart = locale === "en" ? "Pro" : "برو";
-  const brandSecondPart = locale === "en" ? "Ganda" : "غاندا";
+  const brandFirstPart = common("brandFirstPart");
+  const brandSecondPart = common("brandSecondPart");
 
   const navItems = [
     { href: "/", label: common("home") },
@@ -110,7 +113,6 @@ export async function SiteFooter({ locale }: { locale: "en" | "ar" }) {
                 </Link>
               ))}
             </div>
-
 
             <a
               href={`mailto:${t("contact")}`}

@@ -12,40 +12,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-// Featured Brand Campaigns with visual media & creator collaborations
-const featuredBrandCampaigns = [
-  {
-    id: "brand-1",
-    brandName: "Aura Tech",
-    category: "Consumer Tech",
-    creatorName: "Lina Vance",
-    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
-    campaignImage: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&auto=format&fit=crop&q=80",
-    views: "4.2M",
-    roi: "5.4x",
-  },
-  {
-    id: "brand-2",
-    brandName: "Velo Sportswear",
-    category: "Fitness & Apparel",
-    creatorName: "Kareem Hassan",
-    creatorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
-    campaignImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80",
-    views: "8.9M",
-    roi: "6.2x",
-  },
-  {
-    id: "brand-3",
-    brandName: "Glow & Co",
-    category: "Beauty & Lifestyle",
-    creatorName: "Maya Lin",
-    creatorAvatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
-    campaignImage: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80",
-    views: "12.1M",
-    roi: "7.1x",
-  },
-];
-
 interface BrandsClientProps {
   eyebrow: string;
   title: string;
@@ -54,6 +20,10 @@ interface BrandsClientProps {
   caseStudy: string;
   views: string;
   roi: string;
+  featuredEyebrow: string;
+  featuredTitle: string;
+  featuredBrandCampaigns: { brandName: string; category: string; creatorName: string; views: string; roi: string }[];
+  translatedBrands?: any[];
 }
 
 export function BrandsClient({
@@ -64,7 +34,33 @@ export function BrandsClient({
   caseStudy,
   views,
   roi,
+  featuredEyebrow,
+  featuredTitle,
+  featuredBrandCampaigns: translatedCampaigns,
+  translatedBrands,
 }: BrandsClientProps) {
+  // Merge translated strings with hardcoded images
+  const featuredBrandCampaigns = [
+    {
+      id: "brand-1",
+      creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      campaignImage: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&auto=format&fit=crop&q=80",
+      ...translatedCampaigns[0],
+    },
+    {
+      id: "brand-2",
+      creatorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      campaignImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80",
+      ...translatedCampaigns[1],
+    },
+    {
+      id: "brand-3",
+      creatorAvatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
+      campaignImage: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80",
+      ...translatedCampaigns[2],
+    },
+  ];
+
   return (
     <main className="relative w-full overflow-hidden bg-background text-foreground transition-colors duration-300">
       
@@ -103,10 +99,10 @@ export function BrandsClient({
               className="mb-3 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
             >
               <Sparkles className="size-3.5" />
-              Featured Case Studies
+              {featuredEyebrow}
             </Badge>
             <h2 className="text-2xl font-black tracking-tight text-foreground sm:text-4xl">
-              Brand x Creator Collaborations
+              {featuredTitle}
             </h2>
           </div>
         </div>
@@ -186,6 +182,7 @@ export function BrandsClient({
             views,
             roi,
           }}
+          translatedBrands={translatedBrands}
         />
       </section>
 

@@ -18,6 +18,9 @@ export function CreatorDirectory({
     profile: string;
     reach: string;
     engagement: string;
+    creatorNames: Record<string, string>;
+    niches: Record<string, string>;
+    locations: Record<string, string>;
   };
 }) {
   const [query, setQuery] = useState("");
@@ -25,13 +28,24 @@ export function CreatorDirectory({
 
   const niches = ["All", ...new Set(creators.map((creator) => creator.niche))];
 
-  const visible = creators.filter(
-    (creator) =>
-      `${creator.name} ${creator.handle} ${creator.niche}`
-        .toLowerCase()
-        .includes(query.toLowerCase()) &&
-      (niche === "All" || creator.niche === niche),
-  );
+  const visible = creators.filter((creator) => {
+    const searchText = [
+      creator.name,
+      creator.handle,
+      creator.niche,
+      labels.creatorNames[creator.id],
+      labels.niches[creator.niche],
+      labels.locations[creator.id],
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return (
+      searchText.includes(query.toLowerCase()) &&
+      (niche === "All" || creator.niche === niche)
+    );
+  });
 
   return (
     <div className="space-y-8">
@@ -46,7 +60,7 @@ export function CreatorDirectory({
               onClick={() => setNiche(item)}
               className="whitespace-nowrap font-bold text-xs"
             >
-              {item === "All" ? labels.all : item}
+              {item === "All" ? labels.all : (labels.niches[item] ?? item)}
             </Button>
           ))}
         </div>
@@ -64,86 +78,95 @@ export function CreatorDirectory({
 
       {/* Creator Cards Grid */}
       <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-        {visible.map((creator) => (
-          <Link
-            key={creator.id}
-            href={`/creators/${creator.id}`}
-            className="group flex flex-col rounded-2xl border bg-card p-3 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
-          >
-            {/* Portrait */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-              <img
-                src={creator.image}
-                alt={creator.name}
-                className="size-full object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
-              <span
-                className="absolute start-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
-                style={{ backgroundColor: creator.accent }}
-              >
-                {creator.niche}
-              </span>
-              <span className="absolute bottom-3 end-3 flex size-9 translate-y-1 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <ArrowUpRight className="size-4 rtl:rotate-90" />
-              </span>
-            </div>
+        {visible.map((creator) => {
+          const creatorName = labels.creatorNames[creator.id] ?? creator.name;
+          const creatorNiche = labels.niches[creator.niche] ?? creator.niche;
+          const creatorLocation =
+            labels.locations[creator.id] ?? creator.location;
 
-            {/* Identity */}
-            <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
-              <h2 className="text-lg font-black leading-tight tracking-tight text-card-foreground">
-                {creator.name}
-              </h2>
-              <p className="text-sm text-muted-foreground">{creator.handle}</p>
-
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1">
-                  <MapPin className="size-3 shrink-0" />
-                  {creator.location}
+          return (
+            <Link
+              key={creator.id}
+              href={`/creators/${creator.id}`}
+              className="group flex flex-col rounded-2xl border bg-card p-3 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+            >
+              {/* Portrait */}
+              <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+                <img
+                  src={creator.image}
+                  alt={creatorName}
+                  className="size-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
+                <span
+                  className="absolute start-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
+                  style={{ backgroundColor: creator.accent }}
+                >
+                  {creatorNiche}
                 </span>
-                {creator.platforms.map((platform) => (
-                  <span
-                    key={platform}
-                    className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-                  >
-                    {platform}
+                <span className="absolute bottom-3 end-3 flex size-9 translate-y-1 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <ArrowUpRight className="size-4 rtl:rotate-90" />
+                </span>
+              </div>
+
+              {/* Identity */}
+              <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
+                <h2 className="text-lg font-black leading-tight tracking-tight text-card-foreground">
+                  {creatorName}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  {creator.handle}
+                </p>
+
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="size-3 shrink-0" />
+                    {creatorLocation}
                   </span>
-                ))}
-              </div>
-
-              {/* Campaign metrics */}
-              <div className="mt-auto grid grid-cols-2 gap-2 pt-4">
-                <div className="rounded-xl bg-muted/60 px-3 py-2.5">
-                  <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    <Users className="size-3 shrink-0" />
-                    {labels.reach}
-                  </p>
-                  <p className="mt-1 text-xl font-black text-card-foreground">
-                    {creator.reach}
-                  </p>
+                  {creator.platforms.map((platform) => (
+                    <span
+                      key={platform}
+                      className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                    >
+                      {platform}
+                    </span>
+                  ))}
                 </div>
-                <div className="rounded-xl bg-muted/60 px-3 py-2.5">
-                  <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    <TrendingUp className="size-3 shrink-0" />
-                    {labels.engagement}
-                  </p>
-                  <p
-                    className="mt-1 text-xl font-black"
-                    style={{ color: creator.accent }}
-                  >
-                    {creator.engagement}
-                  </p>
-                </div>
-              </div>
 
-              {/* Conversion CTA */}
-              <span className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors group-hover:bg-primary/90">
-                {labels.profile}
-                <ArrowUpRight className="size-4 rtl:rotate-90" />
-              </span>
-            </div>
-          </Link>
-        ))}
+                {/* Campaign metrics */}
+                <div className="mt-auto grid grid-cols-2 gap-2 pt-4">
+                  <div className="rounded-xl bg-muted/60 px-3 py-2.5">
+                    <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                      <Users className="size-3 shrink-0" />
+                      {labels.reach}
+                    </p>
+                    <p className="mt-1 text-xl font-black text-card-foreground">
+                      {creator.reach}
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-muted/60 px-3 py-2.5">
+                    <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                      <TrendingUp className="size-3 shrink-0" />
+                      {labels.engagement}
+                    </p>
+                    <p
+                      className="mt-1 text-xl font-black"
+                      style={{ color: creator.accent }}
+                    >
+                      {creator.engagement}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Conversion CTA */}
+                <span className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors group-hover:bg-primary/90">
+                  {labels.profile}
+                  <ArrowUpRight className="size-4 rtl:rotate-90" />
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -18,21 +18,22 @@ export default async function RegisterPage({
 
   return (
     <main id="register" className="mx-auto max-w-4xl px-5 py-20 lg:px-8">
-      <PromoDeal />
+      <PromoDeal locale={locale} />
 
       <div className="mb-10 text-center sm:text-start">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
           {t("eyebrow")}
         </p>
-        <h1 className="max-w-3xl text-4xl sm:text-6xl font-black leading-[0.95] tracking-[-0.06em] text-white">
+        <h1 className="max-w-3xl text-4xl sm:text-6xl font-black leading-[0.95] tracking-[-0.06em] text-foreground">
           {t("title")}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-white/50 max-w-2xl leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
           {t("subtitle")}
         </p>
       </div>
 
       <RegisterForm
+        locale={locale}
         initialRole={initialRole}
         labels={{
           brand: t("brand"),
@@ -57,12 +58,30 @@ export default async function RegisterPage({
           signingUp: t("signingUp"),
           successTitle: t("successTitle"),
           successMessage: t("successMessage"),
+          connectWith: t("connectWith"),
+          accountDetails: t("accountDetails"),
+          contractPrompt: t("contractPrompt"),
+          brandApplication: t("brandApplication"),
+          creatorApplication: t("creatorApplication"),
+          selectIndustry: t("selectIndustry"),
+          industries: t.raw("industries"),
+          selectGoal: t("selectGoal"),
+          goals: t.raw("goals"),
+          selectNiche: t("selectNiche"),
+          allContent: t("allContent"),
+          niches: t.raw("niches"),
+          followersRange: t("followersRange"),
+          selectFollowers: t("selectFollowers"),
+          selectViewsRange: t("selectViewsRange"),
+          viewsReach: t("viewsReach"),
+          submitApplication: t("submitApplication"),
+          applicationReceived: t("applicationReceived"),
         }}
       />
 
       <div className="mt-14 text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-3 font-semibold">
-          Connect with ProGanda
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3 font-semibold">
+          {t("connectWith")}
         </p>
         <SocialLinks />
       </div>

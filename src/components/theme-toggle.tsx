@@ -2,9 +2,11 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "./ui/button";
 
 export function ThemeToggle() {
+  const t = useTranslations("common");
   const [isDark, setIsDark] = useState(false);
 
   // Initialise theme from localStorage on mount
@@ -32,7 +34,7 @@ export function ThemeToggle() {
     <Button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? t("switchToLightTheme") : t("switchToDarkTheme")}
       className="theme-toggle rounded-sm"
       variant="outline"
       size="icon-lg"

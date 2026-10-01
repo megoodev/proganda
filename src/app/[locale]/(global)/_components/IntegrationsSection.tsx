@@ -12,12 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function IntegrationsSection({ t }: { t: (key: string) => string }) {
-  // Single Integration Partner Configuration
-  const partner = {
-    logo: "IMG_0092.JPG.jpeg", // Ensure casing matches your file exactly
-    name: "Integration Partner",
-  };
-
   return (
     <section className="relative overflow-hidden px-6 py-20 lg:px-8 lg:py-28">
       {/* Background Radial Glow Accent */}
@@ -87,7 +81,7 @@ export function IntegrationsSection({ t }: { t: (key: string) => string }) {
                     PROGANDA HUB
                   </div>
                   <p className="mt-1 text-[11px] font-semibold text-muted-foreground">
-                    Core Platform
+                    {t("integrationCorePlatform")}
                   </p>
                 </CardContent>
               </Card>
@@ -98,7 +92,7 @@ export function IntegrationsSection({ t }: { t: (key: string) => string }) {
                   <div className="relative flex size-24 items-center justify-center rounded-2xl bg-accent/50  shadow-inner ring-1 ring-border/50 transition-transform duration-300 group-hover:scale-105">
                     <Image
                       src={`/assits/logos/IMG_9506.JPG.jpeg`}
-                      alt={partner.name}
+                      alt={t("partnerLogoAlt")}
                       width={80}
                       height={80}
                       className="max-h-full max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0 dark:invert"
@@ -106,10 +100,10 @@ export function IntegrationsSection({ t }: { t: (key: string) => string }) {
                   </div>
                   <div className="mt-4 flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-foreground/80">
                     <ShieldCheck className="size-3.5 text-primary" />
-                   zad x trips
+                    zad x trips
                   </div>
                   <p className="mt-1 text-[11px] font-semibold text-muted-foreground">
-                    Verified Integration
+                    {t("verifiedIntegration")}
                   </p>
                 </CardContent>
               </Card>
@@ -119,15 +113,15 @@ export function IntegrationsSection({ t }: { t: (key: string) => string }) {
             <div className="mt-6 flex justify-center">
               <div className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-6 py-2.5 backdrop-blur-md">
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                  Strategy
+                  {t("strategy")}
                 </span>
                 <span className="text-primary/30">•</span>
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                  Creators
+                  {t("creatorLabel")}
                 </span>
                 <span className="text-primary/30">•</span>
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                  Production
+                  {t("production")}
                 </span>
               </div>
             </div>

@@ -25,6 +25,9 @@ interface ContactClientProps {
   title: string;
   description: string;
   formTitle: string;
+  messageFormTitle: string;
+  namePlaceholder: string;
+  companyPlaceholder: string;
   name: string;
   email: string;
   company: string;
@@ -41,7 +44,12 @@ interface ContactClientProps {
   whatsapp: string;
   whatsappDesc: string;
   whatsappAction: string;
+  whatsappPrefill: string;
   phone: string;
+  responseTime: string;
+  ndaProtected: string;
+  dedicatedRouting: string;
+  callStudioDesk: string;
   emailBrief: string;
   emailCreator: string;
   officeHoursTitle: string;
@@ -78,6 +86,9 @@ export function ContactClient({
   title,
   description,
   formTitle,
+  messageFormTitle,
+  namePlaceholder,
+  companyPlaceholder,
   name,
   email,
   company,
@@ -94,7 +105,12 @@ export function ContactClient({
   whatsapp,
   whatsappDesc,
   whatsappAction,
+  whatsappPrefill,
   phone,
+  responseTime,
+  ndaProtected,
+  dedicatedRouting,
+  callStudioDesk,
   emailBrief,
   emailCreator,
   officeHoursTitle,
@@ -152,11 +168,11 @@ export function ContactClient({
             <div className="flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-1.5 border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
                 <Zap className="size-3.5" />
-                Response Time: 1–2 Hours Max
+                {responseTime}
               </span>
               <span className="inline-flex items-center gap-1.5 border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-accent-foreground">
                 <ShieldCheck className="size-3.5 text-primary" />
-                NDA Protected Briefs
+                {ndaProtected}
               </span>
             </div>
           </div>
@@ -174,7 +190,7 @@ export function ContactClient({
                 {directChannelsTitle}
               </p>
               <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-accent-foreground">
-                Connect Directly With Producers
+                {directChannelsTitle}
               </h2>
             </div>
             <p className="text-xs text-foreground/55 max-w-sm">
@@ -185,7 +201,7 @@ export function ContactClient({
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {/* WhatsApp */}
             <a
-              href="https://wa.me/201102232151?text=Hello%20ProGanda%2C%20I%20would%20like%20to%20inquire%20about%20a%20campaign%20or%20consultation"
+              href={`https://wa.me/201102232151?text=${encodeURIComponent(whatsappPrefill)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col justify-between border border-[#25D366]/30 bg-[#25D366]/5 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366]/10"
@@ -229,7 +245,7 @@ export function ContactClient({
                 </p>
               </div>
               <span className="mt-6 text-xs font-bold uppercase tracking-wider text-primary">
-                Call Studio Desk →
+                {callStudioDesk} →
               </span>
             </a>
 
@@ -240,7 +256,7 @@ export function ContactClient({
                   <Mail className="size-5 text-primary" />
                 </div>
                 <h3 className="text-base font-black text-accent-foreground mb-2">
-                  Dedicated Routing
+                  {dedicatedRouting}
                 </h3>
                 <div className="space-y-2 text-xs">
                   <div>
@@ -351,6 +367,9 @@ export function ContactClient({
               name,
               email,
               company,
+              formTitle: messageFormTitle,
+              namePlaceholder,
+              companyPlaceholder,
               interest,
               interestPlaceholder,
               options,
@@ -389,11 +408,7 @@ export function ContactClient({
       />
 
       {/* 5. FAQ Section */}
-      <ContactFAQ
-        title={faqTitle}
-        subtitle={faqSubtitle}
-        faqs={faqs}
-      />
+      <ContactFAQ title={faqTitle} subtitle={faqSubtitle} faqs={faqs} />
     </main>
   );
 }

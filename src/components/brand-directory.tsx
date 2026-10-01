@@ -7,12 +7,16 @@ import { useState } from "react";
 
 export function BrandDirectory({
   labels,
+  translatedBrands,
 }: {
   labels: { all: string; caseStudy: string; views: string; roi: string };
+  translatedBrands?: typeof brands;
 }) {
   const [industry, setIndustry] = useState("All");
-  const industries = ["All", ...new Set(brands.map((brand) => brand.industry))];
-  const visible = brands.filter(
+  
+  const displayBrands = translatedBrands || brands;
+  const industries = ["All", ...new Set(displayBrands.map((brand) => brand.industry))];
+  const visible = displayBrands.filter(
     (brand) => industry === "All" || brand.industry === industry,
   );
 

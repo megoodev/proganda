@@ -90,7 +90,7 @@ export const SocialLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="text-white/70 hover:text-primary transition-colors"
+          className="text-muted-foreground hover:text-primary transition-colors"
         >
           <Icon size={24} />
         </a>

@@ -38,6 +38,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang={routing.defaultLocale}
       dir={routing.defaultLocale === "ar" ? "rtl" : "ltr"}
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",

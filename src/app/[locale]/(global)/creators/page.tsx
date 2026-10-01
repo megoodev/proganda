@@ -19,6 +19,9 @@ export default async function CreatorsPage({
       profile={t("profile")}
       reach={t("reach")}
       engagement={t("engagement")}
+      creatorNames={t.raw("creatorNames") as Record<string, string>}
+      niches={t.raw("niches") as Record<string, string>}
+      locations={t.raw("locations") as Record<string, string>}
     />
   );
 }

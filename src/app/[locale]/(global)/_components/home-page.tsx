@@ -1,11 +1,10 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 import { creators } from "@/lib/data";
 import { HomeCreatorCarousel } from "@/app/[locale]/(global)/_components/home-creator-carousel";
 import { HomeHeroCarousel } from "@/app/[locale]/(global)/_components/home-hero-carousel";
-import { WorkflowSection } from "./WorkflowSection";
+import { WorkflowSection, type PipelineStep } from "./WorkflowSection";
 
 // Importing shadcn/ui components
 import { Button } from "@/components/ui/button";
@@ -17,13 +16,7 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "home" });
   const common = await getTranslations({ locale, namespace: "common" });
 
-  const pipelineSteps = [
-    { num: "01", label: "Spark", sub: "Idea Generation" },
-    { num: "02", label: "Match", sub: "Creator Casting" },
-    { num: "03", label: "Shoot", sub: "100% In-House" },
-    { num: "04", label: "Edit", sub: "Post-Production" },
-    { num: "05", label: "Launch", sub: "Campaign Live" },
-  ];
+  const pipelineSteps = t.raw("pipelineSteps") as PipelineStep[];
 
   return (
     <main className="relative w-full overflow-hidden bg-background text-foreground transition-colors duration-300">
@@ -47,11 +40,11 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
           </div>
           <div className="hidden items-center gap-2 sm:flex">
             <span className="size-1.5 rounded-full bg-primary" />
-            <span>500+ Campaigns Shipped</span>
+            <span>{t("campaignsShipped")}</span>
           </div>
           <div className="flex items-center gap-2">
             <Sparkles className="size-4 text-primary" />
-            <span>100% In-House Production</span>
+            <span>{t("inHouseProduction")}</span>
           </div>
         </div>
       </div>
@@ -99,6 +92,10 @@ export async function HomePage({ locale }: { locale: "en" | "ar" }) {
         description={t("workflowDescription")}
         aboutCta={t("aboutCta")}
         reelLabel={t("reel")}
+        livePipelineLabel={t("livePipeline")}
+        studioLiveLabel={t("studioLive")}
+        teamLabel={t("oneSharpTeam")}
+        productionLabel={t("inHouseProduction")}
         pipelineSteps={pipelineSteps}
       />
 

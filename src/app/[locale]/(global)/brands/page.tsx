@@ -18,6 +18,10 @@ export default async function BrandsPage({
       caseStudy={t("caseStudy")}
       views={t("views")}
       roi={t("roi")}
+      featuredEyebrow={t("featuredEyebrow")}
+      featuredTitle={t("featuredTitle")}
+      featuredBrandCampaigns={t.raw("featuredBrandCampaigns")}
+      translatedBrands={t.raw("brandsList")}
     />
   );
 }

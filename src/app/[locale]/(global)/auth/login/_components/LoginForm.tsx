@@ -37,6 +37,9 @@ export function LoginForm({
     dontHaveAccount: string;
     signUp: string;
     errorDefault: string;
+    accountLogin: string;
+    demoAdminAccess: string;
+    fillDemoCredentials: string;
   };
   locale: string;
   next?: string;
@@ -72,14 +75,14 @@ export function LoginForm({
             )}
 
             {demoEnabled && (
-              <div className="rounded-lg border border-dashed border-white/15 bg-white/5 p-4">
+              <div className="rounded-lg border border-dashed border-border bg-muted/50 p-4">
                 <div className="flex items-center gap-2">
                   <UserCheck className="size-3.5 text-[#3AA7FD]" />
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
-                    Demo admin access
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                    {labels.demoAdminAccess}
                   </p>
                 </div>
-                <p className="mt-2 text-xs text-white/55">
+                <p className="mt-2 text-xs text-muted-foreground">
                   {demoEmail} / {demoPassword}
                 </p>
                 <Button
@@ -92,7 +95,7 @@ export function LoginForm({
                     setPassword(demoPassword);
                   }}
                 >
-                  Fill demo credentials
+                  {labels.fillDemoCredentials}
                 </Button>
               </div>
             )}
@@ -101,7 +104,7 @@ export function LoginForm({
               <div className="flex items-center gap-2">
                 <UserCheck className="size-3.5 text-primary" />
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                  Account Login
+                  {labels.accountLogin}
                 </h3>
               </div>
               <Separator className="my-4" />

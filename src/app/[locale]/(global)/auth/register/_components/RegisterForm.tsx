@@ -27,9 +27,11 @@ import {
 } from "@/components/ui/select";
 
 export function RegisterForm({
+  locale,
   initialRole = "brand",
   labels,
 }: {
+  locale: string;
   initialRole?: "brand" | "blogger";
   labels: {
     brand: string;
@@ -54,12 +56,30 @@ export function RegisterForm({
     signingUp: string;
     successTitle: string;
     successMessage: string;
+    connectWith: string;
+    accountDetails: string;
+    contractPrompt: string;
+    brandApplication: string;
+    creatorApplication: string;
+    selectIndustry: string;
+    industries: Record<string, string>;
+    selectGoal: string;
+    goals: Record<string, string>;
+    selectNiche: string;
+    allContent: string;
+    niches: Record<string, string>;
+    followersRange: string;
+    selectFollowers: string;
+    selectViewsRange: string;
+    viewsReach: string;
+    submitApplication: string;
+    applicationReceived: string;
   };
 }) {
   const initialAuthState: AuthActionState = {};
   const [state, formAction, pending] = useActionState(
     signUpAction,
-    initialAuthState
+    initialAuthState,
   );
   const [role, setRole] = useState<"brand" | "blogger">(initialRole);
   const [applyForContract, setApplyForContract] = useState(false);
@@ -88,12 +108,12 @@ export function RegisterForm({
       <div className="rounded-xl border border-gray-200 dark:border-zinc-800 p-10 text-center shadow-lg dark:shadow-2xl relative overflow-hidden transition-colors">
         <CheckCircle2 className="mx-auto size-16 text-primary animate-bounce" />
         <h2 className="mt-6 text-3xl font-black tracking-tight text-gray-900 dark:text-zinc-100">
-          {labels.successTitle || "Account Created Successfully!"}
+          {labels.successTitle}
         </h2>
         <p className="mt-3 text-sm text-gray-500 dark:text-zinc-400 max-w-md mx-auto">
           {applyForContract
-            ? "Your application has been received and is under review."
-            : labels.successMessage || "Welcome! Your account is ready."}
+            ? labels.applicationReceived
+            : labels.successMessage}
         </p>
         <Button asChild className="mt-6">
           <Link href="/auth/login">
@@ -161,6 +181,7 @@ export function RegisterForm({
         </CardHeader>
         <CardContent>
           <form action={formAction} className="grid gap-6">
+            <Input type="hidden" name="locale" value={locale} />
             <Input type="hidden" name="role" value={role} />
 
             {state.error && (
@@ -175,7 +196,7 @@ export function RegisterForm({
               <div className="flex items-center gap-2">
                 <User className="size-3.5 text-primary" />
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-zinc-400">
-                  Account Details
+                  {labels.accountDetails}
                 </h3>
               </div>
               <Separator className="my-4" />
@@ -252,7 +273,7 @@ export function RegisterForm({
                 htmlFor="applyContract"
                 className="text-xs font-semibold text-gray-400  cursor-pointer select-none"
               >
-                I want to apply for an official partnership contract right now
+                {labels.contractPrompt}
               </label>
             </div>
 
@@ -263,8 +284,8 @@ export function RegisterForm({
                   <FileText className="size-3.5 text-primary" />
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-zinc-400">
                     {role === "brand"
-                      ? "Brand Partnership Application"
-                      : "Creator Contract Application"}
+                      ? labels.brandApplication
+                      : labels.creatorApplication}
                   </h3>
                 </div>
                 <Separator className="my-4" />
@@ -285,7 +306,9 @@ export function RegisterForm({
                     </Field>
 
                     <Field>
-                      <FieldLabel htmlFor="website">{labels.website}</FieldLabel>
+                      <FieldLabel htmlFor="website">
+                        {labels.website}
+                      </FieldLabel>
                       <Input
                         id="website"
                         name="website"
@@ -302,25 +325,27 @@ export function RegisterForm({
                       <Input type="hidden" name="industry" value={industry} />
                       <Select value={industry} onValueChange={setIndustry}>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select industry" />
+                          <SelectValue placeholder={labels.selectIndustry} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Tech & E-commerce">
-                            Tech & E-commerce
+                            {labels.industries.tech}
                           </SelectItem>
                           <SelectItem value="Fashion & Luxury">
-                            Fashion & Luxury
+                            {labels.industries.fashion}
                           </SelectItem>
                           <SelectItem value="Food & Beverage">
-                            Food & Beverage
+                            {labels.industries.food}
                           </SelectItem>
                           <SelectItem value="Gaming & Media">
-                            Gaming & Media
+                            {labels.industries.gaming}
                           </SelectItem>
                           <SelectItem value="Health & Beauty">
-                            Health & Beauty
+                            {labels.industries.health}
                           </SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
+                          <SelectItem value="Other">
+                            {labels.industries.other}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </Field>
@@ -330,20 +355,20 @@ export function RegisterForm({
                       <Input type="hidden" name="goal" value={goal} />
                       <Select value={goal} onValueChange={setGoal}>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select goal" />
+                          <SelectValue placeholder={labels.selectGoal} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Creator Partnerships">
-                            Creator Partnerships
+                            {labels.goals.creatorPartnerships}
                           </SelectItem>
                           <SelectItem value="Commercial Production">
-                            Commercial Production
+                            {labels.goals.commercialProduction}
                           </SelectItem>
                           <SelectItem value="Social Media Takeover">
-                            Social Media Takeover
+                            {labels.goals.socialMedia}
                           </SelectItem>
                           <SelectItem value="Product Launch Blitz">
-                            Product Launch Blitz
+                            {labels.goals.productLaunch}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -369,24 +394,26 @@ export function RegisterForm({
                       <Input type="hidden" name="niche" value={niche} />
                       <Select value={niche} onValueChange={setNiche}>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select niche" />
+                          <SelectValue placeholder={labels.selectNiche} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="All">All Content</SelectItem>
+                          <SelectItem value="All">
+                            {labels.allContent}
+                          </SelectItem>
                           <SelectItem value="Tech & Gadgets">
-                            Tech & Gadgets
+                            {labels.niches.tech}
                           </SelectItem>
                           <SelectItem value="Fashion & Streetwear">
-                            Fashion & Streetwear
+                            {labels.niches.fashion}
                           </SelectItem>
                           <SelectItem value="Lifestyle & Vlogs">
-                            Lifestyle & Vlogs
+                            {labels.niches.lifestyle}
                           </SelectItem>
                           <SelectItem value="Gaming & Streaming">
-                            Gaming & Streaming
+                            {labels.niches.gaming}
                           </SelectItem>
                           <SelectItem value="Fitness & Health">
-                            Fitness & Health
+                            {labels.niches.fitness}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -407,23 +434,17 @@ export function RegisterForm({
 
                     <Field>
                       <FieldLabel htmlFor="followers">
-                        Followers Range
+                        {labels.followersRange}
                       </FieldLabel>
-                      <Input
-                        type="hidden"
-                        name="followers"
-                        value={followers}
-                      />
+                      <Input type="hidden" name="followers" value={followers} />
                       <Select value={followers} onValueChange={setFollowers}>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select followers" />
+                          <SelectValue placeholder={labels.selectFollowers} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="1K - 10K">1K - 10K</SelectItem>
                           <SelectItem value="10K - 50K">10K - 50K</SelectItem>
-                          <SelectItem value="50K - 200K">
-                            50K - 200K
-                          </SelectItem>
+                          <SelectItem value="50K - 200K">50K - 200K</SelectItem>
                           <SelectItem value="200K - 1M">200K - 1M</SelectItem>
                           <SelectItem value="1M+">1M+</SelectItem>
                         </SelectContent>
@@ -444,19 +465,21 @@ export function RegisterForm({
                         onValueChange={setMonthlyViews}
                       >
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select views range" />
+                          <SelectValue placeholder={labels.selectViewsRange} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="10K - 50K">
-                            10K - 50K Views/Reach
+                            10K - 50K {labels.viewsReach}
                           </SelectItem>
                           <SelectItem value="50K - 500K">
-                            50K - 500K Views/Reach
+                            50K - 500K {labels.viewsReach}
                           </SelectItem>
                           <SelectItem value="500K - 1M">
-                            500K - 1M Views/Reach
+                            500K - 1M {labels.viewsReach}
                           </SelectItem>
-                          <SelectItem value="1M+">1M+ Views/Reach</SelectItem>
+                          <SelectItem value="1M+">
+                            1M+ {labels.viewsReach}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </Field>
@@ -477,9 +500,7 @@ export function RegisterForm({
                 </span>
               ) : (
                 <span className="flex items-center gap-2">
-                  {applyForContract
-                    ? "Submit Partnership Application"
-                    : labels.submit}{" "}
+                  {applyForContract ? labels.submitApplication : labels.submit}{" "}
                   ({role === "brand" ? labels.brand : labels.blogger})
                   <ArrowRight className="size-4" />
                 </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Compass, Users } from "lucide-react";
@@ -25,7 +26,7 @@ const CONTENT = {
   },
 };
 
-export default function RootNotFound() {
+function NotFoundContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -97,5 +98,13 @@ export default function RootNotFound() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function RootNotFound() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NotFoundContent />
+    </Suspense>
   );
 }

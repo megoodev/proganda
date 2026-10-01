@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { isStaffRole } from "@/lib/roles";
@@ -54,17 +55,16 @@ export async function signInAction(
   _prevState: AuthActionState,
   formData: FormData,
 ): Promise<AuthActionState> {
+  const locale = readLocale(formData);
+  const t = await getTranslations({ locale, namespace: "auth" });
   const parsed = signInSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
   if (!parsed.success) {
-    return {
-      error: parsed.error.issues[0]?.message ?? "Check your credentials.",
-    };
+    return { error: t("checkForm") };
   }
 
-  const locale = readLocale(formData);
   const next = safeNext(formData.get("next"));
 
   // Demo mode: no database required, sign straight into the CMS.
@@ -88,9 +88,9 @@ export async function signInAction(
       "status" in error &&
       (error as { status?: number }).status === 401
     ) {
-      return { error: "Invalid email or password." };
+      return { error: t("invalidCredentials") };
     }
-    return { error: "Could not sign you in. Please try again." };
+    return { error: t("signInRetry") };
   }
 
   redirect(target);
@@ -100,11 +100,11 @@ export async function signUpAction(
   _prevState: AuthActionState,
   formData: FormData,
 ): Promise<AuthActionState> {
+  const locale = readLocale(formData);
+  const t = await getTranslations({ locale, namespace: "auth" });
   const parsed = signUpSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) {
-    return {
-      error: parsed.error.issues[0]?.message ?? "Check the form and try again.",
-    };
+    return { error: t("checkForm") };
   }
 
   if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
@@ -122,9 +122,9 @@ export async function signUpAction(
       typeof (error as { message?: string }).message === "string" &&
       error.message.toLowerCase().includes("already")
     ) {
-      return { error: "An account with this email already exists." };
+      return { error: t("accountExists") };
     }
-    return { error: "Could not create your account. Please try again." };
+    return { error: t("createAccountRetry") };
   }
 
   return { success: true };

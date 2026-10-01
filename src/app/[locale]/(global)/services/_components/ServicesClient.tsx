@@ -36,6 +36,10 @@ type ServicesClientProps = {
   scopeTitle: string;
   scopeDescription: string;
   consultation: string;
+  stats: { label: string; value: string }[];
+  workflowSteps: { num: string; title: string; desc: string }[];
+  howWeWork: string;
+  journeyTitle: string;
 };
 
 // إعدادات الحركات المتقدمة
@@ -82,35 +86,20 @@ export default function ServicesClient({
   scopeTitle,
   scopeDescription,
   consultation,
+  stats,
+  workflowSteps,
+  howWeWork,
+  journeyTitle,
 }: ServicesClientProps) {
-  // بيانات تجريبية للأرقام وآلية العمل (يمكنك جعلها ديناميكية لاحقاً)
-  const stats = [
-    { label: "حملة تسويقية ناجحة", value: "+1,200", icon: Rocket },
-    { label: "صانع محتوى مقتدر", value: "+5,000", icon: Users2 },
-    { label: "نسبة وصول المتابعين", value: "98%", icon: BarChart3 },
-    { label: "عائد الاستثمار (ROI)", value: "3.8x", icon: Zap },
-  ];
+  const statsWithIcons = stats.map((stat, index) => ({
+    ...stat,
+    icon: [Rocket, Users2, BarChart3, Zap][index] || Rocket,
+  }));
 
-  const workflowSteps = [
-    {
-      num: "01",
-      title: "الاكتشاف والترشيح",
-      desc: "نربط العلامة التجارية بأنسب صناع المحتوى باستخدام أدوات وتحليلات دقيقة.",
-      icon: Search,
-    },
-    {
-      num: "02",
-      title: "صناعة الحملة والتنسيق",
-      desc: "إدارة الاتفاقيات والمحتوى الإبداعي لضمان أفضل رسالة تسويقية.",
-      icon: Handshake,
-    },
-    {
-      num: "03",
-      title: "الإطلاق والتحليل",
-      desc: "تتبع نتائج الحملة والوصول في الوقت الفعلي عبر لوحة تحكم سريعة.",
-      icon: TrendingUp,
-    },
-  ];
+  const workflowStepsWithIcons = workflowSteps.map((step, index) => ({
+    ...step,
+    icon: [Search, Handshake, TrendingUp][index] || Search,
+  }));
 
   return (
     <main className="min-h-screen bg-background text-foreground py-20 relative overflow-hidden">
@@ -154,7 +143,7 @@ export default function ServicesClient({
           variants={itemVariants}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20 p-4 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-md"
         >
-          {stats.map((stat, idx) => {
+          {statsWithIcons.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -286,13 +275,13 @@ export default function ServicesClient({
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3">
               <Layers className="size-3.5" />
-              <span>كيف نعمل؟</span>
+              <span>{howWeWork}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold">رحلة النجاح معنا في 3 خطوات</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold">{journeyTitle}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {workflowSteps.map((step, idx) => {
+            {workflowStepsWithIcons.map((step, idx) => {
               const Icon = step.icon;
               return (
                 <motion.div

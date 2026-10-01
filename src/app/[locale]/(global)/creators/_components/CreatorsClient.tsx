@@ -14,6 +14,9 @@ interface CreatorsClientProps {
   profile: string;
   reach: string;
   engagement: string;
+  creatorNames: Record<string, string>;
+  niches: Record<string, string>;
+  locations: Record<string, string>;
 }
 
 export function CreatorsClient({
@@ -25,18 +28,20 @@ export function CreatorsClient({
   profile,
   reach,
   engagement,
+  creatorNames,
+  niches,
+  locations,
 }: CreatorsClientProps) {
   return (
     <main className="relative w-full overflow-hidden bg-background text-foreground transition-colors duration-300">
-      
       {/* HERO SECTION */}
       <section className="relative px-6 pt-20 pb-16 lg:px-8 lg:pt-28 lg:pb-20">
         {/* Subtle Ambient Background Lighting */}
         <div className="absolute -top-32 -left-32 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        
+
         <div className="mx-auto max-w-7xl">
-          <Badge 
-            variant="outline" 
+          <Badge
+            variant="outline"
             className="mb-4 gap-2 border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
           >
             <Sparkles className="size-3.5" />
@@ -64,10 +69,12 @@ export function CreatorsClient({
             profile,
             reach,
             engagement,
+            creatorNames,
+            niches,
+            locations,
           }}
         />
       </section>
-
     </main>
   );
 }

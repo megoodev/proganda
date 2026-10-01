@@ -13,7 +13,57 @@
     "login": "Log in",
     "register": "Get started",
     "explore": "Explore",
-    "back": "Back to home"
+    "back": "Back to home",
+    "roster": "ROSTER",
+    "profile": "View Profile",
+    "switchToLightTheme": "Switch to light theme",
+    "switchToDarkTheme": "Switch to dark theme",
+    "openNavigation": "Open navigation",
+    "closeNavigation": "Close navigation",
+    "mobileNavigation": "Mobile navigation",
+    "brandFirstPart": "Pro",
+    "brandSecondPart": "Ganda"
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "dashboard": "Dashboard",
+    "sales": "Sales",
+    "store": "Store",
+    "orders": "Orders",
+    "allOrders": "All orders",
+    "unfulfilled": "Unfulfilled",
+    "returns": "Returns",
+    "products": "Products",
+    "catalog": "Catalog",
+    "inventory": "Inventory",
+    "collections": "Collections",
+    "customers": "Customers",
+    "marketing": "Marketing",
+    "settings": "Settings",
+    "storeSettings": "Store settings",
+    "storeProfile": "Store profile",
+    "shippingDelivery": "Shipping & delivery",
+    "payments": "Payments",
+    "staff": "Staff",
+    "apps": "Apps",
+    "sellerHelp": "Seller help",
+    "platformStatus": "Platform status",
+    "addProduct": "Add product",
+    "newProject": "New Project",
+    "searchStore": "Search store",
+    "notifications": "Notifications",
+    "toggleSidebar": "Toggle sidebar",
+    "latestUpdate": "Latest update",
+    "latestTitle": "Smarter shipping quotes",
+    "latestDescription": "Real-time rates at checkout now.",
+    "changelog": "Changelog",
+    "closeUpdate": "Close update",
+    "storeOwner": "Store owner",
+    "profileMenu": "Profile",
+    "keyboardShortcuts": "Keyboard shortcuts",
+    "sellerGuides": "Seller guides",
+    "planBilling": "Plan & billing",
+    "logout": "Log out"
   },
   "home": {
     "eyebrow": "Creator agency + in-house production house",
@@ -36,12 +86,90 @@
     "offersTitle": "Three ways to move culture.",
     "servicesCta": "Compare all services",
     "views": "Views",
-    "reel": "Viral reel"
+    "reel": "Viral reel",
+    "campaignsShipped": "500+ Campaigns Shipped",
+    "inHouseProduction": "100% In-House Production",
+    "save": "Save",
+    "share": "Share",
+    "likeCreator": "Like creator",
+    "saveCreator": "Save creator",
+    "shareCreator": "Share creator",
+    "previousCreator": "Previous creator",
+    "nextCreator": "Next creator",
+    "featuredHighlights": "Featured Highlights",
+    "selectSlide": "Select slide {number}",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "livePipeline": "Live Pipeline",
+    "studioLive": "Studio / Live",
+    "oneSharpTeam": "One Sharp Team",
+    "integrationCorePlatform": "Core Platform",
+    "verifiedIntegration": "Verified Integration",
+    "partnerLogoAlt": "Zad x Trips logo",
+    "strategy": "Strategy",
+    "creatorLabel": "Creators",
+    "production": "Production",
+    "creatorNames": {
+      "maya": "Maya Chen",
+      "jules": "Jules Okafor",
+      "rio": "Rio Santos",
+      "sky": "Sky Williams",
+      "zuri": "Zuri Cole",
+      "devon": "Devon Lee",
+      "amara": "Amara Vale"
+    },
+    "niches": {
+      "Fashion": "Fashion",
+      "Tech": "Tech",
+      "Lifestyle": "Lifestyle",
+      "Gaming": "Gaming"
+    },
+    "heroSlides": [
+      {
+        "category": "Design Systems",
+        "title": "Next-Gen User Interfaces",
+        "description": "Crafted with precision using modern Tailwind CSS and Next.js."
+      },
+      {
+        "category": "AI & Tech",
+        "title": "Automated Workflows",
+        "description": "Empower your creative process with integrated smart tools."
+      },
+      {
+        "category": "Architecture",
+        "title": "Scalable Infrastructure",
+        "description": "High-performance architecture optimized for full-stack apps."
+      },
+      {
+        "category": "Analytics",
+        "title": "Real-time Metrics",
+        "description": "Track performance and audience engagement in one dashboard."
+      },
+      {
+        "category": "Analytics",
+        "title": "Real-time Metrics",
+        "description": "Track performance and audience engagement in one dashboard."
+      }
+    ],
+    "pipelineSteps": [
+      { "num": "01", "label": "Spark", "sub": "Idea Generation" },
+      { "num": "02", "label": "Match", "sub": "Creator Casting" },
+      { "num": "03", "label": "Shoot", "sub": "100% In-House" },
+      { "num": "04", "label": "Edit", "sub": "Post-Production" },
+      { "num": "05", "label": "Launch", "sub": "Campaign Live" }
+    ]
   },
   "about": {
     "eyebrow": "The studio behind the signal",
     "title": "One operating studio for brands ready to move.",
     "description": "ProGanda connects brand strategy, social operations, creator partnerships, production, design, and Notion systems into one team that keeps the work moving.",
+    "trackingLive": "Real-time campaign tracking",
+    "creatorManaged": "100% Creator Managed",
+    "averageRoi": "Avg. ROI",
+    "growth": "+480% Growth",
+    "activeReach": "Active Reach",
+    "viewsCount": "Views",
+    "contentEngine": "Content Engine",
     "studio": "Inside the operating studio",
     "studioDescription": "We turn a business goal into the strategy, content engine, production system, and partnerships that make it visible and repeatable.",
     "capabilityMeta": "Six systems / one operating team",
@@ -62,6 +190,7 @@
     "timelineLive": "Campaign system / live",
     "timelineDescription": "One connected team from business goal to public launch.",
     "timelineStatus": "in motion",
+    "inHousePipeline": "100% In-House Pipeline",
     "teamEyebrow": "The crew / 04 on signal",
     "teamTitle": "The people behind the signal.",
     "teamDescription": "Strategists, makers, and operators working as one sharp studio team.",
@@ -115,9 +244,33 @@
     "all": "All",
     "profile": "View profile",
     "reach": "Total reach",
-    "engagement": "Engagement"
+    "engagement": "Engagement",
+    "creatorNames": {
+      "maya": "Maya Chen",
+      "jules": "Jules Okafor",
+      "rio": "Rio Santos",
+      "sky": "Sky Williams",
+      "zuri": "Zuri Cole",
+      "devon": "Devon Lee",
+      "amara": "Amara Vale"
+    },
+    "niches": {
+      "Fashion": "Fashion",
+      "Tech": "Tech",
+      "Lifestyle": "Lifestyle",
+      "Gaming": "Gaming"
+    },
+    "locations": {
+      "maya": "LA / NYC",
+      "jules": "London",
+      "rio": "Miami",
+      "sky": "Atlanta",
+      "zuri": "Toronto",
+      "devon": "Seoul / SF",
+      "amara": "London"
+    }
   },
- "services": {
+  "services": {
     "eyebrow": "Services & Operations",
     "title": "Match the voice. Move culture.",
     "description": "We don't believe in rigid, one-size-fits-all bundles. We deliver end-to-end production, strategy, and content management tailored specifically to your goals and budget.",
@@ -151,7 +304,44 @@
       "Cross-creator collaborations",
       "Brand sponsorships & monetization opportunities",
       "Income diversification & investment advisory"
-    ]
+    ],
+    "stats": [
+      {
+        "label": "Successful Marketing Campaign",
+        "value": "+1,200"
+      },
+      {
+        "label": "Capable Content Creator",
+        "value": "+5,000"
+      },
+      {
+        "label": "Follower Reach",
+        "value": "98%"
+      },
+      {
+        "label": "ROI",
+        "value": "3.8x"
+      }
+    ],
+    "workflowSteps": [
+      {
+        "num": "01",
+        "title": "Discovery & Nomination",
+        "desc": "We connect the brand with the most suitable content creators using accurate tools and analytics."
+      },
+      {
+        "num": "02",
+        "title": "Campaign Creation & Coordination",
+        "desc": "Managing agreements and creative content to ensure the best marketing message."
+      },
+      {
+        "num": "03",
+        "title": "Launch & Analysis",
+        "desc": "Track campaign results and reach in real-time via a fast dashboard."
+      }
+    ],
+    "howWeWork": "How we work?",
+    "journeyTitle": "Our success journey in 3 steps"
   },
   "brands": {
     "eyebrow": "Campaigns that moved culture",
@@ -164,7 +354,75 @@
     "views": "Views",
     "roi": "ROI",
     "back": "Back to brands",
-    "cta": "Start a brand brief"
+    "cta": "Start a brand brief",
+    "featuredEyebrow": "Featured Case Studies",
+    "featuredTitle": "Brand x Creator Collaborations",
+    "featuredBrandCampaigns": [
+      {
+        "brandName": "Aura Tech",
+        "category": "Consumer Tech",
+        "creatorName": "Lina Vance",
+        "views": "4.2M",
+        "roi": "5.4x"
+      },
+      {
+        "brandName": "Velo Sportswear",
+        "category": "Fitness & Apparel",
+        "creatorName": "Kareem Hassan",
+        "views": "8.9M",
+        "roi": "6.2x"
+      },
+      {
+        "brandName": "Glow & Co",
+        "category": "Beauty & Lifestyle",
+        "creatorName": "Maya Lin",
+        "views": "12.1M",
+        "roi": "7.1x"
+      }
+    ],
+    "brandsList": [
+      {
+        "slug": "lumen",
+        "name": "LUMEN",
+        "industry": "Beauty & wellness",
+        "campaign": "The glow-up drop",
+        "description": "A creator-first launch that made a new skincare ritual impossible to scroll past.",
+        "views": "18.4M",
+        "roi": "4.8x",
+        "color": "#3AA7FD",
+        "services": [
+          "Creator collaborations",
+          "Studio production",
+          "Social distribution"
+        ]
+      },
+      {
+        "slug": "nova",
+        "name": "NOVA",
+        "industry": "Consumer technology",
+        "campaign": "Product launch, remixed",
+        "description": "A sharp product story built around real use cases, quick cuts, and a creator audience that converts.",
+        "views": "9.7M",
+        "roi": "3.6x",
+        "color": "#1B449A",
+        "services": ["Marketing strategy", "Product shoots", "Post-production"]
+      },
+      {
+        "slug": "vanta",
+        "name": "VANTA",
+        "industry": "Streetwear & culture",
+        "campaign": "Own the night",
+        "description": "A culture campaign pairing a limited collection with the creators shaping the conversation around it.",
+        "views": "26.1M",
+        "roi": "6.2x",
+        "color": "#8a2be2",
+        "services": [
+          "Brand strategy",
+          "Talent management",
+          "Campaign production"
+        ]
+      }
+    ]
   },
   "auth": {
     "eyebrow": "The ProGanda Portal",
@@ -202,7 +460,55 @@
     "signingUp": "Setting up portal...",
     "successTitle": "Account created successfully!",
     "successMessage": "Your ProGanda portal is ready. Redirecting you now...",
-    "errorDefault": "Something went wrong. Please check your credentials."
+    "errorDefault": "Something went wrong. Please check your credentials.",
+    "connectWith": "Connect with ProGanda",
+    "accountLogin": "Account Login",
+    "demoAdminAccess": "Demo admin access",
+    "fillDemoCredentials": "Fill demo credentials",
+    "accountDetails": "Account Details",
+    "contractPrompt": "I want to apply for an official partnership contract right now",
+    "brandApplication": "Brand Partnership Application",
+    "creatorApplication": "Creator Contract Application",
+    "selectIndustry": "Select industry",
+    "industries": {
+      "tech": "Tech & E-commerce",
+      "fashion": "Fashion & Luxury",
+      "food": "Food & Beverage",
+      "gaming": "Gaming & Media",
+      "health": "Health & Beauty",
+      "other": "Other"
+    },
+    "selectGoal": "Select goal",
+    "goals": {
+      "creatorPartnerships": "Creator Partnerships",
+      "commercialProduction": "Commercial Production",
+      "socialMedia": "Social Media Takeover",
+      "productLaunch": "Product Launch Blitz"
+    },
+    "selectNiche": "Select niche",
+    "allContent": "All Content",
+    "niches": {
+      "tech": "Tech & Gadgets",
+      "fashion": "Fashion & Streetwear",
+      "lifestyle": "Lifestyle & Vlogs",
+      "gaming": "Gaming & Streaming",
+      "fitness": "Fitness & Health"
+    },
+    "followersRange": "Followers Range",
+    "selectFollowers": "Select followers",
+    "selectViewsRange": "Select views range",
+    "viewsReach": "Views/Reach",
+    "submitApplication": "Submit Partnership Application",
+    "applicationReceived": "Your application has been received and is under review.",
+    "promoEyebrow": "Limited Portal Offer",
+    "promoDiscount": "20% OFF",
+    "promoDescription": "Sign up today and get 20% off your first studio shoot or creator campaign with code {code}.",
+    "promoAutoApplied": "Auto-Applied",
+    "checkForm": "Please check the form and try again.",
+    "invalidCredentials": "Invalid email or password.",
+    "signInRetry": "Could not sign you in. Please try again.",
+    "accountExists": "An account with this email already exists.",
+    "createAccountRetry": "Could not create your account. Please try again."
   },
   "subscriptions": {
     "eyebrow": "Membership + campaign plans",
@@ -238,6 +544,9 @@
     "title": "Bring us the messy brief.",
     "description": "Tell us what you are building, where attention is stuck, and what needs to move next. We will shape the right mix of strategy, social, creators, production, and systems around it.",
     "formTitle": "Send the brief",
+    "messageFormTitle": "Send Us a Message",
+    "namePlaceholder": "Alex Morgan",
+    "companyPlaceholder": "Apex Dynamics",
     "name": "Your name",
     "email": "Work email",
     "company": "Brand or company",
@@ -264,6 +573,7 @@
     "whatsapp": "WhatsApp Hotline",
     "whatsappDesc": "Instant chat with our studio team",
     "whatsappAction": "Start Chat",
+    "whatsappPrefill": "Hello ProGanda, I would like to ask about a campaign or consultation.",
     "whatsappNumber": "+201029881180",
     "phone": "Direct Studio Desk",
     "phoneNumber": "+20 102 988 1180",
@@ -302,7 +612,10 @@
     "faq3Q": "Do you handle creator contracting, usage rights, and payments?",
     "faq3A": "Yes, end-to-end. We manage talent agreements, commercial usage licensing, deliverables quality control, and streamlined payouts.",
     "faq4Q": "Can creators and bloggers book studio time directly?",
-    "faq4A": "Yes. Roster members and Creator Pro subscribers get dedicated studio access, audio/video equipment, and in-house editing support."
+    "faq4A": "Yes. Roster members and Creator Pro subscribers get dedicated studio access, audio/video equipment, and in-house editing support.",
+    "ndaProtected": "NDA Protected Briefs",
+    "dedicatedRouting": "Dedicated Routing",
+    "callStudioDesk": "Call Studio Desk"
   },
   "brandDetail": {
     "connectDirectly": "Connect Directly With Producers",
@@ -322,7 +635,67 @@
     "castCollaborators": "Cast & Collaborators",
     "readyToLaunch": "Ready to launch your campaign?",
     "readyToLaunchDesc": "Partner with ProGanda creators and deliver verified growth for your brand.",
-    "platformsList": "TikTok, Instagram, Shorts"
+    "platformsList": "TikTok, Instagram, Shorts",
+    "directConversions": "Direct conversions",
+    "engagementRate": "Engagement rate",
+    "engagementChange": "+3.2% vs average",
+    "totalReach": "Total reach",
+    "uniqueViewers": "Unique viewers",
+    "strategyIntro": "We integrated content creation, casting, and distribution into one connected campaign pipeline.",
+    "campaignMedia": [
+      {
+        "title": "Hero Product Reel",
+        "creator": "Lina Vance",
+        "type": "Short-form video",
+        "views": "2.4M views"
+      },
+      {
+        "title": "Behind the scenes",
+        "creator": "Kareem Hassan",
+        "type": "Vlog feature",
+        "views": "1.1M views"
+      },
+      {
+        "title": "Unboxing & first impression",
+        "creator": "Maya Lin",
+        "type": "Product review",
+        "views": "720K views"
+      }
+    ],
+    "strategyBreakdown": [
+      {
+        "step": "01",
+        "title": "Creator matchmaking",
+        "description": "We selected creators whose audiences aligned with the brand's target demographics."
+      },
+      {
+        "step": "02",
+        "title": "In-house production",
+        "description": "We managed all filming, audio design, and editing in ProGanda studios."
+      },
+      {
+        "step": "03",
+        "title": "Targeted distribution",
+        "description": "We synchronized releases across TikTok, Instagram Reels, and YouTube Shorts."
+      }
+    ],
+    "creatorCollaborators": [
+      {
+        "name": "Lina Vance",
+        "role": "Tech creator",
+        "reach": "1.2M followers"
+      },
+      {
+        "name": "Kareem Hassan",
+        "role": "Lifestyle vlogger",
+        "reach": "850K followers"
+      },
+      {
+        "name": "Maya Lin",
+        "role": "Creative director",
+        "reach": "940K followers"
+      }
+    ]
   },
   "creatorProfile": {
     "whatsappContact": "WhatsApp Contact",
@@ -350,6 +723,18 @@
     "promo": "/ promo",
     "monthly": "Monthly",
     "audience": "Audience",
-    "totalEngagement": "Total Engagement"
+    "totalEngagement": "Total Engagement",
+    "bio": "Content creator covering all niches across Egypt. Delivering high-impact campaign promotions with over 5M+ monthly reach on Instagram and a growing TikTok community.",
+    "grade": "Grade 4",
+    "contractDuration": "Per campaign / announcement",
+    "topCountries": ["Egypt (100%)"],
+    "topCities": ["Mansoura", "Port Said", "Cairo"],
+    "durationLabel": "Duration",
+    "budgetLabel": "Budget",
+    "instagramReach": "Instagram reach",
+    "instagramFollowers": "Instagram followers",
+    "tiktokFollowers": "TikTok followers",
+    "tiktokLikes": "TikTok likes",
+    "turnaroundValues": ["1–2 days", "3 days", "5 days"]
   }
 }

@@ -16,16 +16,16 @@ export default async function LoginPage({
 
   return (
     <main id="login" className="mx-auto max-w-xl px-5 py-20 lg:px-8">
-      <PromoDeal />
+      <PromoDeal locale={locale} />
 
       <div className="text-center mb-8">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
           {t("eyebrow")}
         </p>
-        <h1 className="text-4xl sm:text-5xl font-black tracking-[-0.05em] text-white">
+        <h1 className="text-4xl sm:text-5xl font-black tracking-[-0.05em] text-foreground">
           {t("loginTitle")}
         </h1>
-        <p className="mt-3 text-sm text-white/50 max-w-md mx-auto">
+        <p className="mt-3 text-sm text-muted-foreground max-w-md mx-auto">
           {t("loginSubtitle")}
         </p>
       </div>
@@ -41,12 +41,15 @@ export default async function LoginPage({
           dontHaveAccount: t("dontHaveAccount"),
           signUp: t("signUp"),
           errorDefault: t("errorDefault"),
+          accountLogin: t("accountLogin"),
+          demoAdminAccess: t("demoAdminAccess"),
+          fillDemoCredentials: t("fillDemoCredentials"),
         }}
       />
 
       <div className="mt-12 text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-3 font-semibold">
-          Connect with ProGanda
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3 font-semibold">
+          {t("connectWith")}
         </p>
         <SocialLinks />
       </div>

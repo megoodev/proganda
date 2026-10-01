@@ -19,6 +19,9 @@ export function MobileNavigation({
     contact: string;
     register: string;
     language: string;
+    openNavigation: string;
+    closeNavigation: string;
+    mobileNavigation: string;
   };
   alternateLocale: "en" | "ar";
 }) {
@@ -44,11 +47,11 @@ export function MobileNavigation({
     <div className="md:hidden">
       <Button
         type="button"
-        aria-label="Open navigation"
+        aria-label={labels.openNavigation}
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
-        variant='outline'
-        size='icon-lg'
+        variant="outline"
+        size="icon-lg"
         className="rounded-sm"
       >
         <Menu className="size-4 text-accent-foreground border-accent-foreground" />
@@ -78,13 +81,16 @@ export function MobileNavigation({
                   type="button"
                   size="icon-lg"
                   variant="ghost"
-                  aria-label="Close navigation"
+                  aria-label={labels.closeNavigation}
                   onClick={close}
                 >
                   <X className="size-5 text-destructive" />
                 </Button>
               </div>
-              <nav className="mt-10 grid gap-1" aria-label="Mobile navigation">
+              <nav
+                className="mt-10 grid gap-1"
+                aria-label={labels.mobileNavigation}
+              >
                 {[
                   ["/about", labels.about],
                   ["/creators", labels.creators],

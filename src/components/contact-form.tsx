@@ -15,11 +15,7 @@ import {
 import { submitContactAction, type ActionState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
   InputGroup,
@@ -40,8 +36,11 @@ export function ContactForm({
 }: {
   labels: {
     name: string;
+    namePlaceholder: string;
     email: string;
     company: string;
+    companyPlaceholder: string;
+    formTitle: string;
     interest: string;
     interestPlaceholder: string;
     options: string[];
@@ -71,7 +70,7 @@ export function ContactForm({
           <div className="flex items-center gap-2">
             <MessageSquare className="size-4 text-primary" />
             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-              Send Us a Message
+              {labels.formTitle}
             </h3>
           </div>
           <Separator className="mt-4" />
@@ -95,18 +94,16 @@ export function ContactForm({
 
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
-                <FieldLabel htmlFor="contact-name">
-                  {labels.name} *
-                </FieldLabel>
+                <FieldLabel htmlFor="contact-name">{labels.name} *</FieldLabel>
                 <InputGroup>
-                  <InputGroupAddon >
+                  <InputGroupAddon>
                     <User className="size-4 text-muted-foreground" />
                   </InputGroupAddon>
                   <InputGroupInput
                     id="contact-name"
                     name="name"
                     required
-                    placeholder="Alex Morgan"
+                    placeholder={labels.namePlaceholder}
                   />
                 </InputGroup>
               </Field>
@@ -116,7 +113,7 @@ export function ContactForm({
                   {labels.email} *
                 </FieldLabel>
                 <InputGroup>
-                  <InputGroupAddon >
+                  <InputGroupAddon>
                     <Mail className="size-4 text-muted-foreground" />
                   </InputGroupAddon>
                   <InputGroupInput
@@ -134,14 +131,14 @@ export function ContactForm({
                   {labels.company} *
                 </FieldLabel>
                 <InputGroup>
-                  <InputGroupAddon >
+                  <InputGroupAddon>
                     <Building className="size-4 text-muted-foreground" />
                   </InputGroupAddon>
                   <InputGroupInput
                     id="contact-company"
                     name="company"
                     required
-                    placeholder="Apex Dynamics"
+                    placeholder={labels.companyPlaceholder}
                   />
                 </InputGroup>
               </Field>
@@ -158,14 +155,17 @@ export function ContactForm({
                   required
                 />
                 <InputGroup>
-                  <InputGroupAddon >
+                  <InputGroupAddon>
                     <Target className="size-4 text-muted-foreground" />
                   </InputGroupAddon>
                   <Select
                     value={selectedInterest}
                     onValueChange={setSelectedInterest}
                   >
-                    <SelectTrigger id="contact-interest" className="border-0 shadow-none focus:ring-0 rounded-sm bg-transparent h-full">
+                    <SelectTrigger
+                      id="contact-interest"
+                      className="border-0 shadow-none focus:ring-0 rounded-sm bg-transparent h-full"
+                    >
                       <SelectValue placeholder={labels.interestPlaceholder} />
                     </SelectTrigger>
                     <SelectContent>

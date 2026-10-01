@@ -23,6 +23,9 @@ export default async function ContactPage({
       title={t("title")}
       description={t("description")}
       formTitle={t("formTitle")}
+      messageFormTitle={t("messageFormTitle")}
+      namePlaceholder={t("namePlaceholder")}
+      companyPlaceholder={t("companyPlaceholder")}
       name={t("name")}
       email={t("email")}
       company={t("company")}
@@ -39,7 +42,12 @@ export default async function ContactPage({
       whatsapp={t("whatsapp")}
       whatsappDesc={t("whatsappDesc")}
       whatsappAction={t("whatsappAction")}
+      whatsappPrefill={t("whatsappPrefill")}
       phone={t("phone")}
+      responseTime={t("responseTime")}
+      ndaProtected={t("ndaProtected")}
+      dedicatedRouting={t("dedicatedRouting")}
+      callStudioDesk={t("callStudioDesk")}
       emailBrief={t("emailBrief")}
       emailCreator={t("emailCreator")}
       officeHoursTitle={t("officeHoursTitle")}

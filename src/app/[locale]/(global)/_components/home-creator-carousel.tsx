@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
@@ -57,6 +58,10 @@ export function HomeCreatorCarousel({
   viewsLabel: string;
   locale: "ar" | "en";
 }) {
+  const t = useTranslations("common");
+  const tHome = useTranslations("home");
+  const creatorNames = tHome.raw("creatorNames") as Record<string, string>;
+  const creatorNiches = tHome.raw("niches") as Record<string, string>;
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -80,7 +85,7 @@ export function HomeCreatorCarousel({
   function handlePrev() {
     setDirection(-1);
     setActiveIndex(
-      (current) => (current - 1 + creators.length) % creators.length
+      (current) => (current - 1 + creators.length) % creators.length,
     );
   }
 
@@ -118,6 +123,10 @@ export function HomeCreatorCarousel({
   if (!creators || creators.length === 0) return null;
 
   const currentCreator = creators[activeIndex];
+  const currentCreatorName =
+    creatorNames[currentCreator.id] ?? currentCreator.name;
+  const currentCreatorNiche =
+    creatorNiches[currentCreator.niche] ?? currentCreator.niche;
 
   return (
     <div
@@ -151,7 +160,7 @@ export function HomeCreatorCarousel({
                     >
                       <Image
                         src={currentCreator.image}
-                        alt={currentCreator.name}
+                        alt={currentCreatorName}
                         fill
                         priority
                         sizes="(max-width: 640px) 320px, 384px"
@@ -168,6 +177,7 @@ export function HomeCreatorCarousel({
                           <Button
                             variant="ghost"
                             size="icon"
+                            aria-label={tHome("likeCreator")}
                             className="h-10 w-10 rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-black/60 hover:text-white"
                           >
                             <Heart className="size-5 fill-white/20 text-white group-hover:fill-red-500 group-hover:text-red-500" />
@@ -185,12 +195,13 @@ export function HomeCreatorCarousel({
                           <Button
                             variant="ghost"
                             size="icon"
+                            aria-label={tHome("saveCreator")}
                             className="h-10 w-10 rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-black/60 hover:text-white"
                           >
                             <Bookmark className="size-5 text-white" />
                           </Button>
                           <span className="text-[10px] font-semibold">
-                            Save
+                            {tHome("save")}
                           </span>
                         </motion.div>
 
@@ -202,12 +213,13 @@ export function HomeCreatorCarousel({
                           <Button
                             variant="ghost"
                             size="icon"
+                            aria-label={tHome("shareCreator")}
                             className="h-10 w-10 rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-black/60 hover:text-white"
                           >
                             <Share2 className="size-5 text-white" />
                           </Button>
                           <span className="text-[10px] font-semibold">
-                            Share
+                            {tHome("share")}
                           </span>
                         </motion.div>
                       </div>
@@ -227,7 +239,7 @@ export function HomeCreatorCarousel({
                             }}
                           >
                             <Sparkles className="me-1 size-3" />
-                            {currentCreator.niche}
+                            {currentCreatorNiche}
                           </Badge>
                           <Badge
                             variant="outline"
@@ -239,7 +251,7 @@ export function HomeCreatorCarousel({
                         </div>
 
                         <h3 className="text-2xl font-extrabold tracking-tight text-white">
-                          {currentCreator.name}
+                          {currentCreatorName}
                         </h3>
 
                         <div className="mt-4 flex items-center gap-3">
@@ -249,9 +261,7 @@ export function HomeCreatorCarousel({
                             className="w-full rounded-xl font-bold shadow-lg transition-transform active:scale-95"
                           >
                             <Link href={`/creators/${currentCreator.id}`}>
-                              {locale === "ar"
-                                ? "عرض الملف الشخصي"
-                                : "View Profile"}
+                              {t("profile")}
                             </Link>
                           </Button>
                         </div>
@@ -266,8 +276,7 @@ export function HomeCreatorCarousel({
           <div className="flex flex-col gap-4 lg:col-span-5 xl:col-span-4">
             <div className="flex items-center justify-between px-1">
               <span className="text-xs font-extrabold uppercase tracking-widest text-muted-foreground">
-                0{activeIndex + 1} / 0{creators.length} —{" "}
-                {locale === "ar" ? "القائمة" : "ROSTER"}
+                0{activeIndex + 1} / 0{creators.length} — {t("roster")}
               </span>
 
               <div className="flex items-center gap-2">
@@ -276,7 +285,7 @@ export function HomeCreatorCarousel({
                   size="icon"
                   onClick={isRtl ? handleNext : handlePrev}
                   className="h-9 w-9 rounded-full border-border/80 bg-background/60 shadow-sm backdrop-blur-md hover:bg-accent active:scale-90"
-                  aria-label="Previous creator"
+                  aria-label={tHome("previousCreator")}
                 >
                   <ArrowLeft className="size-4 rtl:rotate-180" />
                 </Button>
@@ -285,7 +294,7 @@ export function HomeCreatorCarousel({
                   size="icon"
                   onClick={isRtl ? handlePrev : handleNext}
                   className="h-9 w-9 rounded-full border-border/80 bg-background/60 shadow-sm backdrop-blur-md hover:bg-accent active:scale-90"
-                  aria-label="Next creator"
+                  aria-label={tHome("nextCreator")}
                 >
                   <ArrowRight className="size-4 rtl:rotate-180" />
                 </Button>
@@ -307,7 +316,7 @@ export function HomeCreatorCarousel({
                       "group relative flex h-auto w-full items-center justify-start gap-4 whitespace-normal rounded-2xl border p-3.5 text-start transition-all duration-300 hover:bg-accent/40",
                       isActive
                         ? "border-primary/50 bg-primary/10 shadow-md backdrop-blur-md hover:bg-primary/15"
-                        : "border-border/40 bg-card/40 hover:border-border"
+                        : "border-border/40 bg-card/40 hover:border-border",
                     )}
                   >
                     <Avatar className="h-12 w-12 shrink-0 rounded-xl border border-border/60 transition-transform group-hover:scale-105">
@@ -326,16 +335,16 @@ export function HomeCreatorCarousel({
                         <h4
                           className={cn(
                             "truncate text-sm font-bold",
-                            isActive ? "text-primary" : "text-foreground"
+                            isActive ? "text-primary" : "text-foreground",
                           )}
                         >
-                          {creator.name}
+                          {creatorNames[creator.id] ?? creator.name}
                         </h4>
                         <span
                           className="text-[10px] font-extrabold uppercase tracking-wider"
                           style={{ color: creator.accent }}
                         >
-                          {creator.niche}
+                          {creatorNiches[creator.niche] ?? creator.niche}
                         </span>
                       </div>
                       <p className="mt-0.5 truncate text-xs font-normal text-muted-foreground">

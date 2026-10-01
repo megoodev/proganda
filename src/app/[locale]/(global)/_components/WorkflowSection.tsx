@@ -27,6 +27,10 @@ export interface WorkflowSectionProps {
   description: string;
   aboutCta: string;
   reelLabel: string;
+  livePipelineLabel: string;
+  studioLiveLabel: string;
+  teamLabel: string;
+  productionLabel: string;
   pipelineSteps: PipelineStep[];
 }
 
@@ -96,6 +100,10 @@ export function WorkflowSection({
   description,
   aboutCta,
   reelLabel,
+  livePipelineLabel,
+  studioLiveLabel,
+  teamLabel,
+  productionLabel,
   pipelineSteps,
 }: WorkflowSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -211,7 +219,7 @@ export function WorkflowSection({
                     </motion.div>
                     <div>
                       <p className="text-[10px] font-black uppercase tracking-widest text-primary">
-                        Live Pipeline
+                        {livePipelineLabel}
                       </p>
                       <p className="text-base font-bold text-foreground">
                         {reelLabel}
@@ -224,7 +232,7 @@ export function WorkflowSection({
                     className="gap-2 border-emerald-500/20 bg-emerald-500/10 text-[10px] font-bold uppercase text-emerald-500"
                   >
                     <span className="size-2 animate-pulse rounded-full bg-emerald-500" />
-                    Studio / Live
+                    {studioLiveLabel}
                   </Badge>
                 </div>
               </CardHeader>
@@ -280,9 +288,9 @@ export function WorkflowSection({
                 <Separator className="mt-10 bg-border/60" />
 
                 <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
-                  <span className="font-semibold">One Sharp Team</span>
+                  <span className="font-semibold">{teamLabel}</span>
                   <span className="font-bold text-primary">
-                    100% In-House Production
+                    {productionLabel}
                   </span>
                 </div>
               </CardContent>

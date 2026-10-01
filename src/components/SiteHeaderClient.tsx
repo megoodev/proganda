@@ -17,6 +17,9 @@ export type MobileLabels = {
   contact: string;
   register: string;
   language: string;
+  openNavigation: string;
+  closeNavigation: string;
+  mobileNavigation: string;
 };
 
 type HeaderProps = {

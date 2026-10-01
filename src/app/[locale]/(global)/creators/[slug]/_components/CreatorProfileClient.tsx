@@ -1,20 +1,13 @@
 import Image from "next/image";
 import {
   ArrowLeft,
-  BadgeCheck,
-  Camera,
   Clock,
-  Eye,
   Globe,
-  Mail,
   MapPin,
   Phone,
-  Play,
   Share2,
-  ShieldCheck,
   Star,
   TrendingUp,
-  Video,
 } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
@@ -29,7 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import type { Creator } from "@/lib/data";
 
@@ -52,6 +44,7 @@ function TikTokIcon({ className = "size-4" }: { className?: string }) {
 
 interface CreatorProfileClientProps {
   creator: Creator;
+  creatorNiche: string;
   t: {
     profile: string;
     whatsappContact: string;
@@ -80,11 +73,24 @@ interface CreatorProfileClientProps {
     monthly: string;
     audience: string;
     totalEngagement: string;
+    bio: string;
+    grade: string;
+    contractDuration: string;
+    topCountries: string[];
+    topCities: string[];
+    durationLabel: string;
+    budgetLabel: string;
+    instagramReach: string;
+    instagramFollowers: string;
+    tiktokFollowers: string;
+    tiktokLikes: string;
+    turnaroundValues: string[];
   };
 }
 
 export function CreatorProfileClient({
   creator,
+  creatorNiche,
   t,
 }: CreatorProfileClientProps) {
   const {
@@ -114,22 +120,33 @@ export function CreatorProfileClient({
     monthly,
     audience,
     totalEngagement,
+    bio,
+    grade,
+    contractDuration,
+    topCountries,
+    topCities,
+    durationLabel,
+    budgetLabel,
+    instagramReach,
+    instagramFollowers,
+    tiktokFollowers,
+    tiktokLikes,
+    turnaroundValues,
   } = t;
 
   const creatorDetails = {
-    bio: "Content creator covering all niches across Egypt. Delivering high-impact campaign promotions with over 5M+ monthly reach on Instagram and a growing TikTok community.",
+    bio,
     mobile: "https://wa.me/201003634700",
-    grade: "Grade 4",
+    grade,
     budgetRange: "1,500 - 10,000 EGP",
-    contractDuration: "Per Campaign / Announcement",
+    contractDuration,
     demographics: {
-      gender: { male: 50, female: 50 },
-      topCountries: ["Egypt (100%)"],
-      topCities: ["Mansoura", "Port Said", "Cairo"],
-      ageRange: "18-34",
+      topCountries,
+      topCities,
     },
     socialLinks: {
-      instagram: "https://www.instagram.com/mazen._shahin?igsh=MXh4bDR0dWE2cm81bg%3D%3D&utm_source=qr",
+      instagram:
+        "https://www.instagram.com/mazen._shahin?igsh=MXh4bDR0dWE2cm81bg%3D%3D&utm_source=qr",
       tiktok: "https://www.tiktok.com/@mazenshahin917?_r=1&_t=ZS-983p8YSvW5d",
     },
     packages: [
@@ -137,31 +154,22 @@ export function CreatorProfileClient({
         title: standardStoryAd,
         description: standardStoryAdDesc,
         price: "1,500 EGP",
-        turnaround: "1-2 Days",
+        turnaround: turnaroundValues[0],
       },
       {
         title: fullCampaignReel,
         description: fullCampaignReelDesc,
         price: "5,000 EGP",
         popular: true,
-        turnaround: "3 Days",
+        turnaround: turnaroundValues[1],
       },
       {
         title: multiPlatformBundle,
         description: multiPlatformBundleDesc,
         price: "10,000 EGP",
-        turnaround: "5 Days",
+        turnaround: turnaroundValues[2],
       },
     ],
-  };
-
-  const renderSocialIcon = (name: string) => {
-    const lower = name.toLowerCase();
-    if (lower.includes("instagram"))
-      return <InstagramIcon className="size-4 text-pink-500" />;
-    if (lower.includes("tiktok"))
-      return <TikTokIcon className="size-4 text-foreground" />;
-    return <Video className="size-4 text-primary" />;
   };
 
   return (
@@ -192,13 +200,14 @@ export function CreatorProfileClient({
                 variant="outline"
                 className="border-primary/30 bg-primary/10 uppercase tracking-widest text-primary"
               >
-                {creator.niche}
+                {creatorNiche}
               </Badge>
               <h1 className="mt-2 text-3xl font-black text-foreground sm:text-4xl">
                 {creator.name}
               </h1>
               <p className="mt-1 text-sm font-medium text-muted-foreground">
-                {creator.handle} • {creatorDetails.demographics.topCities.join(" / ")}
+                {creator.handle} •{" "}
+                {creatorDetails.demographics.topCities.join(" / ")}
               </p>
             </div>
           </div>
@@ -210,7 +219,11 @@ export function CreatorProfileClient({
               asChild
               className="h-12 rounded-none gap-2 text-xs font-bold uppercase tracking-wider"
             >
-              <a href={creatorDetails.mobile} target="_blank" rel="noopener noreferrer">
+              <a
+                href={creatorDetails.mobile}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Phone className="size-4" /> {whatsappContact}
               </a>
             </Button>
@@ -230,9 +243,12 @@ export function CreatorProfileClient({
               <span className="text-xs font-bold uppercase tracking-widest text-primary">
                 {egyptVerified} ({creatorDetails.grade})
               </span>
-              <Badge variant="secondary" className="gap-1.5 font-semibold text-amber-500">
+              <Badge
+                variant="secondary"
+                className="gap-1.5 font-semibold text-amber-500"
+              >
                 <Star className="size-3.5 fill-amber-500" />
-                <span>Grade 4</span>
+                <span>{creatorDetails.grade}</span>
               </Badge>
             </div>
 
@@ -247,15 +263,19 @@ export function CreatorProfileClient({
             {/* Main Key Stats Grid */}
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {[
-                ["5M", "Instagram Reach", "Monthly"],
-                ["20K", "Instagram Followers", "Audience"],
-                ["11K", "TikTok Followers", "Audience"],
-                ["471K", "TikTok Likes", "Total Engagement"],
+                ["5M", instagramReach, monthly],
+                ["20K", instagramFollowers, audience],
+                ["11K", tiktokFollowers, audience],
+                ["471K", tiktokLikes, totalEngagement],
               ].map(([value, label, sub]) => (
                 <Card key={label} className="p-4 shadow-none border-border">
                   <p className="text-2xl font-black text-primary">{value}</p>
-                  <p className="mt-1 text-xs font-bold text-foreground">{label}</p>
-                  <p className="text-[10px] uppercase text-muted-foreground">{sub}</p>
+                  <p className="mt-1 text-xs font-bold text-foreground">
+                    {label}
+                  </p>
+                  <p className="text-[10px] uppercase text-muted-foreground">
+                    {sub}
+                  </p>
                 </Card>
               ))}
             </div>
@@ -266,13 +286,15 @@ export function CreatorProfileClient({
                 variant="outline"
                 className="gap-2 border-primary/30 bg-primary/5 px-3 py-1.5 font-medium text-primary"
               >
-                <Clock className="size-4" /> Duration: {creatorDetails.contractDuration}
+                <Clock className="size-4" /> {durationLabel}:{" "}
+                {creatorDetails.contractDuration}
               </Badge>
               <Badge
                 variant="outline"
                 className="gap-2 border-emerald-500/30 bg-emerald-500/5 px-3 py-1.5 font-medium text-emerald-600 dark:text-emerald-400"
               >
-                <TrendingUp className="size-4" /> Budget: {creatorDetails.budgetRange}
+                <TrendingUp className="size-4" /> {budgetLabel}:{" "}
+                {creatorDetails.budgetRange}
               </Badge>
             </div>
           </div>
@@ -284,15 +306,24 @@ export function CreatorProfileClient({
               {socialLinksChannels}
             </p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              <a href={creatorDetails.socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+              <a
+                href={creatorDetails.socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Badge
                   variant="outline"
                   className="gap-2 bg-card px-3.5 py-2 text-xs font-medium text-foreground shadow-sm hover:border-primary"
                 >
-                  <InstagramIcon className="size-4 text-pink-500" /> Instagram (20K)
+                  <InstagramIcon className="size-4 text-pink-500" /> Instagram
+                  (20K)
                 </Badge>
               </a>
-              <a href={creatorDetails.socialLinks.tiktok} target="_blank" rel="noopener noreferrer">
+              <a
+                href={creatorDetails.socialLinks.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Badge
                   variant="outline"
                   className="gap-2 bg-card px-3.5 py-2 text-xs font-medium text-foreground shadow-sm hover:border-primary"
@@ -321,7 +352,7 @@ export function CreatorProfileClient({
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Top Geographies
+                {topGeographies}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -339,7 +370,7 @@ export function CreatorProfileClient({
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Top Active Cities
+                {topActiveCities}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -357,7 +388,7 @@ export function CreatorProfileClient({
           <Card className="sm:col-span-2 lg:col-span-1">
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Average Budget Range
+                {averageBudget}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -365,7 +396,7 @@ export function CreatorProfileClient({
                 {creatorDetails.budgetRange}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                Flexible budget depending on campaign deliverable scope.
+                {flexibleBudget}
               </p>
             </CardContent>
           </Card>
@@ -377,10 +408,10 @@ export function CreatorProfileClient({
         <Separator className="mb-10 sm:mb-12" />
         <div className="flex flex-col gap-1">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
-            Services & Pricing
+            {servicesPricing}
           </p>
           <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-            Select an Ad Campaign Package
+            {selectAdCampaign}
           </h3>
         </div>
 
@@ -389,17 +420,21 @@ export function CreatorProfileClient({
             <Card
               key={pkg.title}
               className={`relative flex flex-col justify-between transition ${
-                pkg.popular ? "border-primary shadow-md" : "hover:border-primary/50"
+                pkg.popular
+                  ? "border-primary shadow-md"
+                  : "hover:border-primary/50"
               }`}
             >
               {pkg.popular && (
                 <Badge className="absolute -top-3 right-6 bg-primary text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                  Most Popular
+                  {mostPopular}
                 </Badge>
               )}
 
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-foreground">{pkg.title}</CardTitle>
+                <CardTitle className="text-lg font-bold text-foreground">
+                  {pkg.title}
+                </CardTitle>
                 <CardDescription className="mt-2 text-xs leading-relaxed">
                   {pkg.description}
                 </CardDescription>
@@ -407,23 +442,31 @@ export function CreatorProfileClient({
 
               <CardContent>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-black text-foreground">{pkg.price}</span>
-                  <span className="text-xs text-muted-foreground">/ promo</span>
+                  <span className="text-3xl font-black text-foreground">
+                    {pkg.price}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{promo}</span>
                 </div>
               </CardContent>
 
               <CardFooter className="mt-auto flex-col items-stretch border-t border-border pt-6">
                 <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
                   <Clock className="size-3.5 text-primary" />
-                  <span>Turnaround: {pkg.turnaround}</span>
+                  <span>
+                    {turnaround}: {pkg.turnaround}
+                  </span>
                 </div>
                 <Button
                   variant={pkg.popular ? "default" : "outline"}
                   asChild
                   className="w-full text-xs font-bold uppercase tracking-wider"
                 >
-                  <a href={creatorDetails.mobile} target="_blank" rel="noopener noreferrer">
-                    Book Via WhatsApp
+                  <a
+                    href={creatorDetails.mobile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {bookViaWhatsApp}
                   </a>
                 </Button>
               </CardFooter>
