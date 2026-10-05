@@ -1,20 +1,36 @@
-export const PUBLIC_ROLES = ["brand", "blogger", "creator"] as const;
-export const STAFF_ROLES = ["admin", "team"] as const;
-export const ADMIN_ONLY_ROLES = ["admin"] as const;
+import type { UserRole } from "@/generated/prisma/enums";
+
+export const USER_ROLES = ["USER", "BLOGGER", "BRAND", "ADMIN"] as const;
+export const PUBLIC_ROLES = [
+  "USER",
+  "BLOGGER",
+  "BRAND",
+] as const satisfies readonly UserRole[];
+export const STAFF_ROLES = ["ADMIN"] as const satisfies readonly UserRole[];
+export const ADMIN_ONLY_ROLES = ["ADMIN"] as const;
 
 export type PublicRole = (typeof PUBLIC_ROLES)[number];
 export type StaffRole = (typeof STAFF_ROLES)[number];
-export type SessionRole = PublicRole | StaffRole;
+export type SessionRole = UserRole;
 
-export function isStaffRole(role: string | null | undefined): role is StaffRole {
+export function isUserRole(role: string | null | undefined): role is UserRole {
+  return USER_ROLES.includes(role as UserRole);
+}
+
+export function isStaffRole(
+  role: string | null | undefined,
+): role is StaffRole {
   return STAFF_ROLES.includes(role as StaffRole);
 }
 
-export function isAdminRole(role: string | null | undefined): role is "admin" {
-  return role === "admin";
+export function isAdminRole(role: string | null | undefined): role is "ADMIN" {
+  return role === "ADMIN";
 }
 
 export function sanitizeSignupRole(role: unknown): PublicRole {
-  if (role === "blogger" || role === "creator") return role;
-  return "brand";
+  if (role === "BLOGGER" || role === "blogger" || role === "creator") {
+    return "BLOGGER";
+  }
+  if (role === "BRAND" || role === "brand") return "BRAND";
+  return "USER";
 }

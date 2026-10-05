@@ -1,5 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import { ContactClient } from "./_components/ContactClient";
+import {
+  ContactClient,
+  type ContactDictionary,
+} from "./_components/ContactClient";
+import { getSettings } from "@/features/settings/queries/get-settings";
 
 export default async function ContactPage({
   params,
@@ -7,76 +11,90 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contactPage" });
-  const common = await getTranslations({ locale, namespace: "common" });
 
-  const faqs = [
-    { q: t("faq1Q"), a: t("faq1A") },
-    { q: t("faq2Q"), a: t("faq2A") },
-    { q: t("faq3Q"), a: t("faq3A") },
-    { q: t("faq4Q"), a: t("faq4A") },
-  ];
+  const [settings, t, common] = await Promise.all([
+    getSettings(),
+    getTranslations({ locale, namespace: "contactPage" }),
+    getTranslations({ locale, namespace: "common" }),
+  ]);
+
+  const dict: ContactDictionary = {
+    // Header
+    eyebrow: t("eyebrow"),
+    title: t("title"),
+    description: t("description"),
+    responseTime: t("responseTime"),
+    ndaProtected: t("ndaProtected"),
+
+    // Direct channels
+    directChannelsTitle: t("directChannelsTitle"),
+    directChannelsSubtitle: t("directChannelsSubtitle"),
+    whatsapp: t("whatsapp"),
+    whatsappAction: t("whatsappAction"),
+    whatsappPrefill: t("whatsappPrefill"),
+    phone: t("phone"),
+    callStudioDesk: t("callStudioDesk"),
+    dedicatedRouting: t("dedicatedRouting"),
+    emailBrief: t("emailBrief"),
+    emailCreator: t("emailCreator"),
+    emailLabel: t("emailLabel"), // NEW key: add to your messages files (e.g. "Email")
+    socialTitle: t("socialTitle"),
+    officeHoursTitle: t("officeHoursTitle"),
+    officeHours: t("officeHours"),
+    officeLocationsTitle: t("officeLocationsTitle"),
+    officeLocations: t("officeLocations"),
+
+    // Form
+    formTitle: t("formTitle"),
+    messageFormTitle: t("messageFormTitle"),
+    name: t("name"),
+    namePlaceholder: t("namePlaceholder"),
+    company: t("company"),
+    companyPlaceholder: t("companyPlaceholder"),
+    interest: t("interest"),
+    interestPlaceholder: t("interestPlaceholder"),
+    options: t.raw("options") as string[],
+    message: t("message"),
+    messagePlaceholder: t("messagePlaceholder"),
+    submit: t("submit"),
+    sending: t("sending"),
+    success: t("success"),
+    error: t("error"),
+
+    // Consultation
+    consultationEyebrow: t("consultEyebrow"),
+    consultationTitle: t("consultTitle"),
+    consultationSubtitle: t("consultSubtitle"),
+    consultationBadge: t("consultBadge"),
+    track1Title: t("consultTrack1Title"),
+    track1Desc: t("consultTrack1Desc"),
+    track2Title: t("consultTrack2Title"),
+    track2Desc: t("consultTrack2Desc"),
+    track3Title: t("consultTrack3Title"),
+    track3Desc: t("consultTrack3Desc"),
+    consultationName: t("consultFormName"),
+    consultationEmail: t("consultFormEmail"),
+    consultationType: t("consultFormType"),
+    consultationDate: t("consultFormDate"),
+    consultationNotes: t("consultFormNotes"),
+    consultationSubmit: t("consultFormSubmit"),
+    consultationSuccess: t("consultFormSuccess"),
+
+    // FAQ
+    faqTitle: t("faqTitle"),
+    faqSubtitle: t("faqSubtitle"),
+    faqs: [1, 2, 3, 4].map((n) => ({
+      q: t(`faq${n}Q`),
+      a: t(`faq${n}A`),
+    })),
+  };
 
   return (
     <ContactClient
-      eyebrow={t("eyebrow")}
-      title={t("title")}
-      description={t("description")}
-      formTitle={t("formTitle")}
-      messageFormTitle={t("messageFormTitle")}
-      namePlaceholder={t("namePlaceholder")}
-      companyPlaceholder={t("companyPlaceholder")}
-      name={t("name")}
-      email={t("email")}
-      company={t("company")}
-      interest={t("interest")}
-      interestPlaceholder={t("interestPlaceholder")}
-      options={t.raw("options") as string[]}
-      message={t("message")}
-      messagePlaceholder={t("messagePlaceholder")}
-      submit={t("submit")}
-      sending={t("sending")}
-      success={t("success")}
-      error={t("error")}
-      socialTitle={t("socialTitle")}
-      whatsapp={t("whatsapp")}
-      whatsappDesc={t("whatsappDesc")}
-      whatsappAction={t("whatsappAction")}
-      whatsappPrefill={t("whatsappPrefill")}
-      phone={t("phone")}
-      responseTime={t("responseTime")}
-      ndaProtected={t("ndaProtected")}
-      dedicatedRouting={t("dedicatedRouting")}
-      callStudioDesk={t("callStudioDesk")}
-      emailBrief={t("emailBrief")}
-      emailCreator={t("emailCreator")}
-      officeHoursTitle={t("officeHoursTitle")}
-      officeHours={t("officeHours")}
-      officeLocationsTitle={t("officeLocationsTitle")}
-      officeLocations={t("officeLocations")}
-      directChannelsTitle={t("directChannelsTitle")}
-      directChannelsSubtitle={t("directChannelsSubtitle")}
-      consultEyebrow={t("consultEyebrow")}
-      consultTitle={t("consultTitle")}
-      consultSubtitle={t("consultSubtitle")}
-      consultBadge={t("consultBadge")}
-      consultTrack1Title={t("consultTrack1Title")}
-      consultTrack1Desc={t("consultTrack1Desc")}
-      consultTrack2Title={t("consultTrack2Title")}
-      consultTrack2Desc={t("consultTrack2Desc")}
-      consultTrack3Title={t("consultTrack3Title")}
-      consultTrack3Desc={t("consultTrack3Desc")}
-      consultFormName={t("consultFormName")}
-      consultFormEmail={t("consultFormEmail")}
-      consultFormType={t("consultFormType")}
-      consultFormDate={t("consultFormDate")}
-      consultFormNotes={t("consultFormNotes")}
-      consultFormSubmit={t("consultFormSubmit")}
-      consultFormSuccess={t("consultFormSuccess")}
-      faqTitle={t("faqTitle")}
-      faqSubtitle={t("faqSubtitle")}
-      faqs={faqs}
+      settings={settings}
+      socialLinks={settings?.socialLinks}
       back={common("back")}
+      dict={dict}
     />
   );
 }

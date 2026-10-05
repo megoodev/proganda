@@ -96,7 +96,7 @@ export async function submitBooking(
   _state: ActionState,
   input: BookingInput,
 ): Promise<ActionState> {
-  const session = await validateSession("brand");
+  const session = await validateSession("BRAND");
   if (!session.authorized)
     return {
       status: "unauthorized",
@@ -133,7 +133,7 @@ export async function submitCreatorApplication(
   _state: ActionState,
   input: CreatorInput,
 ): Promise<ActionState> {
-  const session = await validateSession("creator");
+  const session = await validateSession("BLOGGER");
   if (!session.authorized)
     return {
       status: "unauthorized",
@@ -191,7 +191,8 @@ export async function selectSubscriptionAction(
   _state: ActionState,
   input: { plan: string; role: "brand" | "creator" },
 ): Promise<ActionState> {
-  const session = await validateSession(input.role);
+  const requiredRole = input.role === "creator" ? "BLOGGER" : "BRAND";
+  const session = await validateSession(requiredRole);
   if (!session.authorized)
     return {
       status: "unauthorized",

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 export type MobileLabels = {
   about: string;
   creators: string;
+  join: string;
   brands: string;
   services: string;
   contact: string;

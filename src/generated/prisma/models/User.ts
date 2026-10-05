@@ -32,20 +32,10 @@ export type UserMinAggregateOutputType = {
   image: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  role: string | null
+  role: $Enums.UserRole | null
   banned: boolean | null
   banReason: string | null
   banExpires: Date | null
-  phone: string | null
-  company: string | null
-  industry: string | null
-  budget: string | null
-  goal: string | null
-  website: string | null
-  niche: string | null
-  handles: string | null
-  portfolio: string | null
-  monthlyViews: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -56,20 +46,10 @@ export type UserMaxAggregateOutputType = {
   image: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  role: string | null
+  role: $Enums.UserRole | null
   banned: boolean | null
   banReason: string | null
   banExpires: Date | null
-  phone: string | null
-  company: string | null
-  industry: string | null
-  budget: string | null
-  goal: string | null
-  website: string | null
-  niche: string | null
-  handles: string | null
-  portfolio: string | null
-  monthlyViews: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -84,16 +64,6 @@ export type UserCountAggregateOutputType = {
   banned: number
   banReason: number
   banExpires: number
-  phone: number
-  company: number
-  industry: number
-  budget: number
-  goal: number
-  website: number
-  niche: number
-  handles: number
-  portfolio: number
-  monthlyViews: number
   _all: number
 }
 
@@ -110,16 +80,6 @@ export type UserMinAggregateInputType = {
   banned?: true
   banReason?: true
   banExpires?: true
-  phone?: true
-  company?: true
-  industry?: true
-  budget?: true
-  goal?: true
-  website?: true
-  niche?: true
-  handles?: true
-  portfolio?: true
-  monthlyViews?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -134,16 +94,6 @@ export type UserMaxAggregateInputType = {
   banned?: true
   banReason?: true
   banExpires?: true
-  phone?: true
-  company?: true
-  industry?: true
-  budget?: true
-  goal?: true
-  website?: true
-  niche?: true
-  handles?: true
-  portfolio?: true
-  monthlyViews?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -158,16 +108,6 @@ export type UserCountAggregateInputType = {
   banned?: true
   banReason?: true
   banExpires?: true
-  phone?: true
-  company?: true
-  industry?: true
-  budget?: true
-  goal?: true
-  website?: true
-  niche?: true
-  handles?: true
-  portfolio?: true
-  monthlyViews?: true
   _all?: true
 }
 
@@ -251,20 +191,10 @@ export type UserGroupByOutputType = {
   image: string | null
   createdAt: Date
   updatedAt: Date
-  role: string | null
+  role: $Enums.UserRole
   banned: boolean | null
   banReason: string | null
   banExpires: Date | null
-  phone: string | null
-  company: string | null
-  industry: string | null
-  budget: string | null
-  goal: string | null
-  website: string | null
-  niche: string | null
-  handles: string | null
-  portfolio: string | null
-  monthlyViews: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -296,22 +226,21 @@ export type UserWhereInput = {
   image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  role?: Prisma.StringNullableFilter<"User"> | string | null
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   banned?: Prisma.BoolNullableFilter<"User"> | boolean | null
   banReason?: Prisma.StringNullableFilter<"User"> | string | null
   banExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  phone?: Prisma.StringNullableFilter<"User"> | string | null
-  company?: Prisma.StringNullableFilter<"User"> | string | null
-  industry?: Prisma.StringNullableFilter<"User"> | string | null
-  budget?: Prisma.StringNullableFilter<"User"> | string | null
-  goal?: Prisma.StringNullableFilter<"User"> | string | null
-  website?: Prisma.StringNullableFilter<"User"> | string | null
-  niche?: Prisma.StringNullableFilter<"User"> | string | null
-  handles?: Prisma.StringNullableFilter<"User"> | string | null
-  portfolio?: Prisma.StringNullableFilter<"User"> | string | null
-  monthlyViews?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  bloggerProfile?: Prisma.XOR<Prisma.BloggerProfileNullableScalarRelationFilter, Prisma.BloggerProfileWhereInput> | null
+  brandProfile?: Prisma.XOR<Prisma.BrandProfileNullableScalarRelationFilter, Prisma.BrandProfileWhereInput> | null
+  uploads?: Prisma.FileListRelationFilter
+  jobApplications?: Prisma.JobApplicationListRelationFilter
+  reviewedApplications?: Prisma.JobApplicationListRelationFilter
+  createdServices?: Prisma.ServiceListRelationFilter
+  createdJobOpenings?: Prisma.JobOpeningListRelationFilter
+  createdAds?: Prisma.AdListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -322,22 +251,21 @@ export type UserOrderByWithRelationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrder
   banned?: Prisma.SortOrderInput | Prisma.SortOrder
   banReason?: Prisma.SortOrderInput | Prisma.SortOrder
   banExpires?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  company?: Prisma.SortOrderInput | Prisma.SortOrder
-  industry?: Prisma.SortOrderInput | Prisma.SortOrder
-  budget?: Prisma.SortOrderInput | Prisma.SortOrder
-  goal?: Prisma.SortOrderInput | Prisma.SortOrder
-  website?: Prisma.SortOrderInput | Prisma.SortOrder
-  niche?: Prisma.SortOrderInput | Prisma.SortOrder
-  handles?: Prisma.SortOrderInput | Prisma.SortOrder
-  portfolio?: Prisma.SortOrderInput | Prisma.SortOrder
-  monthlyViews?: Prisma.SortOrderInput | Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
+  profile?: Prisma.ProfileOrderByWithRelationInput
+  bloggerProfile?: Prisma.BloggerProfileOrderByWithRelationInput
+  brandProfile?: Prisma.BrandProfileOrderByWithRelationInput
+  uploads?: Prisma.FileOrderByRelationAggregateInput
+  jobApplications?: Prisma.JobApplicationOrderByRelationAggregateInput
+  reviewedApplications?: Prisma.JobApplicationOrderByRelationAggregateInput
+  createdServices?: Prisma.ServiceOrderByRelationAggregateInput
+  createdJobOpenings?: Prisma.JobOpeningOrderByRelationAggregateInput
+  createdAds?: Prisma.AdOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -351,22 +279,21 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  role?: Prisma.StringNullableFilter<"User"> | string | null
+  role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   banned?: Prisma.BoolNullableFilter<"User"> | boolean | null
   banReason?: Prisma.StringNullableFilter<"User"> | string | null
   banExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  phone?: Prisma.StringNullableFilter<"User"> | string | null
-  company?: Prisma.StringNullableFilter<"User"> | string | null
-  industry?: Prisma.StringNullableFilter<"User"> | string | null
-  budget?: Prisma.StringNullableFilter<"User"> | string | null
-  goal?: Prisma.StringNullableFilter<"User"> | string | null
-  website?: Prisma.StringNullableFilter<"User"> | string | null
-  niche?: Prisma.StringNullableFilter<"User"> | string | null
-  handles?: Prisma.StringNullableFilter<"User"> | string | null
-  portfolio?: Prisma.StringNullableFilter<"User"> | string | null
-  monthlyViews?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
+  profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  bloggerProfile?: Prisma.XOR<Prisma.BloggerProfileNullableScalarRelationFilter, Prisma.BloggerProfileWhereInput> | null
+  brandProfile?: Prisma.XOR<Prisma.BrandProfileNullableScalarRelationFilter, Prisma.BrandProfileWhereInput> | null
+  uploads?: Prisma.FileListRelationFilter
+  jobApplications?: Prisma.JobApplicationListRelationFilter
+  reviewedApplications?: Prisma.JobApplicationListRelationFilter
+  createdServices?: Prisma.ServiceListRelationFilter
+  createdJobOpenings?: Prisma.JobOpeningListRelationFilter
+  createdAds?: Prisma.AdListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -377,20 +304,10 @@ export type UserOrderByWithAggregationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrder
   banned?: Prisma.SortOrderInput | Prisma.SortOrder
   banReason?: Prisma.SortOrderInput | Prisma.SortOrder
   banExpires?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  company?: Prisma.SortOrderInput | Prisma.SortOrder
-  industry?: Prisma.SortOrderInput | Prisma.SortOrder
-  budget?: Prisma.SortOrderInput | Prisma.SortOrder
-  goal?: Prisma.SortOrderInput | Prisma.SortOrder
-  website?: Prisma.SortOrderInput | Prisma.SortOrder
-  niche?: Prisma.SortOrderInput | Prisma.SortOrder
-  handles?: Prisma.SortOrderInput | Prisma.SortOrder
-  portfolio?: Prisma.SortOrderInput | Prisma.SortOrder
-  monthlyViews?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -407,20 +324,10 @@ export type UserScalarWhereWithAggregatesInput = {
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  role?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
   banned?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
   banReason?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   banExpires?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  company?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  industry?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  budget?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  goal?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  website?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  niche?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  handles?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  portfolio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  monthlyViews?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -431,22 +338,21 @@ export type UserCreateInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -457,22 +363,21 @@ export type UserUncheckedCreateInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUpdateInput = {
@@ -483,22 +388,21 @@ export type UserUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -509,22 +413,21 @@ export type UserUncheckedUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -535,20 +438,10 @@ export type UserCreateManyInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -559,20 +452,10 @@ export type UserUpdateManyMutationInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -583,20 +466,10 @@ export type UserUncheckedUpdateManyInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -611,16 +484,6 @@ export type UserCountOrderByAggregateInput = {
   banned?: Prisma.SortOrder
   banReason?: Prisma.SortOrder
   banExpires?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  company?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  budget?: Prisma.SortOrder
-  goal?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  niche?: Prisma.SortOrder
-  handles?: Prisma.SortOrder
-  portfolio?: Prisma.SortOrder
-  monthlyViews?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -635,16 +498,6 @@ export type UserMaxOrderByAggregateInput = {
   banned?: Prisma.SortOrder
   banReason?: Prisma.SortOrder
   banExpires?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  company?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  budget?: Prisma.SortOrder
-  goal?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  niche?: Prisma.SortOrder
-  handles?: Prisma.SortOrder
-  portfolio?: Prisma.SortOrder
-  monthlyViews?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -659,21 +512,16 @@ export type UserMinOrderByAggregateInput = {
   banned?: Prisma.SortOrder
   banReason?: Prisma.SortOrder
   banExpires?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  company?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  budget?: Prisma.SortOrder
-  goal?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  niche?: Prisma.SortOrder
-  handles?: Prisma.SortOrder
-  portfolio?: Prisma.SortOrder
-  monthlyViews?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -690,6 +538,10 @@ export type NullableStringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type EnumUserRoleFieldUpdateOperationsInput = {
+  set?: $Enums.UserRole
 }
 
 export type NullableBoolFieldUpdateOperationsInput = {
@@ -728,6 +580,144 @@ export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccountsInput, Prisma.UserUpdateWithoutAccountsInput>, Prisma.UserUncheckedUpdateWithoutAccountsInput>
 }
 
+export type UserCreateNestedOneWithoutProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
+  upsert?: Prisma.UserUpsertWithoutProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
+}
+
+export type UserCreateNestedOneWithoutBloggerProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBloggerProfileInput, Prisma.UserUncheckedCreateWithoutBloggerProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBloggerProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBloggerProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBloggerProfileInput, Prisma.UserUncheckedCreateWithoutBloggerProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBloggerProfileInput
+  upsert?: Prisma.UserUpsertWithoutBloggerProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBloggerProfileInput, Prisma.UserUpdateWithoutBloggerProfileInput>, Prisma.UserUncheckedUpdateWithoutBloggerProfileInput>
+}
+
+export type UserCreateNestedOneWithoutBrandProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBrandProfileInput, Prisma.UserUncheckedCreateWithoutBrandProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBrandProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBrandProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBrandProfileInput, Prisma.UserUncheckedCreateWithoutBrandProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBrandProfileInput
+  upsert?: Prisma.UserUpsertWithoutBrandProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBrandProfileInput, Prisma.UserUpdateWithoutBrandProfileInput>, Prisma.UserUncheckedUpdateWithoutBrandProfileInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedServicesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServicesInput, Prisma.UserUncheckedCreateWithoutCreatedServicesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServicesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedServicesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedServicesInput, Prisma.UserUncheckedCreateWithoutCreatedServicesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedServicesInput
+  upsert?: Prisma.UserUpsertWithoutCreatedServicesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedServicesInput, Prisma.UserUpdateWithoutCreatedServicesInput>, Prisma.UserUncheckedUpdateWithoutCreatedServicesInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedJobOpeningsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedCreateWithoutCreatedJobOpeningsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedJobOpeningsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedJobOpeningsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedCreateWithoutCreatedJobOpeningsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedJobOpeningsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedJobOpeningsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedJobOpeningsInput, Prisma.UserUpdateWithoutCreatedJobOpeningsInput>, Prisma.UserUncheckedUpdateWithoutCreatedJobOpeningsInput>
+}
+
+export type UserCreateNestedOneWithoutJobApplicationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutJobApplicationsInput, Prisma.UserUncheckedCreateWithoutJobApplicationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutJobApplicationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReviewedApplicationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedApplicationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedApplicationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutJobApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutJobApplicationsInput, Prisma.UserUncheckedCreateWithoutJobApplicationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutJobApplicationsInput
+  upsert?: Prisma.UserUpsertWithoutJobApplicationsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutJobApplicationsInput, Prisma.UserUpdateWithoutJobApplicationsInput>, Prisma.UserUncheckedUpdateWithoutJobApplicationsInput>
+}
+
+export type UserUpdateOneWithoutReviewedApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedApplicationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedApplicationsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedApplicationsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedApplicationsInput, Prisma.UserUpdateWithoutReviewedApplicationsInput>, Prisma.UserUncheckedUpdateWithoutReviewedApplicationsInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedAdsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAdsInput, Prisma.UserUncheckedCreateWithoutCreatedAdsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAdsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedAdsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAdsInput, Prisma.UserUncheckedCreateWithoutCreatedAdsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAdsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedAdsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedAdsInput, Prisma.UserUpdateWithoutCreatedAdsInput>, Prisma.UserUncheckedUpdateWithoutCreatedAdsInput>
+}
+
+export type UserCreateNestedOneWithoutUploadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUploadsInput, Prisma.UserUncheckedCreateWithoutUploadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUploadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutUploadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUploadsInput, Prisma.UserUncheckedCreateWithoutUploadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUploadsInput
+  upsert?: Prisma.UserUpsertWithoutUploadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUploadsInput, Prisma.UserUpdateWithoutUploadsInput>, Prisma.UserUncheckedUpdateWithoutUploadsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -736,21 +726,20 @@ export type UserCreateWithoutSessionsInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -761,21 +750,20 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -802,21 +790,20 @@ export type UserUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -827,21 +814,20 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -852,21 +838,20 @@ export type UserCreateWithoutAccountsInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -877,21 +862,20 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   image?: string | null
   createdAt: Date | string
   updatedAt: Date | string
-  role?: string | null
+  role?: $Enums.UserRole
   banned?: boolean | null
   banReason?: string | null
   banExpires?: Date | string | null
-  phone?: string | null
-  company?: string | null
-  industry?: string | null
-  budget?: string | null
-  goal?: string | null
-  website?: string | null
-  niche?: string | null
-  handles?: string | null
-  portfolio?: string | null
-  monthlyViews?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -918,21 +902,20 @@ export type UserUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -943,21 +926,1028 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  budget?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  goal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  niche?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  handles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  portfolio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyViews?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+}
+
+export type UserUpsertWithoutProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
+}
+
+export type UserUpdateWithoutProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutBloggerProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutBloggerProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutBloggerProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBloggerProfileInput, Prisma.UserUncheckedCreateWithoutBloggerProfileInput>
+}
+
+export type UserUpsertWithoutBloggerProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBloggerProfileInput, Prisma.UserUncheckedUpdateWithoutBloggerProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBloggerProfileInput, Prisma.UserUncheckedCreateWithoutBloggerProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBloggerProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBloggerProfileInput, Prisma.UserUncheckedUpdateWithoutBloggerProfileInput>
+}
+
+export type UserUpdateWithoutBloggerProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBloggerProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutBrandProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutBrandProfileInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutBrandProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBrandProfileInput, Prisma.UserUncheckedCreateWithoutBrandProfileInput>
+}
+
+export type UserUpsertWithoutBrandProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBrandProfileInput, Prisma.UserUncheckedUpdateWithoutBrandProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBrandProfileInput, Prisma.UserUncheckedCreateWithoutBrandProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBrandProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBrandProfileInput, Prisma.UserUncheckedUpdateWithoutBrandProfileInput>
+}
+
+export type UserUpdateWithoutBrandProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBrandProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutCreatedServicesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutCreatedServicesInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutCreatedServicesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServicesInput, Prisma.UserUncheckedCreateWithoutCreatedServicesInput>
+}
+
+export type UserUpsertWithoutCreatedServicesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServicesInput, Prisma.UserUncheckedUpdateWithoutCreatedServicesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedServicesInput, Prisma.UserUncheckedCreateWithoutCreatedServicesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedServicesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedServicesInput, Prisma.UserUncheckedUpdateWithoutCreatedServicesInput>
+}
+
+export type UserUpdateWithoutCreatedServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutCreatedJobOpeningsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutCreatedJobOpeningsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutCreatedJobOpeningsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedCreateWithoutCreatedJobOpeningsInput>
+}
+
+export type UserUpsertWithoutCreatedJobOpeningsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedUpdateWithoutCreatedJobOpeningsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedCreateWithoutCreatedJobOpeningsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedJobOpeningsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedJobOpeningsInput, Prisma.UserUncheckedUpdateWithoutCreatedJobOpeningsInput>
+}
+
+export type UserUpdateWithoutCreatedJobOpeningsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedJobOpeningsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutJobApplicationsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutJobApplicationsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutJobApplicationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutJobApplicationsInput, Prisma.UserUncheckedCreateWithoutJobApplicationsInput>
+}
+
+export type UserCreateWithoutReviewedApplicationsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutReviewedApplicationsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutReviewedApplicationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedApplicationsInput>
+}
+
+export type UserUpsertWithoutJobApplicationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutJobApplicationsInput, Prisma.UserUncheckedUpdateWithoutJobApplicationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutJobApplicationsInput, Prisma.UserUncheckedCreateWithoutJobApplicationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutJobApplicationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutJobApplicationsInput, Prisma.UserUncheckedUpdateWithoutJobApplicationsInput>
+}
+
+export type UserUpdateWithoutJobApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutJobApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUpsertWithoutReviewedApplicationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedApplicationsInput, Prisma.UserUncheckedUpdateWithoutReviewedApplicationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedApplicationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedApplicationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedApplicationsInput, Prisma.UserUncheckedUpdateWithoutReviewedApplicationsInput>
+}
+
+export type UserUpdateWithoutReviewedApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutCreatedAdsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutCreatedAdsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  uploads?: Prisma.FileUncheckedCreateNestedManyWithoutOwnerInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutCreatedAdsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAdsInput, Prisma.UserUncheckedCreateWithoutCreatedAdsInput>
+}
+
+export type UserUpsertWithoutCreatedAdsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAdsInput, Prisma.UserUncheckedUpdateWithoutCreatedAdsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAdsInput, Prisma.UserUncheckedCreateWithoutCreatedAdsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedAdsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAdsInput, Prisma.UserUncheckedUpdateWithoutCreatedAdsInput>
+}
+
+export type UserUpdateWithoutCreatedAdsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedAdsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  uploads?: Prisma.FileUncheckedUpdateManyWithoutOwnerNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutUploadsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileCreateNestedOneWithoutUserInput
+  jobApplications?: Prisma.JobApplicationCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutUploadsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified: boolean
+  image?: string | null
+  createdAt: Date | string
+  updatedAt: Date | string
+  role?: $Enums.UserRole
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedCreateNestedOneWithoutUserInput
+  brandProfile?: Prisma.BrandProfileUncheckedCreateNestedOneWithoutUserInput
+  jobApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutApplicantInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedCreateNestedManyWithoutReviewerInput
+  createdServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutAuthorInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedCreateNestedManyWithoutAuthorInput
+  createdAds?: Prisma.AdUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutUploadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUploadsInput, Prisma.UserUncheckedCreateWithoutUploadsInput>
+}
+
+export type UserUpsertWithoutUploadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUploadsInput, Prisma.UserUncheckedUpdateWithoutUploadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUploadsInput, Prisma.UserUncheckedCreateWithoutUploadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUploadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUploadsInput, Prisma.UserUncheckedUpdateWithoutUploadsInput>
+}
+
+export type UserUpdateWithoutUploadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUpdateOneWithoutUserNestedInput
+  jobApplications?: Prisma.JobApplicationUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUploadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  bloggerProfile?: Prisma.BloggerProfileUncheckedUpdateOneWithoutUserNestedInput
+  brandProfile?: Prisma.BrandProfileUncheckedUpdateOneWithoutUserNestedInput
+  jobApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+  reviewedApplications?: Prisma.JobApplicationUncheckedUpdateManyWithoutReviewerNestedInput
+  createdServices?: Prisma.ServiceUncheckedUpdateManyWithoutAuthorNestedInput
+  createdJobOpenings?: Prisma.JobOpeningUncheckedUpdateManyWithoutAuthorNestedInput
+  createdAds?: Prisma.AdUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 
@@ -968,11 +1958,23 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
 export type UserCountOutputType = {
   sessions: number
   accounts: number
+  uploads: number
+  jobApplications: number
+  reviewedApplications: number
+  createdServices: number
+  createdJobOpenings: number
+  createdAds: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
+  uploads?: boolean | UserCountOutputTypeCountUploadsArgs
+  jobApplications?: boolean | UserCountOutputTypeCountJobApplicationsArgs
+  reviewedApplications?: boolean | UserCountOutputTypeCountReviewedApplicationsArgs
+  createdServices?: boolean | UserCountOutputTypeCountCreatedServicesArgs
+  createdJobOpenings?: boolean | UserCountOutputTypeCountCreatedJobOpeningsArgs
+  createdAds?: boolean | UserCountOutputTypeCountCreatedAdsArgs
 }
 
 /**
@@ -999,6 +2001,48 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.AccountWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUploadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FileWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountJobApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobApplicationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobApplicationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedServicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ServiceWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedJobOpeningsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobOpeningWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedAdsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1012,18 +2056,17 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   banned?: boolean
   banReason?: boolean
   banExpires?: boolean
-  phone?: boolean
-  company?: boolean
-  industry?: boolean
-  budget?: boolean
-  goal?: boolean
-  website?: boolean
-  niche?: boolean
-  handles?: boolean
-  portfolio?: boolean
-  monthlyViews?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  bloggerProfile?: boolean | Prisma.User$bloggerProfileArgs<ExtArgs>
+  brandProfile?: boolean | Prisma.User$brandProfileArgs<ExtArgs>
+  uploads?: boolean | Prisma.User$uploadsArgs<ExtArgs>
+  jobApplications?: boolean | Prisma.User$jobApplicationsArgs<ExtArgs>
+  reviewedApplications?: boolean | Prisma.User$reviewedApplicationsArgs<ExtArgs>
+  createdServices?: boolean | Prisma.User$createdServicesArgs<ExtArgs>
+  createdJobOpenings?: boolean | Prisma.User$createdJobOpeningsArgs<ExtArgs>
+  createdAds?: boolean | Prisma.User$createdAdsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1039,16 +2082,6 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   banned?: boolean
   banReason?: boolean
   banExpires?: boolean
-  phone?: boolean
-  company?: boolean
-  industry?: boolean
-  budget?: boolean
-  goal?: boolean
-  website?: boolean
-  niche?: boolean
-  handles?: boolean
-  portfolio?: boolean
-  monthlyViews?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1063,16 +2096,6 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   banned?: boolean
   banReason?: boolean
   banExpires?: boolean
-  phone?: boolean
-  company?: boolean
-  industry?: boolean
-  budget?: boolean
-  goal?: boolean
-  website?: boolean
-  niche?: boolean
-  handles?: boolean
-  portfolio?: boolean
-  monthlyViews?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1087,22 +2110,21 @@ export type UserSelectScalar = {
   banned?: boolean
   banReason?: boolean
   banExpires?: boolean
-  phone?: boolean
-  company?: boolean
-  industry?: boolean
-  budget?: boolean
-  goal?: boolean
-  website?: boolean
-  niche?: boolean
-  handles?: boolean
-  portfolio?: boolean
-  monthlyViews?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "role" | "banned" | "banReason" | "banExpires" | "phone" | "company" | "industry" | "budget" | "goal" | "website" | "niche" | "handles" | "portfolio" | "monthlyViews", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "role" | "banned" | "banReason" | "banExpires", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
+  bloggerProfile?: boolean | Prisma.User$bloggerProfileArgs<ExtArgs>
+  brandProfile?: boolean | Prisma.User$brandProfileArgs<ExtArgs>
+  uploads?: boolean | Prisma.User$uploadsArgs<ExtArgs>
+  jobApplications?: boolean | Prisma.User$jobApplicationsArgs<ExtArgs>
+  reviewedApplications?: boolean | Prisma.User$reviewedApplicationsArgs<ExtArgs>
+  createdServices?: boolean | Prisma.User$createdServicesArgs<ExtArgs>
+  createdJobOpenings?: boolean | Prisma.User$createdJobOpeningsArgs<ExtArgs>
+  createdAds?: boolean | Prisma.User$createdAdsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1113,6 +2135,15 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
+    profile: Prisma.$ProfilePayload<ExtArgs> | null
+    bloggerProfile: Prisma.$BloggerProfilePayload<ExtArgs> | null
+    brandProfile: Prisma.$BrandProfilePayload<ExtArgs> | null
+    uploads: Prisma.$FilePayload<ExtArgs>[]
+    jobApplications: Prisma.$JobApplicationPayload<ExtArgs>[]
+    reviewedApplications: Prisma.$JobApplicationPayload<ExtArgs>[]
+    createdServices: Prisma.$ServicePayload<ExtArgs>[]
+    createdJobOpenings: Prisma.$JobOpeningPayload<ExtArgs>[]
+    createdAds: Prisma.$AdPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1122,20 +2153,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     image: string | null
     createdAt: Date
     updatedAt: Date
-    role: string | null
+    role: $Enums.UserRole
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
-    phone: string | null
-    company: string | null
-    industry: string | null
-    budget: string | null
-    goal: string | null
-    website: string | null
-    niche: string | null
-    handles: string | null
-    portfolio: string | null
-    monthlyViews: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1532,6 +2553,15 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  bloggerProfile<T extends Prisma.User$bloggerProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bloggerProfileArgs<ExtArgs>>): Prisma.Prisma__BloggerProfileClient<runtime.Types.Result.GetResult<Prisma.$BloggerProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  brandProfile<T extends Prisma.User$brandProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$brandProfileArgs<ExtArgs>>): Prisma.Prisma__BrandProfileClient<runtime.Types.Result.GetResult<Prisma.$BrandProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  uploads<T extends Prisma.User$uploadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  jobApplications<T extends Prisma.User$jobApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$jobApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedApplications<T extends Prisma.User$reviewedApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdServices<T extends Prisma.User$createdServicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdServicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdJobOpenings<T extends Prisma.User$createdJobOpeningsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdJobOpeningsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobOpeningPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdAds<T extends Prisma.User$createdAdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdAdsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1568,20 +2598,10 @@ export interface UserFieldRefs {
   readonly image: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly role: Prisma.FieldRef<"User", 'String'>
+  readonly role: Prisma.FieldRef<"User", 'UserRole'>
   readonly banned: Prisma.FieldRef<"User", 'Boolean'>
   readonly banReason: Prisma.FieldRef<"User", 'String'>
   readonly banExpires: Prisma.FieldRef<"User", 'DateTime'>
-  readonly phone: Prisma.FieldRef<"User", 'String'>
-  readonly company: Prisma.FieldRef<"User", 'String'>
-  readonly industry: Prisma.FieldRef<"User", 'String'>
-  readonly budget: Prisma.FieldRef<"User", 'String'>
-  readonly goal: Prisma.FieldRef<"User", 'String'>
-  readonly website: Prisma.FieldRef<"User", 'String'>
-  readonly niche: Prisma.FieldRef<"User", 'String'>
-  readonly handles: Prisma.FieldRef<"User", 'String'>
-  readonly portfolio: Prisma.FieldRef<"User", 'String'>
-  readonly monthlyViews: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -2020,6 +3040,207 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.AccountScalarFieldEnum | Prisma.AccountScalarFieldEnum[]
+}
+
+/**
+ * User.profile
+ */
+export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Profile
+   */
+  select?: Prisma.ProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Profile
+   */
+  omit?: Prisma.ProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileInclude<ExtArgs> | null
+  where?: Prisma.ProfileWhereInput
+}
+
+/**
+ * User.bloggerProfile
+ */
+export type User$bloggerProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BloggerProfile
+   */
+  select?: Prisma.BloggerProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BloggerProfile
+   */
+  omit?: Prisma.BloggerProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BloggerProfileInclude<ExtArgs> | null
+  where?: Prisma.BloggerProfileWhereInput
+}
+
+/**
+ * User.brandProfile
+ */
+export type User$brandProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BrandProfile
+   */
+  select?: Prisma.BrandProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BrandProfile
+   */
+  omit?: Prisma.BrandProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BrandProfileInclude<ExtArgs> | null
+  where?: Prisma.BrandProfileWhereInput
+}
+
+/**
+ * User.uploads
+ */
+export type User$uploadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the File
+   */
+  select?: Prisma.FileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the File
+   */
+  omit?: Prisma.FileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInclude<ExtArgs> | null
+  where?: Prisma.FileWhereInput
+  orderBy?: Prisma.FileOrderByWithRelationInput | Prisma.FileOrderByWithRelationInput[]
+  cursor?: Prisma.FileWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FileScalarFieldEnum | Prisma.FileScalarFieldEnum[]
+}
+
+/**
+ * User.jobApplications
+ */
+export type User$jobApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobApplication
+   */
+  select?: Prisma.JobApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JobApplication
+   */
+  omit?: Prisma.JobApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobApplicationInclude<ExtArgs> | null
+  where?: Prisma.JobApplicationWhereInput
+  orderBy?: Prisma.JobApplicationOrderByWithRelationInput | Prisma.JobApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.JobApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobApplicationScalarFieldEnum | Prisma.JobApplicationScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedApplications
+ */
+export type User$reviewedApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobApplication
+   */
+  select?: Prisma.JobApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JobApplication
+   */
+  omit?: Prisma.JobApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobApplicationInclude<ExtArgs> | null
+  where?: Prisma.JobApplicationWhereInput
+  orderBy?: Prisma.JobApplicationOrderByWithRelationInput | Prisma.JobApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.JobApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobApplicationScalarFieldEnum | Prisma.JobApplicationScalarFieldEnum[]
+}
+
+/**
+ * User.createdServices
+ */
+export type User$createdServicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Service
+   */
+  select?: Prisma.ServiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Service
+   */
+  omit?: Prisma.ServiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceInclude<ExtArgs> | null
+  where?: Prisma.ServiceWhereInput
+  orderBy?: Prisma.ServiceOrderByWithRelationInput | Prisma.ServiceOrderByWithRelationInput[]
+  cursor?: Prisma.ServiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ServiceScalarFieldEnum | Prisma.ServiceScalarFieldEnum[]
+}
+
+/**
+ * User.createdJobOpenings
+ */
+export type User$createdJobOpeningsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobOpening
+   */
+  select?: Prisma.JobOpeningSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JobOpening
+   */
+  omit?: Prisma.JobOpeningOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobOpeningInclude<ExtArgs> | null
+  where?: Prisma.JobOpeningWhereInput
+  orderBy?: Prisma.JobOpeningOrderByWithRelationInput | Prisma.JobOpeningOrderByWithRelationInput[]
+  cursor?: Prisma.JobOpeningWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobOpeningScalarFieldEnum | Prisma.JobOpeningScalarFieldEnum[]
+}
+
+/**
+ * User.createdAds
+ */
+export type User$createdAdsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ad
+   */
+  select?: Prisma.AdSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ad
+   */
+  omit?: Prisma.AdOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdInclude<ExtArgs> | null
+  where?: Prisma.AdWhereInput
+  orderBy?: Prisma.AdOrderByWithRelationInput | Prisma.AdOrderByWithRelationInput[]
+  cursor?: Prisma.AdWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdScalarFieldEnum | Prisma.AdScalarFieldEnum[]
 }
 
 /**

@@ -9,7 +9,68 @@
 * 🟢 You can import this file directly.
 */
 
+export const UserRole = {
+  USER: 'USER',
+  BLOGGER: 'BLOGGER',
+  BRAND: 'BRAND',
+  ADMIN: 'ADMIN'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const RecordStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type RecordStatus = (typeof RecordStatus)[keyof typeof RecordStatus]
+
+
+export const JobApplicationStatus = {
+  NEW: 'NEW',
+  IN_REVIEW: 'IN_REVIEW',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type JobApplicationStatus = (typeof JobApplicationStatus)[keyof typeof JobApplicationStatus]
+
+
+export const ContactMessageStatus = {
+  NEW: 'NEW',
+  IN_REVIEW: 'IN_REVIEW',
+  REPLIED: 'REPLIED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ContactMessageStatus = (typeof ContactMessageStatus)[keyof typeof ContactMessageStatus]
+
+
+export const AdPlacement = {
+  ADS_PAGE: 'ADS_PAGE',
+  HOME: 'HOME'
+} as const
+
+export type AdPlacement = (typeof AdPlacement)[keyof typeof AdPlacement]
+
+
+export const FileVisibility = {
+  PRIVATE: 'PRIVATE',
+  PUBLIC: 'PUBLIC'
+} as const
+
+export type FileVisibility = (typeof FileVisibility)[keyof typeof FileVisibility]
+
+
+export const ApplicantType = {
+  TEAM: 'TEAM',
+  MARKETER: 'MARKETER',
+  CREATOR: 'CREATOR',
+  UGC: 'UGC',
+  MODEL: 'MODEL',
+  OTHER: 'OTHER'
+} as const
+
+export type ApplicantType = (typeof ApplicantType)[keyof typeof ApplicantType]

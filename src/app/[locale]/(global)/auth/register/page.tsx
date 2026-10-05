@@ -13,7 +13,11 @@ export default async function RegisterPage({
   const { locale } = await params;
   const query = await searchParams;
   const initialRole =
-    query.role === "blogger" || query.role === "creator" ? "blogger" : "brand";
+    query.role === "blogger" || query.role === "creator"
+      ? "blogger"
+      : query.role === "brand"
+        ? "brand"
+        : "user";
   const t = await getTranslations({ locale, namespace: "auth" });
 
   return (
@@ -38,12 +42,16 @@ export default async function RegisterPage({
         labels={{
           brand: t("brand"),
           blogger: t("blogger"),
+          user: t("user"),
           brandDescription: t("brandDescription"),
           bloggerDescription: t("bloggerDescription"),
+          userDescription: t("userDescription"),
           name: t("name"),
           email: t("email"),
           password: t("password"),
           phone: t("phone"),
+          city: t("city"),
+          governorate: t("governorate"),
           company: t("company"),
           industry: t("industry"),
           goal: t("goal"),

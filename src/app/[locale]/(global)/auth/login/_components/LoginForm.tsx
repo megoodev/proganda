@@ -38,8 +38,6 @@ export function LoginForm({
     signUp: string;
     errorDefault: string;
     accountLogin: string;
-    demoAdminAccess: string;
-    fillDemoCredentials: string;
   };
   locale: string;
   next?: string;
@@ -50,10 +48,6 @@ export function LoginForm({
   );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const demoEnabled = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
-  const demoEmail = "admin@proganda.studio";
-  const demoPassword = "demo12345";
 
   return (
     <div className="grid gap-8">
@@ -72,32 +66,6 @@ export function LoginForm({
                 <AlertCircle className="size-4 shrink-0" />
                 <AlertDescription>{state.error}</AlertDescription>
               </Alert>
-            )}
-
-            {demoEnabled && (
-              <div className="rounded-lg border border-dashed border-border bg-muted/50 p-4">
-                <div className="flex items-center gap-2">
-                  <UserCheck className="size-3.5 text-[#3AA7FD]" />
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                    {labels.demoAdminAccess}
-                  </p>
-                </div>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {demoEmail} / {demoPassword}
-                </p>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  className="mt-3"
-                  onClick={() => {
-                    setEmail(demoEmail);
-                    setPassword(demoPassword);
-                  }}
-                >
-                  {labels.fillDemoCredentials}
-                </Button>
-              </div>
             )}
 
             <div>

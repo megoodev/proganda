@@ -5,8 +5,8 @@ import { admin } from "better-auth/plugins";
 import { prisma } from "@/lib/prisma";
 import {
   isAdminRole,
+  isUserRole,
   isStaffRole,
-  sanitizeSignupRole,
   type SessionRole,
 } from "@/lib/roles";
 
@@ -47,87 +47,12 @@ export const auth = betterAuth({
       secure: process.env.NODE_ENV === "production",
     },
   },
-  user: {
-    additionalFields: {
-      role: {
-        type: "string",
-        required: false,
-        defaultValue: "brand",
-        // Public signup may send brand/blogger; privileged roles are stripped in databaseHooks.
-        input: true,
-      },
-      phone: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      company: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      industry: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      budget: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      goal: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      website: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      niche: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      handles: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      portfolio: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      monthlyViews: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-    },
-  },
-  databaseHooks: {
-    user: {
-      create: {
-        before: async (user, ctx) => {
-          const requested = ctx?.body?.role;
-          return {
-            data: {
-              ...user,
-              role: sanitizeSignupRole(requested),
-            },
-          };
-        },
-      },
-    },
-  },
+  // No `user.additionalFields.role` and no role hook: the admin plugin already
+  // owns the `role` column and blocks clients from setting it. New accounts
+  // start as USER; signUpAction upgrades to BLOGGER/BRAND server-side.
   plugins: [
-    // Staff gating for the CMS is handled in src/lib/roles.ts (requireStaff);
-    // better-auth's admin plugin only needs its default "admin" role.
     admin({
-      defaultRole: "brand",
+      defaultRole: "USER",
     }),
     nextCookies(),
   ],
@@ -149,8 +74,11 @@ export async function validateSession(
       return { authorized: false, reason: "UNAUTHORIZED" };
     }
 
-    const role = ((session.user as { role?: string }).role ??
-      "brand") as SessionRole;
+    const rawRole = (session.user as { role?: string }).role ?? "USER";
+    if (!isUserRole(rawRole)) {
+      return { authorized: false, reason: "UNAUTHORIZED" };
+    }
+    const role = rawRole as SessionRole;
 
     if (requiredRole && role !== requiredRole && !isStaffRole(role)) {
       return { authorized: false, reason: "FORBIDDEN" };
@@ -167,16 +95,6 @@ export async function validateSession(
 }
 
 export async function requireStaff(requestHeaders?: Headers) {
-  // Demo mode: every visitor is treated as an admin against the in-memory
-  // demo store, so the CMS can be explored without a database.
-  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
-    return {
-      id: "demo-admin",
-      email: "admin@proganda.studio",
-      name: "Demo Admin",
-      role: "admin" as const,
-    };
-  }
   const session = await getAuthSession(requestHeaders);
   const role = (session?.user as { role?: string } | undefined)?.role;
   if (!session?.user || !isStaffRole(role)) {

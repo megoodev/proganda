@@ -55,11 +55,21 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
+  Profile: 'Profile',
+  BloggerProfile: 'BloggerProfile',
+  BrandProfile: 'BrandProfile',
   Creator: 'Creator',
   Brand: 'Brand',
   ServiceTier: 'ServiceTier',
-  Inquiry: 'Inquiry',
-  AuditLog: 'AuditLog'
+  Service: 'Service',
+  ContactMessage: 'ContactMessage',
+  JobOpening: 'JobOpening',
+  JobApplication: 'JobApplication',
+  Ad: 'Ad',
+  File: 'File',
+  AuditLog: 'AuditLog',
+  SiteSettings: 'SiteSettings',
+  SocialLink: 'SocialLink'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -89,17 +99,7 @@ export const UserScalarFieldEnum = {
   role: 'role',
   banned: 'banned',
   banReason: 'banReason',
-  banExpires: 'banExpires',
-  phone: 'phone',
-  company: 'company',
-  industry: 'industry',
-  budget: 'budget',
-  goal: 'goal',
-  website: 'website',
-  niche: 'niche',
-  handles: 'handles',
-  portfolio: 'portfolio',
-  monthlyViews: 'monthlyViews'
+  banExpires: 'banExpires'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -149,6 +149,52 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const ProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  phone: 'phone',
+  city: 'city',
+  governorate: 'governorate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+export const BloggerProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  niche: 'niche',
+  instagramUrl: 'instagramUrl',
+  tiktokUrl: 'tiktokUrl',
+  youtubeUrl: 'youtubeUrl',
+  socialLinks: 'socialLinks',
+  portfolioUrl: 'portfolioUrl',
+  monthlyViews: 'monthlyViews',
+  audienceSize: 'audienceSize',
+  bio: 'bio',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BloggerProfileScalarFieldEnum = (typeof BloggerProfileScalarFieldEnum)[keyof typeof BloggerProfileScalarFieldEnum]
+
+
+export const BrandProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyName: 'companyName',
+  industry: 'industry',
+  website: 'website',
+  campaignGoals: 'campaignGoals',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BrandProfileScalarFieldEnum = (typeof BrandProfileScalarFieldEnum)[keyof typeof BrandProfileScalarFieldEnum]
 
 
 export const CreatorScalarFieldEnum = {
@@ -211,19 +257,113 @@ export const ServiceTierScalarFieldEnum = {
 export type ServiceTierScalarFieldEnum = (typeof ServiceTierScalarFieldEnum)[keyof typeof ServiceTierScalarFieldEnum]
 
 
-export const InquiryScalarFieldEnum = {
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  summary: 'summary',
+  details: 'details',
+  priceLabel: 'priceLabel',
+  status: 'status',
+  sortOrder: 'sortOrder',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const ContactMessageScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  phone: 'phone',
   company: 'company',
-  interest: 'interest',
+  subject: 'subject',
   message: 'message',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type InquiryScalarFieldEnum = (typeof InquiryScalarFieldEnum)[keyof typeof InquiryScalarFieldEnum]
+export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+export const JobOpeningScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  department: 'department',
+  location: 'location',
+  employmentType: 'employmentType',
+  description: 'description',
+  status: 'status',
+  sortOrder: 'sortOrder',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type JobOpeningScalarFieldEnum = (typeof JobOpeningScalarFieldEnum)[keyof typeof JobOpeningScalarFieldEnum]
+
+
+export const JobApplicationScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  openingId: 'openingId',
+  applicantId: 'applicantId',
+  reviewerId: 'reviewerId',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  age: 'age',
+  city: 'city',
+  governorate: 'governorate',
+  gender: 'gender',
+  fieldOfWork: 'fieldOfWork',
+  socialLinks: 'socialLinks',
+  portfolioUrl: 'portfolioUrl',
+  message: 'message',
+  resumeFileId: 'resumeFileId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
+
+
+export const AdScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  summary: 'summary',
+  content: 'content',
+  status: 'status',
+  placement: 'placement',
+  publishedAt: 'publishedAt',
+  expiresAt: 'expiresAt',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdScalarFieldEnum = (typeof AdScalarFieldEnum)[keyof typeof AdScalarFieldEnum]
+
+
+export const FileScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  originalName: 'originalName',
+  contentType: 'contentType',
+  sizeBytes: 'sizeBytes',
+  visibility: 'visibility',
+  ownerId: 'ownerId',
+  createdAt: 'createdAt'
+} as const
+
+export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
 
 
 export const AuditLogScalarFieldEnum = {
@@ -240,12 +380,48 @@ export const AuditLogScalarFieldEnum = {
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  email: 'email',
+  whatsapp: 'whatsapp',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
+
+
+export const SocialLinkScalarFieldEnum = {
+  id: 'id',
+  platform: 'platform',
+  title: 'title',
+  url: 'url',
+  icon: 'icon',
+  sortOrder: 'sortOrder',
+  siteSettingsId: 'siteSettingsId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof typeof SocialLinkScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullableJsonNullValueInput = {

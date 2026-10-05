@@ -22,7 +22,7 @@ export default async function LoginPage({
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#3AA7FD]">
           {t("eyebrow")}
         </p>
-        <h1 className="text-4xl sm:text-5xl font-black tracking-[-0.05em] text-foreground">
+        <h1 className="text-4xl sm:text-5xl font-black tracking-tighter text-foreground">
           {t("loginTitle")}
         </h1>
         <p className="mt-3 text-sm text-muted-foreground max-w-md mx-auto">
@@ -42,8 +42,6 @@ export default async function LoginPage({
           signUp: t("signUp"),
           errorDefault: t("errorDefault"),
           accountLogin: t("accountLogin"),
-          demoAdminAccess: t("demoAdminAccess"),
-          fillDemoCredentials: t("fillDemoCredentials"),
         }}
       />
 

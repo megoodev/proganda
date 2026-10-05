@@ -1,146 +1,64 @@
 import { PrismaClient } from "../src/generated/prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { auth } from "../src/lib/auth";
-import { brands, creators, serviceTiers } from "../src/lib/data";
+
+const prisma = new PrismaClient();
 
 async function main() {
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error("DATABASE_URL is required to seed the CMS.");
-  }
+  console.log("Starting seed...");
 
-  const prisma = new PrismaClient({
-    adapter: new PrismaPg({ connectionString }),
+  // Create default site settings
+  const settings = await prisma.siteSettings.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      siteName: "ProGanda",
+      whatsapp: "+201001234567",
+      email: "hello@proganda.studio",
+      socialLinks: {
+        create: [
+          {
+            platform: "instagram",
+            title: "Instagram",
+            url: "https://instagram.com/proganda",
+            icon: "instagram",
+            sortOrder: 0,
+          },
+          {
+            platform: "tiktok",
+            title: "TikTok",
+            url: "https://tiktok.com/@proganda",
+            icon: "tiktok",
+            sortOrder: 1,
+          },
+          {
+            platform: "youtube",
+            title: "YouTube",
+            url: "https://youtube.com/@proganda",
+            icon: "youtube",
+            sortOrder: 2,
+          },
+          {
+            platform: "facebook",
+            title: "Facebook",
+            url: "https://facebook.com/proganda",
+            icon: "facebook",
+            sortOrder: 3,
+          },
+        ],
+      },
+    },
   });
 
-  try {
-    for (const [index, creator] of creators.entries()) {
-      await prisma.creator.upsert({
-        where: { slug: creator.id },
-        update: {
-          name: creator.name,
-          handle: creator.handle,
-          niche: creator.niche,
-          platforms: creator.platforms,
-          reach: creator.reach,
-          engagement: creator.engagement,
-          location: creator.location,
-          image: creator.image,
-          accent: creator.accent,
-          published: true,
-          sortOrder: index,
-        },
-        create: {
-          slug: creator.id,
-          name: creator.name,
-          handle: creator.handle,
-          niche: creator.niche,
-          platforms: creator.platforms,
-          reach: creator.reach,
-          engagement: creator.engagement,
-          location: creator.location,
-          image: creator.image,
-          accent: creator.accent,
-          published: true,
-          sortOrder: index,
-        },
-      });
-    }
+  console.log("Created default settings:", settings);
 
-    for (const [index, brand] of brands.entries()) {
-      await prisma.brand.upsert({
-        where: { slug: brand.slug },
-        update: {
-          name: brand.name,
-          industry: brand.industry,
-          campaign: brand.campaign,
-          description: brand.description,
-          services: brand.services,
-          views: brand.views,
-          roi: brand.roi,
-          color: brand.color,
-          published: true,
-          sortOrder: index,
-        },
-        create: {
-          slug: brand.slug,
-          name: brand.name,
-          industry: brand.industry,
-          campaign: brand.campaign,
-          description: brand.description,
-          services: brand.services,
-          views: brand.views,
-          roi: brand.roi,
-          color: brand.color,
-          published: true,
-          sortOrder: index,
-        },
-      });
-    }
-
-    for (const [index, tier] of serviceTiers.entries()) {
-      await prisma.serviceTier.upsert({
-        where: { id: tier.id },
-        update: {
-          name: tier.name,
-          eyebrow: tier.eyebrow,
-          scope: tier.scope,
-          offer: tier.offer,
-          features: tier.features,
-          savingsRate: tier.savingsRate,
-          accent: tier.accent,
-          published: true,
-          sortOrder: index,
-        },
-        create: {
-          id: tier.id,
-          name: tier.name,
-          eyebrow: tier.eyebrow,
-          scope: tier.scope,
-          offer: tier.offer,
-          features: tier.features,
-          savingsRate: tier.savingsRate,
-          accent: tier.accent,
-          published: true,
-          sortOrder: index,
-        },
-      });
-    }
-
-    const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-    const adminPassword = process.env.ADMIN_PASSWORD;
-    if (adminEmail && adminPassword) {
-      const existing = await prisma.user.findUnique({
-        where: { email: adminEmail },
-      });
-      if (!existing) {
-        await auth.api.signUpEmail({
-          body: {
-            email: adminEmail,
-            password: adminPassword,
-            name: "ProGanda Admin",
-            role: "brand",
-          },
-        });
-      }
-      await prisma.user.update({
-        where: { email: adminEmail },
-        data: { role: "admin", banned: false },
-      });
-      console.log(`Admin account ready: ${adminEmail}`);
-    } else {
-      console.log(
-        "Skip admin user seed. Set ADMIN_EMAIL and ADMIN_PASSWORD to create one.",
-      );
-    }
-
-    console.log("CMS seed complete.");
-  } finally {
-    await prisma.$disconnect();
-  }
+  console.log("Seed completed successfully!");
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+main()
+  .catch((e) => {
+    console.error("Seed failed:", e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

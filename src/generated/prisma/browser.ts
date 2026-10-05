@@ -38,6 +38,21 @@ export type Account = Prisma.AccountModel
  */
 export type Verification = Prisma.VerificationModel
 /**
+ * Model Profile
+ * 
+ */
+export type Profile = Prisma.ProfileModel
+/**
+ * Model BloggerProfile
+ * 
+ */
+export type BloggerProfile = Prisma.BloggerProfileModel
+/**
+ * Model BrandProfile
+ * 
+ */
+export type BrandProfile = Prisma.BrandProfileModel
+/**
  * Model Creator
  * 
  */
@@ -53,12 +68,47 @@ export type Brand = Prisma.BrandModel
  */
 export type ServiceTier = Prisma.ServiceTierModel
 /**
- * Model Inquiry
+ * Model Service
  * 
  */
-export type Inquiry = Prisma.InquiryModel
+export type Service = Prisma.ServiceModel
+/**
+ * Model ContactMessage
+ * 
+ */
+export type ContactMessage = Prisma.ContactMessageModel
+/**
+ * Model JobOpening
+ * 
+ */
+export type JobOpening = Prisma.JobOpeningModel
+/**
+ * Model JobApplication
+ * 
+ */
+export type JobApplication = Prisma.JobApplicationModel
+/**
+ * Model Ad
+ * 
+ */
+export type Ad = Prisma.AdModel
+/**
+ * Model File
+ * 
+ */
+export type File = Prisma.FileModel
 /**
  * Model AuditLog
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel
+/**
+ * Model SocialLink
+ * 
+ */
+export type SocialLink = Prisma.SocialLinkModel

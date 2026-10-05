@@ -14,6 +14,7 @@ export function MobileNavigation({
   labels: {
     about: string;
     creators: string;
+    join: string;
     brands: string;
     services: string;
     contact: string;
@@ -94,6 +95,7 @@ export function MobileNavigation({
                 {[
                   ["/about", labels.about],
                   ["/creators", labels.creators],
+                  ["/join", labels.join],
                   ["/brands", labels.brands],
                   ["/services", labels.services],
                   ["/contact", labels.contact],

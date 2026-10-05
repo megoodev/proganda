@@ -7,6 +7,52 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  USER
+  BLOGGER
+  BRAND
+  ADMIN
+}
+
+enum RecordStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum JobApplicationStatus {
+  NEW
+  IN_REVIEW
+  ACCEPTED
+  REJECTED
+}
+
+enum ContactMessageStatus {
+  NEW
+  IN_REVIEW
+  REPLIED
+  ARCHIVED
+}
+
+enum AdPlacement {
+  ADS_PAGE
+  HOME
+}
+
+enum FileVisibility {
+  PRIVATE
+  PUBLIC
+}
+
+enum ApplicantType {
+  TEAM
+  MARKETER
+  CREATOR
+  UGC
+  MODEL
+  OTHER
+}
+
 model User {
   id            String    @id
   name          String
@@ -18,21 +64,20 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  role       String?
+  role       UserRole  @default(USER)
   banned     Boolean?
   banReason  String?
   banExpires DateTime?
 
-  phone        String?
-  company      String?
-  industry     String?
-  budget       String?
-  goal         String?
-  website      String?
-  niche        String?
-  handles      String?
-  portfolio    String?
-  monthlyViews String?
+  profile              Profile?
+  bloggerProfile       BloggerProfile?
+  brandProfile         BrandProfile?
+  uploads              File[]           @relation("FileOwner")
+  jobApplications      JobApplication[] @relation("Applicant")
+  reviewedApplications JobApplication[] @relation("ApplicationReviewer")
+  createdServices      Service[]        @relation("ServiceAuthor")
+  createdJobOpenings   JobOpening[]     @relation("JobOpeningAuthor")
+  createdAds           Ad[]             @relation("AdAuthor")
 
   @@unique([email])
   @@map("user")
@@ -85,6 +130,46 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  phone       String?
+  city        String?
+  governorate String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BloggerProfile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  niche         String?
+  instagramUrl  String?
+  tiktokUrl     String?
+  youtubeUrl    String?
+  socialLinks   String[] @default([])
+  portfolioUrl  String?
+  monthlyViews  String?
+  audienceSize  String?
+  bio           String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BrandProfile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  companyName   String?
+  industry      String?
+  website       String?
+  campaignGoals String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Creator {
@@ -142,18 +227,119 @@ model ServiceTier {
   updatedAt    DateTime @updatedAt
 }
 
-model Inquiry {
-  id        String   @id @default(cuid())
+model Service {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  summary     String       @db.Text
+  details     String?      @db.Text
+  priceLabel  String?
+  status      RecordStatus @default(DRAFT)
+  sortOrder   Int          @default(0)
+  authorId    String?
+  author      User?        @relation("ServiceAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model ContactMessage {
+  id        String              @id @default(cuid())
   name      String
   email     String
-  company   String
-  interest  String
-  message   String
-  status    String   @default("new")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  phone     String?
+  company   String?
+  subject   String?
+  message   String              @db.Text
+  status    ContactMessageStatus @default(NEW)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
 
   @@index([status, createdAt])
+}
+
+model JobOpening {
+  id             String       @id @default(cuid())
+  slug           String       @unique
+  title          String
+  department     String
+  location       String?
+  employmentType String?
+  description    String       @db.Text
+  status         RecordStatus @default(DRAFT)
+  sortOrder      Int          @default(0)
+  authorId       String?
+  author         User?        @relation("JobOpeningAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  applications   JobApplication[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model JobApplication {
+  id             String               @id @default(cuid())
+  type           ApplicantType        @default(OTHER)
+  status         JobApplicationStatus @default(NEW)
+  openingId      String?
+  opening        JobOpening?          @relation(fields: [openingId], references: [id], onDelete: SetNull)
+  applicantId    String?
+  applicant      User?                @relation("Applicant", fields: [applicantId], references: [id], onDelete: SetNull)
+  reviewerId     String?
+  reviewer       User?                @relation("ApplicationReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+  name           String
+  email          String
+  phone          String
+  age            Int?
+  city           String?
+  governorate    String?
+  gender         String?
+  fieldOfWork    String?
+  socialLinks    String[]             @default([])
+  portfolioUrl   String?
+  message        String?              @db.Text
+  resumeFileId   String?              @unique
+  resumeFile     File?                @relation("JobApplicationResume", fields: [resumeFileId], references: [id], onDelete: SetNull)
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+
+  @@index([status, createdAt])
+  @@index([type, status])
+  @@index([openingId])
+}
+
+model Ad {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  summary     String?      @db.Text
+  content     Json
+  status      RecordStatus @default(DRAFT)
+  placement   AdPlacement  @default(ADS_PAGE)
+  publishedAt DateTime?
+  expiresAt   DateTime?
+  authorId    String?
+  author      User?        @relation("AdAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([status, placement, publishedAt, expiresAt])
+}
+
+model File {
+  id           String         @id @default(cuid())
+  key          String         @unique
+  originalName String
+  contentType  String
+  sizeBytes    Int
+  visibility   FileVisibility @default(PRIVATE)
+  ownerId      String?
+  owner        User?          @relation("FileOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  resumeFor    JobApplication? @relation("JobApplicationResume")
+  createdAt    DateTime       @default(now())
+
+  @@index([ownerId, createdAt])
 }
 
 model AuditLog {
@@ -168,4 +354,32 @@ model AuditLog {
 
   @@index([createdAt])
   @@index([entity, entityId])
+}
+
+model SiteSettings {
+  id           String        @id @default(cuid())
+  siteName     String        @default("Proganda Studio") // <-- تأكد من وجود @default
+  email        String
+  whatsapp     String
+  phone        String?
+  address      String?
+  socialLinks  SocialLink[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model SocialLink {
+  id             String       @id @default(cuid())
+  platform       String
+  title          String?
+  url            String
+  icon           String?
+  sortOrder      Int          @default(0)
+  siteSettingsId String
+  siteSettings   SiteSettings @relation(fields: [siteSettingsId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([siteSettingsId, sortOrder])
+  @@map("social_link")
 }

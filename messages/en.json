@@ -10,6 +10,7 @@
     "services": "Services",
     "subscriptions": "Subscriptions",
     "contact": "Contact",
+    "join": "Join us",
     "login": "Log in",
     "register": "Get started",
     "explore": "Explore",
@@ -27,6 +28,12 @@
   "dashboard": {
     "overview": "Overview",
     "dashboard": "Dashboard",
+    "cmsTitle": "Content management",
+    "cmsWelcome": "Welcome, {name}. You are signed in to the ProGanda workspace.",
+    "signedInAs": "Signed in as",
+    "accessLevel": "Access level",
+    "roleAdmin": "Administrator",
+    "roleTeam": "Team member",
     "sales": "Sales",
     "store": "Store",
     "orders": "Orders",
@@ -65,12 +72,57 @@
     "planBilling": "Plan & billing",
     "logout": "Log out"
   },
+  "join": {
+    "eyebrow": "Creators, team, and partners",
+    "title": "Build something with ProGanda.",
+    "description": "Choose the path that fits. We will follow up through the contact details you provide.",
+    "creatorTitle": "Creators and bloggers",
+    "creatorDescription": "Create a creator portal account and share your channels, work, and audience details.",
+    "creatorCta": "Create creator account",
+    "teamTitle": "Join the team",
+    "teamDescription": "Apply to work across marketing, networking, media, content, programming, or UGC.",
+    "teamCta": "Open team application",
+    "idCardTitle": "Core team ID card",
+    "idCardDescription": "Request a team member ID card. This form is intended for core team applicants.",
+    "idCardCta": "Request an ID card",
+    "brandTitle": "Brand partnerships",
+    "brandDescription": "Tell us about your company, campaign, or creator partnership brief.",
+    "brandCta": "Contact the studio"
+  },
   "home": {
+    "primaryCta": "Join as a blogger",
+    "secondaryCta": "Start a project",
+    "whyJoinTitle": "Why sign with us?",
+    "whyJoinDescription": "We work with you from the first contract until your content reaches a bigger audience.",
+    "whyJoinItems": [
+      {
+        "title": "Clear contracts",
+        "description": "Written terms agreed up front, with no surprises."
+      },
+      {
+        "title": "Brand opportunities",
+        "description": "We match you with campaigns that fit your niche and audience."
+      },
+      {
+        "title": "Content management",
+        "description": "A team to help with planning, production and publishing."
+      },
+      {
+        "title": "Ongoing support",
+        "description": "A dedicated manager and in-site chat once you're signed."
+      }
+    ],
+    "brandsCtaTitle": "Have a brand and need a campaign?",
+    "brandsCtaDescription": "Tell us your goal and we'll recommend the right creators and plan. Consultations are free.",
+    "brandsCtaButton": "Start your campaign",
+    "featuredPartnership": "Featured partnership",
+    "finalCtaTitle": "Ready to start?",
+    "finalCtaDescription": "Sign up as a blogger or tell us about your project, and we'll take it from there.",
+    "finalCtaBlogger": "Join as a blogger",
+    "finalCtaBrand": "Start a project",
     "eyebrow": "Creator agency + in-house production house",
     "title": "Match the voice. Make the moment.",
     "description": "We connect ambitious brands with culture-shaping creators, then bring the whole campaign to life in our studio.",
-    "primaryCta": "Meet the roster",
-    "secondaryCta": "Build a campaign",
     "creatorsEyebrow": "Top performers",
     "creatorsTitle": "Attention, on repeat.",
     "brandsEyebrow": "Trusted by bold brands",
@@ -430,14 +482,18 @@
     "subtitle": "Join ProGanda as a brand looking for high-converting campaigns or as a blogger/creator ready to monetize your reach.",
     "brand": "Brand",
     "blogger": "Blogger / Creator",
+    "user": "Personal account",
     "brandRole": "I am a brand looking for influencers + video production",
     "creatorRole": "I am a blogger / creator looking to partner with brands",
+    "userDescription": "For people who want an account to contact ProGanda and follow their requests.",
     "brandDescription": "For businesses & brands looking for influencer partnerships, creative strategy, and studio video production.",
     "bloggerDescription": "For content creators & bloggers ready to collaborate with top brands, access studio production, and scale reach.",
     "name": "Full name / Representative",
     "email": "Business email",
     "password": "Password",
     "phone": "Phone number (optional)",
+    "city": "City",
+    "governorate": "Governorate",
     "company": "Company / Brand name",
     "industry": "Industry sector",
     "budget": "Campaign budget tier",
@@ -508,7 +564,8 @@
     "invalidCredentials": "Invalid email or password.",
     "signInRetry": "Could not sign you in. Please try again.",
     "accountExists": "An account with this email already exists.",
-    "createAccountRetry": "Could not create your account. Please try again."
+    "createAccountRetry": "Could not create your account. Please try again.",
+    "rateLimited": "Too many attempts. Please wait and try again."
   },
   "subscriptions": {
     "eyebrow": "Membership + campaign plans",
@@ -736,5 +793,422 @@
     "tiktokFollowers": "TikTok followers",
     "tiktokLikes": "TikTok likes",
     "turnaroundValues": ["1–2 days", "3 days", "5 days"]
+  },
+  "dashboard": {
+    "cmsWelcome": "Welcome back, {name}",
+    "cmsSubtitle": "Here is what is happening across your platform today.",
+    "createContent": "Create Content",
+    "totalUsers": "Total Users",
+    "totalArticles": "Articles",
+    "activeSessions": "Active Sessions",
+    "conversionRate": "Conversion Rate",
+    "recentActivity": "Recent Activity"
+  },
+  "admin": {
+    "nav": {
+      "brand": "Dashboard",
+      "soon": "Soon",
+      "yourRole": "Your role",
+      "groups": {
+        "overview": "Overview",
+        "requests": "Requests",
+        "content": "Content",
+        "people": "People",
+        "chat": "Chat",
+        "system": "System"
+      },
+      "items": {
+        "overview": "Home",
+        "requests": "Requests inbox",
+        "portfolio": "Portfolio",
+        "services": "Services",
+        "creators": "Site creators",
+        "ads": "Ads",
+        "bloggers": "Bloggers",
+        "brands": "Brands",
+        "contracts": "Contracts",
+        "admins": "Admins",
+        "chat": "Conversations",
+        "auditLog": "Audit log",
+        "settings": "Site settings"
+      }
+    },
+    "roles": {
+      "viewingAs": "Viewing as",
+      "super_admin": "Super Admin",
+      "campaign_manager": "Campaign Manager",
+      "creator_manager": "Creator Manager",
+      "hr": "HR",
+      "ads_manager": "Ads Manager"
+    },
+    "common": {
+      "all": "All",
+      "save": "Save",
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {current} of {total}",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "deleteTitle": "Confirm deletion",
+      "deleteDescription": "\"{name}\" will be permanently deleted. This can't be undone.",
+      "loading": "Loading...",
+      "search": "Search",
+      "noResults": "No results",
+      "rowsPerPage": "Rows per page",
+      "paginationInfo": "{from} - {to} of {count}"
+    },
+    "platforms": {
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "youtube": "YouTube",
+      "facebook": "Facebook",
+      "snapchat": "Snapchat"
+    },
+    "overview": {
+      "title": "Overview",
+      "description": "A quick summary of company activity.",
+      "stats": {
+        "totalViews": "Total views",
+        "newRequests": "New requests",
+        "pendingContracts": "Contracts awaiting approval",
+        "activeCreators": "Contracted bloggers"
+      },
+      "recent": {
+        "title": "Latest requests"
+      },
+      "pending": {
+        "title": "Pending contracts",
+        "empty": "No pending contracts"
+      },
+      "viewAll": "View all"
+    },
+    "requests": {
+      "title": "Requests inbox",
+      "description": "All requests in one place, assigned to admins.",
+      "searchPlaceholder": "Search by name or subject",
+      "unassigned": "Unassigned",
+      "columns": {
+        "type": "Type",
+        "from": "From",
+        "subject": "Subject",
+        "status": "Status",
+        "assignedTo": "Assigned to",
+        "date": "Date"
+      },
+      "types": {
+        "consultation": "Consultation",
+        "campaign": "Campaign",
+        "ad": "Ad",
+        "job": "Job"
+      },
+      "statuses": {
+        "new": "New",
+        "in_review": "In review",
+        "in_progress": "In progress",
+        "done": "Done",
+        "rejected": "Rejected"
+      },
+      "filters": {
+        "type": "Type",
+        "status": "Status",
+        "assignee": "Assignee"
+      },
+      "empty": {
+        "title": "No requests",
+        "description": "No requests match the filters or your current permissions."
+      }
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Past company work with results per platform.",
+      "new": "Add work",
+      "newTitle": "Add new work",
+      "editTitle": "Edit work",
+      "edit": "Edit",
+      "columns": {
+        "brand": "Brand",
+        "title": "Title",
+        "views": "Views",
+        "platforms": "Platforms",
+        "status": "Status"
+      },
+      "status": {
+        "published": "Published",
+        "draft": "Draft"
+      },
+      "empty": {
+        "title": "No work yet",
+        "description": "Add the first piece to show it on the site."
+      },
+      "form": {
+        "brand": "Brand name",
+        "title": "Campaign title",
+        "goal": "Goal",
+        "summary": "Summary",
+        "published": "Publish on the site",
+        "publishedHint": "Visitors can see this work when enabled.",
+        "metrics": "Platform numbers",
+        "addPlatform": "Add platform",
+        "platform": "Platform",
+        "views": "Views",
+        "reach": "Reach",
+        "engagement": "Engagement",
+        "remove": "Remove",
+        "saveNote": "Saved (mock, not sent to the database)"
+      }
+    },
+    "bloggers": {
+      "title": "Bloggers",
+      "description": "Registered bloggers and their contract status.",
+      "columns": {
+        "name": "Name",
+        "niche": "Niche",
+        "platforms": "Platforms",
+        "followers": "Followers",
+        "contract": "Contract"
+      },
+      "contract": {
+        "pending": "Pending",
+        "contracted": "Contracted"
+      },
+      "approve": "Approve contract",
+      "revoke": "Revoke",
+      "empty": "No bloggers yet"
+    },
+    "services": {
+      "title": "Services",
+      "description": "Services shown on the public services page.",
+      "new": "Add service",
+      "columns": {
+        "title": "Service",
+        "description": "Description",
+        "status": "Status"
+      },
+      "status": {
+        "published": "Published",
+        "draft": "Draft"
+      },
+      "empty": {
+        "title": "No services",
+        "description": "Add the first service to show it on the site."
+      },
+      "form": {
+        "newTitle": "Add service",
+        "editTitle": "Edit service",
+        "title": "Service name",
+        "description": "Description",
+        "published": "Publish on the site"
+      }
+    },
+    "creators": {
+      "title": "Site creators",
+      "description": "Creators shown on the Home page and the Creators page.",
+      "new": "Add creator",
+      "columns": {
+        "name": "Name",
+        "niche": "Niche",
+        "reach": "Reach",
+        "status": "Status"
+      },
+      "status": {
+        "published": "Visible",
+        "hidden": "Hidden"
+      },
+      "empty": {
+        "title": "No creators",
+        "description": "Add a creator to show on the site."
+      },
+      "form": {
+        "newTitle": "Add creator",
+        "editTitle": "Edit creator",
+        "name": "Name",
+        "niche": "Niche",
+        "reach": "Reach",
+        "reachHint": "Example: 1.2M",
+        "image": "Image URL",
+        "imageHint": "Will be replaced by an upload field later.",
+        "published": "Show on the site"
+      }
+    },
+    "ads": {
+      "title": "Ads",
+      "description": "Company ads and paid brand ads.",
+      "new": "Add ad",
+      "columns": {
+        "title": "Ad",
+        "placement": "Placement",
+        "source": "Source",
+        "period": "Period",
+        "status": "Status"
+      },
+      "placements": {
+        "home": "Home page",
+        "offers": "Offers"
+      },
+      "sources": {
+        "company": "Company",
+        "brand": "Brand"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "scheduled": "Scheduled",
+        "active": "Active",
+        "ended": "Ended"
+      },
+      "empty": {
+        "title": "No ads",
+        "description": "Add an ad to show it on the site."
+      },
+      "form": {
+        "newTitle": "Add ad",
+        "editTitle": "Edit ad",
+        "title": "Ad title",
+        "body": "Text",
+        "placement": "Placement",
+        "source": "Ad source",
+        "brandName": "Brand name",
+        "startsAt": "Starts on",
+        "endsAt": "Ends on",
+        "published": "Publish"
+      }
+    },
+    "brands": {
+      "title": "Brands",
+      "description": "Registered brands and their contract status.",
+      "columns": {
+        "name": "Brand",
+        "industry": "Industry",
+        "contact": "Contact",
+        "contract": "Contract"
+      },
+      "contract": {
+        "pending": "Pending",
+        "contracted": "Contracted"
+      },
+      "approve": "Approve contract",
+      "revoke": "Revoke",
+      "empty": "No brands yet"
+    },
+    "contracts": {
+      "title": "Contract requests",
+      "description": "Review contract requests from bloggers and brands.",
+      "columns": {
+        "party": "Party",
+        "type": "Type",
+        "status": "Status",
+        "date": "Date"
+      },
+      "types": {
+        "blogger": "Blogger",
+        "brand": "Brand"
+      },
+      "statuses": {
+        "pending": "Pending review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "review": "Review",
+      "form": {
+        "status": "Status",
+        "notes": "Admin notes",
+        "notesHint": "Not visible to the user."
+      },
+      "empty": "No contract requests"
+    },
+    "admins": {
+      "title": "Admins",
+      "description": "Company team and each person's permissions.",
+      "new": "Add admin",
+      "lastSuperHint": "The last super admin can't be demoted or deactivated.",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "active": "Active"
+      },
+      "form": {
+        "newTitle": "Add admin",
+        "editTitle": "Edit admin",
+        "name": "Name",
+        "email": "Email",
+        "role": "Role"
+      },
+      "empty": "No admins"
+    },
+    "chat": {
+      "title": "Conversations",
+      "description": "Conversations with contracted bloggers only.",
+      "selectPrompt": "Select a conversation",
+      "noConversations": "No conversations yet",
+      "inputPlaceholder": "Write a message",
+      "send": "Send",
+      "back": "Back",
+      "managedBy": "Managed by {name}"
+    },
+    "audit": {
+      "title": "Audit log",
+      "description": "Who did what and when inside the dashboard.",
+      "columns": {
+        "time": "Time",
+        "admin": "Admin",
+        "action": "Action",
+        "entity": "Section",
+        "details": "Details"
+      },
+      "entities": {
+        "request": "Requests",
+        "contract": "Contracts",
+        "portfolio": "Portfolio",
+        "ad": "Ads",
+        "admin": "Admins",
+        "settings": "Settings"
+      },
+      "actions": {
+        "request_assigned": "Request assigned",
+        "request_status_changed": "Request status changed",
+        "contract_approved": "Contract approved",
+        "contract_rejected": "Contract rejected",
+        "portfolio_created": "Work added",
+        "portfolio_deleted": "Work deleted",
+        "ad_created": "Ad added",
+        "admin_role_changed": "Admin role changed",
+        "settings_updated": "Settings updated"
+      },
+      "filters": {
+        "entity": "Section"
+      },
+      "empty": "No logged actions"
+    },
+    "settings": {
+      "title": "Site settings",
+      "description": "Contact details and social links shown on the site.",
+      "socialDescription": "Add social media links that appear on the website",
+      "sections": {
+        "contact": "Contact",
+        "social": "Social media"
+      },
+      "fields": {
+        "siteName": "Site name",
+        "whatsapp": "WhatsApp number",
+        "email": "Email"
+      },
+      "socialFields": {
+        "platform": "...",
+        "title": "...",
+        "url": "...",
+        "icon": "Icon",
+        "iconAuto": "Auto"
+      },
+      "addSocial": "Add social link",
+      "noSocialLinks": "No social links added yet",
+      "noSocialLinksHint": "Click the add button to start adding links",
+      "saveChanges": "Save changes",
+      "saveChangesHint": "Changes will be applied to the site immediately",
+      "saved": "Saved",
+      "saving": "Saving...",
+      "whatsappHint": "Egyptian mobile number, e.g. 01001234567",
+      "saveNote": "Saved (mock, not sent to the database)"
+    }
   }
 }
