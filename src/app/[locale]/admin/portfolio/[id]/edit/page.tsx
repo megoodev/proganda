@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/page-header";
-import { getCaseStudy } from "@/features/portfolio/queries/get-case-studies";
+import { getCaseStudy } from "@/features/portfolio/queries/get-case-study";
 import { PortfolioForm } from "../../_components/portfolio-form";
 
 export default async function EditCaseStudyPage({ params }: { params: Promise<{ id: string }> }) {
@@ -14,7 +14,7 @@ export default async function EditCaseStudyPage({ params }: { params: Promise<{ 
   return (
     <>
       <PageHeader title={t("editTitle")} />
-      <PortfolioForm defaultValues={caseStudy} />
+      <PortfolioForm caseStudy={caseStudy} />
     </>
   );
 }

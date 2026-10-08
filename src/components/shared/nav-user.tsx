@@ -62,10 +62,10 @@ export function NavUser() {
           </Avatar>
 
           <div className="hidden lg:flex flex-col text-xs leading-tight text-start">
-            <span className="font-semibold text-foreground truncate max-w-[120px]">
+            <span className="font-semibold text-foreground truncate max-w-30">
               {user?.name || "Admin User"}
             </span>
-            <span className="text-[10px] text-muted-foreground truncate max-w-[140px]">
+            <span className="text-[10px] text-muted-foreground truncate max-w-35">
               {user?.email || "admin@domain.com"}
             </span>
           </div>
@@ -76,7 +76,7 @@ export function NavUser() {
 
       <DropdownMenuContent
         className="w-56 rounded-2xl border border-border/60 bg-card/95 p-1.5 shadow-xl backdrop-blur-xl"
-        align="end"
+        align="center"
         sideOffset={8}
       >
         <DropdownMenuLabel className="p-2 font-normal">

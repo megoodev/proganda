@@ -3,25 +3,30 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function updateSiteSettings(data: {
+export interface SocialLinkInput {
+  id?: string;
+  platform: string;
+  url: string;
+  title?: string;
+  icon?: string;
+  sortOrder?: number;
+}
+
+export interface SiteSettingsInput {
   siteName?: string;
   email: string;
   whatsapp: string;
   phone?: string;
   address?: string;
-  socialLinks?: Array<{
-    platform: string;
-    url: string;
-    title?: string;
-    icon?: string;
-    sortOrder?: number;
-  }>;
-}) {
+  socialLinks?: SocialLinkInput[];
+}
+
+export async function updateSiteSettings(data: SiteSettingsInput) {
   try {
     let settings = await prisma.siteSettings.findFirst();
 
     if (!settings) {
-      // إنشاء السجل الرئيسي أولاً لضمان وجود id قبل ربط العلاقات
+      // 1. إنشاء السجل الرئيسي في حال عدم وجوده
       settings = await prisma.siteSettings.create({
         data: {
           siteName: data.siteName ?? "Proganda Studio",
@@ -32,8 +37,8 @@ export async function updateSiteSettings(data: {
         },
       });
     } else {
-      // تحديث السجل الرئيسي
-      await prisma.siteSettings.update({
+      // 2. تحديث السجل الرئيسي بالإعدادات الجديدة
+      settings = await prisma.siteSettings.update({
         where: { id: settings.id },
         data: {
           siteName: data.siteName ?? settings.siteName,
@@ -45,8 +50,9 @@ export async function updateSiteSettings(data: {
       });
     }
 
-    // تحديث روابط التواصل المرتبطة بنفس الـ ID
+    // 3. تحديث أو إضافة الروابط الاجتماعية
     if (data.socialLinks) {
+      // حذف الروابط الحالية وإعادة إنشائها لضمان المطابقة الكاملة
       await prisma.socialLink.deleteMany({
         where: { siteSettingsId: settings.id },
       });
@@ -57,15 +63,19 @@ export async function updateSiteSettings(data: {
             siteSettingsId: settings.id,
             platform: link.platform,
             url: link.url,
-            title: link.title ?? link.platform,
-            icon: link.icon ?? null,
+            title: link.title || link.platform,
+            icon: link.icon || null,
             sortOrder: link.sortOrder ?? index,
           })),
         });
       }
     }
 
+    // 4. تحديث الكاش لجميع الصفحات التي تعرض هذه البيانات (مهم جداً!)
+    revalidatePath("/[locale]/admin/settings", "page");
     revalidatePath("/[locale]/contact", "page");
+    revalidatePath("/", "layout"); // لتحديث البيانات في الهيدر والفوتر إن وجدت
+
     return { success: true };
   } catch (error) {
     console.error("Error updating settings:", error);

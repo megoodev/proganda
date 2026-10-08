@@ -26,8 +26,6 @@ const signInSchema = z.object({
   password: z.string().min(1, "Password is required."),
 });
 
-// Limits mirror signupProfileSchema in data/profiles.ts, so bad input is
-// rejected BEFORE the user is created instead of failing halfway through.
 const text = (max: number) => z.string().trim().max(max).optional().default("");
 
 const isSafeUrl = (value: string) => {
@@ -65,12 +63,10 @@ const signUpSchema = z
     phone: text(40),
     city: text(80),
     governorate: text(80),
-    // brand (optional unless applying for a contract)
     company: text(160),
     industry: text(120),
     goal: text(1200),
     website: optionalUrl,
-    // blogger (optional unless applying for a contract)
     niche: text(120),
     handles: text(1000),
     portfolio: optionalUrl,
@@ -99,7 +95,6 @@ function readLocale(formData: FormData): string {
   return typeof locale === "string" && locale.length > 0 ? locale : "en";
 }
 
-// Development only: shows the real cause in the form. Remove when it works.
 function withDevDetail(message: string, error: unknown): string {
   if (process.env.NODE_ENV === "production") return message;
   const e = error as { body?: { message?: string }; message?: string };
@@ -128,10 +123,15 @@ export async function signInAction(
 ): Promise<AuthActionState> {
   const locale = readLocale(formData);
   const t = await getTranslations({ locale, namespace: "auth" });
-  const loginKey = await clientKey(await headers());
-  if (!rateLimit(`login:${loginKey}`, 10, 60_000).ok) {
+  const reqHeaders = await headers();
+  const loginKey = await clientKey(reqHeaders);
+
+  // ✅ استخدام await مع rateLimit
+  const limitRes = await rateLimit(`login:${loginKey}`, 10, 60_000);
+  if (!limitRes.ok) {
     return { error: t("rateLimited") };
   }
+
   const parsed = signInSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -141,20 +141,20 @@ export async function signInAction(
   }
 
   const next = safeNext(formData.get("next"));
-  const dashboardPath = `/${locale}/dashboard`;
+  const adminPath = `/${locale}/admin`;
 
   let target = next ?? `/${locale}/`;
   try {
     const result = await auth.api.signInEmail({
       body: parsed.data,
-      headers: await headers(),
+      headers: reqHeaders,
     });
     const role = (result?.user as { role?: string } | undefined)?.role;
     if (isStaffRole(role)) {
-      target = next ?? dashboardPath;
+      target = next ?? adminPath;
     } else if (
-      next === dashboardPath ||
-      next?.startsWith(`${dashboardPath}/`)
+      next === adminPath ||
+      next?.startsWith(`${adminPath}/`)
     ) {
       target = `/${locale}/`;
     }
@@ -179,10 +179,13 @@ export async function signUpAction(
   const locale = readLocale(formData);
   const t = await getTranslations({ locale, namespace: "auth" });
 
-  // Failed attempts count too, so keep the dev limit high while testing.
   const signupLimit = process.env.NODE_ENV === "production" ? 5 : 100;
-  const signupKey = await clientKey(await headers());
-  if (!rateLimit(`signup:${signupKey}`, signupLimit, 60 * 60_000).ok) {
+  const reqHeaders = await headers();
+  const signupKey = await clientKey(reqHeaders);
+
+  // ✅ استخدام await لتلقي نتيجة Promise السليمة
+  const limitRes = await rateLimit(`signup:${signupKey}`, signupLimit, 60 * 60_000);
+  if (!limitRes.ok) {
     return { error: t("rateLimited") };
   }
 
@@ -193,12 +196,9 @@ export async function signUpAction(
   }
   const data = parsed.data;
 
-  // "brand" -> "BRAND". The role is NOT sent to Better Auth (clients may not set it);
-  // it is assigned server-side in bootstrapAccountProfilesFromAuth.
   const role = sanitizeSignupRole(data.role);
   const applyForContract = data.applyForContract === "true" && role !== "USER";
 
-  // 1) Create the auth user.
   let userId: string;
   try {
     const result = await auth.api.signUpEmail({
@@ -207,7 +207,7 @@ export async function signUpAction(
         email: data.email,
         password: data.password,
       },
-      headers: await headers(),
+      headers: reqHeaders,
     });
     userId = result.user.id;
   } catch (error) {
@@ -218,8 +218,6 @@ export async function signUpAction(
     return { error: withDevDetail(t("createAccountRetry"), error) };
   }
 
-  // 2) Create the profile rows. If this fails, remove the half-created user so
-  //    the person can retry with the same email.
   try {
     await bootstrapAccountProfilesFromAuth({
       userId,
@@ -250,7 +248,8 @@ export async function signUpAction(
 
 export async function signOutAction(locale: string) {
   try {
-    await auth.api.signOut({ headers: await headers() });
+    const reqHeaders = await headers();
+    await auth.api.signOut({ headers: reqHeaders });
   } catch {
     // Session already gone; fall through to the login page.
   }

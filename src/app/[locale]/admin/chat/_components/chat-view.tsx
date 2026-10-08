@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import { openConversation } from "@/features/chat/actions/open-conversation";
+import { sendAdminMessage } from "@/features/chat/actions/send-admin-message";
 import type { Conversation } from "@/features/chat/schemas";
 import { ConversationList } from "./conversation-list";
 import { MessageThread } from "./message-thread";
@@ -13,20 +15,23 @@ export function ChatView({ initialConversations }: { initialConversations: Conve
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = conversations.find((item) => item.id === activeId) ?? null;
 
-  const open = (id: string) => {
+  const open = async (id: string) => {
     setActiveId(id);
-    setConversations((prev) => prev.map((item) => (item.id === id ? { ...item, unread: 0 } : item)));
+    const result = await openConversation({ conversationId: id });
+    if (!result.ok) return;
+    setConversations((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, unread: 0, messages: result.data } : item)),
+    );
   };
 
-  // Phase C: sendMessage becomes an oRPC procedure; the list refreshes with polling.
-  const send = (id: string, text: string) =>
+  const send = async (id: string, text: string) => {
+    const result = await sendAdminMessage({ conversationId: id, text });
+    if (!result.ok) return false;
     setConversations((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, messages: [...item.messages, { id: crypto.randomUUID(), from: "admin", text, sentAt: new Date().toISOString() }] }
-          : item,
-      ),
+      prev.map((item) => (item.id === id ? { ...item, messages: [...item.messages, result.data] } : item)),
     );
+    return true;
+  };
 
   return (
     <div className="grid h-[calc(100dvh-11rem)] min-h-[26rem] overflow-hidden rounded-xl border border-border/70 bg-card md:grid-cols-[18rem_1fr]">

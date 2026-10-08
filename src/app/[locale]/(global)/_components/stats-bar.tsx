@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { Sparkles, Zap } from "lucide-react";
-import { getHomeStats } from "@/features/home/queries/get-home-stats";
+import { getSiteStats } from "@/features/home/queries/get-site-stats";
 
 export async function StatsBar({ locale }: { locale: "en" | "ar" }) {
   const t = await getTranslations({ locale, namespace: "home" });
-  const { totalViews } = await getHomeStats();
+  const { totalViews } = await getSiteStats();
 
   const views = new Intl.NumberFormat(locale === "ar" ? "ar-EG-u-nu-latn" : "en", {
     notation: "compact",

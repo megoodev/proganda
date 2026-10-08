@@ -194,7 +194,6 @@ function SelectField({
   return (
     <Field className={className}>
       <FieldLabel htmlFor={name}>{label}</FieldLabel>
-      {/* Radix Select does not submit with the form, so mirror it here. */}
       <input type="hidden" name={name} value={value} />
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger id={name} className="w-full">
@@ -223,7 +222,6 @@ export function RegisterForm({
   const [applyForContract, setApplyForContract] = useState(false);
   const [values, setValues] = useState(EMPTY);
 
-  // Controlled values survive React 19's automatic form reset after an error.
   const set = (name: FieldName) => (value: string) =>
     setValues((prev) => ({ ...prev, [name]: value }));
   const bind = (name: FieldName) => ({
@@ -233,7 +231,6 @@ export function RegisterForm({
     onChange: (e: ChangeEvent<HTMLInputElement>) => set(name)(e.target.value),
   });
 
-  // Contract fields exist only for brand/blogger and only when opted in.
   const contractOpen = role !== "user" && applyForContract;
 
   const tabs: {
@@ -430,7 +427,7 @@ export function RegisterForm({
                     >
                       {INDUSTRIES.map(([value, key]) => (
                         <SelectItem key={value} value={value}>
-                          {labels.industries[key]}
+                          {labels.industries[key] ?? value}
                         </SelectItem>
                       ))}
                     </SelectField>
@@ -443,7 +440,7 @@ export function RegisterForm({
                     >
                       {GOALS.map(([value, key]) => (
                         <SelectItem key={value} value={value}>
-                          {labels.goals[key]}
+                          {labels.goals[key] ?? value}
                         </SelectItem>
                       ))}
                     </SelectField>
@@ -465,7 +462,7 @@ export function RegisterForm({
                       <SelectItem value="All">{labels.allContent}</SelectItem>
                       {NICHES.map(([value, key]) => (
                         <SelectItem key={value} value={value}>
-                          {labels.niches[key]}
+                          {labels.niches[key] ?? value}
                         </SelectItem>
                       ))}
                     </SelectField>

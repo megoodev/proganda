@@ -804,6 +804,7 @@
     "conversionRate": "Conversion Rate",
     "recentActivity": "Recent Activity"
   },
+
   "admin": {
     "nav": {
       "brand": "Dashboard",
@@ -921,6 +922,7 @@
     },
     "portfolio": {
       "title": "Portfolio",
+      "searchPlaceholder": "Search portfolio...",
       "description": "Past company work with results per platform.",
       "new": "Add work",
       "newTitle": "Add new work",
@@ -979,6 +981,7 @@
     "services": {
       "title": "Services",
       "description": "Services shown on the public services page.",
+      "searchPlaceholder": "Search services...",
       "new": "Add service",
       "columns": {
         "title": "Service",
@@ -1050,11 +1053,17 @@
         "company": "Company",
         "brand": "Brand"
       },
+      "searchPlaceholder": "Search ads...",
       "statuses": {
         "draft": "Draft",
         "scheduled": "Scheduled",
         "active": "Active",
-        "ended": "Ended"
+        "ended": "Ended",
+        "Unknown": "Unknown",
+        "ACTIVE": "Active",
+        "PENDING": "Pending",
+        "PAUSED": "Paused",
+        "REJECTED": "Rejected"
       },
       "empty": {
         "title": "No ads",
@@ -1073,26 +1082,30 @@
         "published": "Publish"
       }
     },
-    "brands": {
-      "title": "Brands",
-      "description": "Registered brands and their contract status.",
-      "columns": {
-        "name": "Brand",
-        "industry": "Industry",
-        "contact": "Contact",
-        "contract": "Contract"
-      },
-      "contract": {
-        "pending": "Pending",
-        "contracted": "Contracted"
-      },
-      "approve": "Approve contract",
-      "revoke": "Revoke",
-      "empty": "No brands yet"
+   
+  "brands": {
+    "title": "Brands",
+    "description": "Registered brands and their contract status.",
+    "searchPlaceholder": "Search brands...",
+    "columns": {
+      "name": "Brand",
+      "industry": "Industry",
+      "contact": "Contact",
+      "contract": "Contract"
     },
+    "contract": {
+      "pending": "Pending",
+      "contracted": "Contracted"
+    },
+    "approve": "Approve contract",
+    "revoke": "Revoke",
+    "empty": "No brands yet"
+  }
+,
     "contracts": {
-      "title": "Contract requests",
-      "description": "Review contract requests from bloggers and brands.",
+      "title": "Contract Requests",
+      "description": "Manage and review blogger and brand contract requests.",
+      "searchPlaceholder": "Search contracts...",
       "columns": {
         "party": "Party",
         "type": "Type",
@@ -1100,21 +1113,16 @@
         "date": "Date"
       },
       "types": {
-        "blogger": "Blogger",
-        "brand": "Brand"
+        "BLOGGER": "Blogger",
+        "BRAND": "Brand"
       },
       "statuses": {
-        "pending": "Pending review",
+        "pending": "Pending",
         "approved": "Approved",
         "rejected": "Rejected"
       },
       "review": "Review",
-      "form": {
-        "status": "Status",
-        "notes": "Admin notes",
-        "notesHint": "Not visible to the user."
-      },
-      "empty": "No contract requests"
+      "empty": "No contract requests yet"
     },
     "admins": {
       "title": "Admins",
@@ -1194,9 +1202,9 @@
         "email": "Email"
       },
       "socialFields": {
-        "platform": "...",
-        "title": "...",
-        "url": "...",
+        "platform": "Platform",
+        "title": "Title",
+        "url": "URL",
         "icon": "Icon",
         "iconAuto": "Auto"
       },
@@ -1211,4 +1219,5 @@
       "saveNote": "Saved (mock, not sent to the database)"
     }
   }
+
 }

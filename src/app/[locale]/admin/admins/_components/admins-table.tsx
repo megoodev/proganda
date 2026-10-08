@@ -11,6 +11,8 @@ import { DataTable, type AdminColumnDef } from "@/components/shared/data-table";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PersonCell } from "@/components/shared/person-cell";
 import { RowActions } from "@/components/shared/row-actions";
+import { setAdminActive } from "@/features/admin/actions/set-admin-active";
+import { setAdminRole } from "@/features/admin/actions/set-admin-role";
 import { adminRoles, type AdminRole } from "@/features/admin/roles";
 import type { AdminUser } from "@/features/admin/schemas";
 import { useCrudList } from "@/features/admin/use-crud-list";
@@ -21,9 +23,15 @@ export function AdminsTable({ initialAdmins }: { initialAdmins: AdminUser[] }) {
   const tRoles = useTranslations("admin.roles");
   const { rows, setRows, editing, setEditing, save } = useCrudList(initialAdmins);
 
-  // Phase C: Server Actions (update-admin-role.ts, set-admin-active.ts) + audit log entries.
-  const patch = (id: string, values: Partial<AdminUser>) =>
-    setRows((prev) => prev.map((row) => (row.id === id ? { ...row, ...values } : row)));
+  const patchRole = async (id: string, role: AdminRole) => {
+    const result = await setAdminRole({ id, role });
+    if (result.ok) setRows((prev) => prev.map((row) => (row.id === id ? result.data : row)));
+  };
+
+  const patchActive = async (id: string, active: boolean) => {
+    const result = await setAdminActive({ id, active });
+    if (result.ok) setRows((prev) => prev.map((row) => (row.id === id ? result.data : row)));
+  };
 
   // The last active super admin can't be demoted or deactivated
   const activeSupers = rows.filter((row) => row.role === "super_admin" && row.active).length;
@@ -41,7 +49,7 @@ export function AdminsTable({ initialAdmins }: { initialAdmins: AdminUser[] }) {
         accessorKey: "role",
         header: ({ column }) => <DataGridColumnHeader title={t("columns.role")} column={column} />,
         cell: ({ row }) => (
-          <Select value={row.original.role} disabled={isLocked(row.original)} onValueChange={(value) => patch(row.original.id, { role: value as AdminRole })}>
+          <Select value={row.original.role} disabled={isLocked(row.original)} onValueChange={(value) => patchRole(row.original.id, value as AdminRole)}>
             <SelectTrigger className="h-8 w-44"><SelectValue /></SelectTrigger>
             <SelectContent>{adminRoles.map((role) => <SelectItem key={role} value={role}>{tRoles(role)}</SelectItem>)}</SelectContent>
           </Select>
@@ -55,7 +63,7 @@ export function AdminsTable({ initialAdmins }: { initialAdmins: AdminUser[] }) {
           <Switch
             checked={row.original.active}
             disabled={isLocked(row.original)}
-            onCheckedChange={(value) => patch(row.original.id, { active: value })}
+            onCheckedChange={(value) => patchActive(row.original.id, value)}
             aria-label={t("columns.active")}
           />
         ),

@@ -7,15 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PersonCell } from "@/components/shared/person-cell";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { formatDate } from "@/lib/format";
-import { getRequests } from "@/features/requests/queries/get-requests";
+import { getRecentRequests } from "@/features/dashboard/queries/get-recent-requests";
 import { statusTone } from "@/features/requests/status-tone";
 
 export async function RecentRequests() {
   const t = await getTranslations("admin");
   const locale = await getLocale();
-  const requests = (await getRequests())
-    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-    .slice(0, 6);
+  const requests = await getRecentRequests();
 
   return (
     <Card className="h-full border-border/60 shadow-xs">

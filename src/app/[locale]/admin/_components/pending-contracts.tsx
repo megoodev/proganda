@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PersonCell } from "@/components/shared/person-cell";
 import { formatDate } from "@/lib/format";
-import { getContracts } from "@/features/contracts/queries/get-contracts";
+import { getPendingContracts } from "@/features/dashboard/queries/get-pending-contracts";
 
 export async function PendingContracts() {
   const t = await getTranslations("admin");
   const locale = await getLocale();
-  const pending = (await getContracts()).filter((contract) => contract.status === "pending");
+  const pending = await getPendingContracts();
 
   return (
     <Card className="h-full border-border/60 shadow-xs">

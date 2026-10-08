@@ -1,31 +1,27 @@
 import { z } from "zod";
-
-const optionalUrl = z.string().url().or(z.literal(""));
-
-// Egyptian mobile: 01x xxxxxxxx, optionally with +20 / 0020
-const egyptPhone = /^(\+20|0020|0)?1[0125]\d{8}$/;
-
-
-
-
+import { egyptPhone } from "@/lib/validators";
 
 export const socialLinkSchema = z.object({
   id: z.string().optional(),
-  platform: z.string(),
-  title: z.string().optional(), // <-- إرجاع الحقل اختيارياً (string | undefined)
-  url: z.string(),
+  platform: z.string().min(1),
+  title: z.string().min(1),
+  url: z.string().url(),
   icon: z.string().optional(),
   sortOrder: z.number().default(0),
 });
 
 export const siteSettingsSchema = z.object({
-  siteName: z.string(),
-  whatsapp: z.string(),
-  email: z.string(),
+  siteName: z.string().min(2),
+  whatsapp: z.string().regex(egyptPhone, "Enter a valid Egyptian mobile number"),
+  email: z.string().email(),
   phone: z.string().optional(),
-  socialLinks: z.array(socialLinkSchema),
+  address: z.string().optional(),
+  instagram: z.string().url().or(z.literal("")).optional(),
+  tiktok: z.string().url().or(z.literal("")).optional(),
+  youtube: z.string().url().or(z.literal("")).optional(),
+  facebook: z.string().url().or(z.literal("")).optional(),
+  socialLinks: z.array(socialLinkSchema).default([]),
 });
 
 export type SiteSettings = z.infer<typeof siteSettingsSchema>;
-
 export type SocialLink = z.infer<typeof socialLinkSchema>;

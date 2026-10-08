@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { getActor } from "@/features/admin/auth";
 import { AdminRoleProvider } from "@/features/admin/admin-role-context";
 import { AdminSidebar } from "./_components/admin-sidebar";
 import { AdminHeader } from "./_components/admin-header";
@@ -12,13 +13,12 @@ interface AdminLayoutProps {
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const locale = await getLocale();
+  const actor = await getActor();
 
   const t = await getTranslations({ locale, namespace: "common" });
-  const alternate = locale === "en" ? "ar" : "en";
-  const side = locale === "ar" ? "right" : "left";
 
   return (
-    <AdminRoleProvider>
+    <AdminRoleProvider role={actor?.role ?? null}>
       <SidebarProvider defaultOpen>
         <div className="relative flex min-h-screen w-full bg-muted/40 text-foreground">
           <AdminSidebar />

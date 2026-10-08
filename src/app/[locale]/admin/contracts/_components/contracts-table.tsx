@@ -38,7 +38,7 @@ export function ContractsTable({ initialContracts }: { initialContracts: Contrac
       {
         accessorKey: "status",
         header: ({ column }) => <DataGridColumnHeader title={t("columns.status")} column={column} />,
-        cell: ({ row }) => <StatusBadge label={t(`statuses.${row.original.status}`)} tone={contractTone[row.original.status]} />,
+        cell: ({ row }) => <StatusBadge label={t(`statuses.${row.original.status}`)} tone={contractTone(row.original.status)} />,
         size: 170,
       },
       {
@@ -71,9 +71,8 @@ export function ContractsTable({ initialContracts }: { initialContracts: Contrac
           key={reviewing.id}
           contract={reviewing}
           onClose={() => setReviewing(null)}
-          // Phase C: Server Action (review-contract.ts) that also updates the user's status + audit log
-          onSave={(values) => {
-            setRows((prev) => prev.map((row) => (row.id === reviewing.id ? { ...row, ...values } : row)));
+          onSave={(updated) => {
+            setRows((prev) => prev.map((row) => (row.id === updated.id ? updated : row)));
             setReviewing(null);
           }}
         />

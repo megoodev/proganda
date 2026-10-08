@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/page-header";
-import { getConversations } from "@/features/chat/queries/get-conversations";
+import { listConversations } from "@/features/chat/queries/list-conversations";
 import { ChatView } from "./_components/chat-view";
 
 export default async function ChatPage() {
   const t = await getTranslations("admin.chat");
-  const conversations = await getConversations();
+  const conversations = await listConversations();
 
   return (
     <>

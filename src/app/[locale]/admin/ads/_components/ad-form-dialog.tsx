@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { createAd } from "@/features/ads/actions/create-ad";
+import { updateAd } from "@/features/ads/actions/update-ad";
 import { adPlacements, adSchema, adSources, type Ad, type AdInput } from "@/features/ads/schemas";
 
 type Props = { ad?: Ad; onClose: () => void; onSave: (ad: Ad) => void };
@@ -17,16 +19,36 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 export function AdFormDialog({ ad, onClose, onSave }: Props) {
   const t = useTranslations("admin.ads");
-  const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm<AdInput>({
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<AdInput>({
     resolver: zodResolver(adSchema),
-    defaultValues: ad ?? { title: "", body: "", placement: "home", source: "company", brandName: "", startsAt: today(), endsAt: today(), published: true },
+    defaultValues: ad ?? {
+      title: "",
+      body: "",
+      placement: "home",
+      source: "company",
+      brandName: "",
+      startsAt: today(),
+      endsAt: today(),
+      published: true,
+    },
   });
 
   return (
     <FormDialog
       title={ad ? t("form.editTitle") : t("form.newTitle")}
       onClose={onClose}
-      onSubmit={handleSubmit((values) => onSave({ ...values, id: ad?.id ?? crypto.randomUUID() }))}
+      submitting={isSubmitting}
+      onSubmit={handleSubmit(async (values) => {
+        const result = ad ? await updateAd({ id: ad.id, ...values }) : await createAd(values);
+        if (result.ok) onSave(result.data);
+      })}
     >
       <Field label={t("form.title")} htmlFor="title" error={errors.title?.message}>
         <Input id="title" {...register("title")} />
@@ -37,20 +59,44 @@ export function AdFormDialog({ ad, onClose, onSave }: Props) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label={t("form.placement")}>
-          <Controller control={control} name="placement" render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>{adPlacements.map((item) => <SelectItem key={item} value={item}>{t(`placements.${item}`)}</SelectItem>)}</SelectContent>
-            </Select>
-          )} />
+          <Controller
+            control={control}
+            name="placement"
+            render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {adPlacements.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {t(`placements.${item}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
         </Field>
         <Field label={t("form.source")}>
-          <Controller control={control} name="source" render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>{adSources.map((item) => <SelectItem key={item} value={item}>{t(`sources.${item}`)}</SelectItem>)}</SelectContent>
-            </Select>
-          )} />
+          <Controller
+            control={control}
+            name="source"
+            render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {adSources.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {t(`sources.${item}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
         </Field>
       </div>
 

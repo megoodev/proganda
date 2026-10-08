@@ -3,7 +3,7 @@ import {
   ContactClient,
   type ContactDictionary,
 } from "./_components/ContactClient";
-import { getSettings } from "@/features/settings/queries/get-settings";
+import { getSiteSettings } from "@/features/settings/queries/get-site-settings";
 
 export default async function ContactPage({
   params,
@@ -12,11 +12,13 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
 
-  const [settings, t, common] = await Promise.all([
-    getSettings(),
+  const [settingsData, t, common] = await Promise.all([
+    getSiteSettings(),
     getTranslations({ locale, namespace: "contactPage" }),
     getTranslations({ locale, namespace: "common" }),
   ]);
+
+  const settings = settingsData.settings;
 
   const dict: ContactDictionary = {
     // Header
@@ -37,7 +39,7 @@ export default async function ContactPage({
     dedicatedRouting: t("dedicatedRouting"),
     emailBrief: t("emailBrief"),
     emailCreator: t("emailCreator"),
-    emailLabel: t("emailLabel"), // NEW key: add to your messages files (e.g. "Email")
+    emailLabel: t("emailLabel"),
     socialTitle: t("socialTitle"),
     officeHoursTitle: t("officeHoursTitle"),
     officeHours: t("officeHours"),

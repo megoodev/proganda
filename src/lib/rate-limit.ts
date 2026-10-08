@@ -1,23 +1,17 @@
-type Bucket = { count: number; resetAt: number };
+import "server-only";
+import { headers } from "next/headers";
+import { AppError } from "@/lib/actions/result";
 
-const buckets = new Map<string, Bucket>();
-
-export function rateLimit(key: string, limit: number, windowMs: number) {
-  const now = Date.now();
-  const current = buckets.get(key);
-  if (!current || current.resetAt <= now) {
-    buckets.set(key, { count: 1, resetAt: now + windowMs });
-    return { ok: true, remaining: limit - 1 };
-  }
-  if (current.count >= limit) {
-    return { ok: false, remaining: 0 };
-  }
-  current.count += 1;
-  return { ok: true, remaining: limit - current.count };
+// Stub: allows everything. Wire Upstash Ratelimit here (sliding window per key) before going live.
+// Keys used: "request:submit:<ip>"
+export async function rateLimit(key: string, limit: number = 10, window: number = 60_000): Promise<{ ok: boolean }> {
+  const limited = false;
+  if (limited) throw new AppError("RATE_LIMITED");
+  return { ok: true };
 }
 
-export async function clientKey(headersList: Headers) {
-  const forwarded = headersList.get("x-forwarded-for");
-  const ip = forwarded?.split(",")[0]?.trim() || headersList.get("x-real-ip") || "unknown";
+// Generate a client key for rate limiting based on IP address
+export async function clientKey(headersList: Headers): Promise<string> {
+  const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? headersList.get("x-real-ip") ?? "unknown";
   return ip;
 }

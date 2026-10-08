@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/page-header";
-import { getSettings } from "@/features/settings/queries/get-settings";
+import { getSiteSettings } from "@/features/settings/queries/get-site-settings";
 import { SettingsForm } from "./_components/settings-form";
 
 export default async function SettingsPage() {
   const t = await getTranslations("admin.settings");
-  const settings = await getSettings();
+  const settings = await getSiteSettings();
 
   return (
     <div className="space-y-6">

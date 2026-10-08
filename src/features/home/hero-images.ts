@@ -1,8 +1,20 @@
-// Rename the folder/files once: "assits" -> "assets", background.3.jpg -> background-3.jpg
 export const heroImages = [
-  "/assets/backgrounds/background-1.jpg",
-  "/assets/backgrounds/background-2.jpg",
-  "/assets/backgrounds/background-3.jpg",
-  "/assets/backgrounds/background-4.jpg",
-  "/assets/backgrounds/background-5.jpeg",
+  {
+    id: "1",
+    image: "/images/hero-1.jpg",
+    title: "Create Impact",
+    description: "We help brands connect with creators",
+  },
+  {
+    id: "2",
+    image: "/images/hero-2.jpg",
+    title: "Scale Your Brand",
+    description: "Strategic influencer marketing campaigns",
+  },
+  {
+    id: "3",
+    image: "/images/hero-3.jpg",
+    title: "Authentic Stories",
+    description: "Real connections, real results",
+  },
 ];

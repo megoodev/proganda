@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/shared/data-table";
 import { EmptyState } from "@/components/shared/empty-state";
 import { useAdminRole } from "@/features/admin/admin-role-context";
-import type { AdminUser } from "@/features/admin/mock-admins";
+import type { AdminUser } from "@/features/admin/schemas";
+import { assignRequest } from "@/features/requests/actions/assign-request";
+import { updateRequestStatus } from "@/features/requests/actions/update-request-status";
 import type { AdminRequest } from "@/features/requests/schemas";
 import { typesForRole } from "@/features/requests/role-types";
 import { useRequestColumns } from "./requests-columns";
@@ -20,7 +22,7 @@ export function RequestsTable({ initialRequests, admins }: Props) {
   const [rows, setRows] = useState(initialRequests);
   const [filters, setFilters] = useState<Filters>(defaultFilters);
 
-  const allowedTypes = typesForRole[role];
+  const allowedTypes = role ? typesForRole[role] : [];
 
   const visible = useMemo(
     () =>
@@ -35,11 +37,16 @@ export function RequestsTable({ initialRequests, admins }: Props) {
     [rows, filters, allowedTypes],
   );
 
-  // Phase C: these become Server Actions (assign-request.ts, update-request-status.ts) + audit log entries.
   const columns = useRequestColumns({
     admins,
-    onAssign: (id, adminId) => setRows((prev) => prev.map((row) => (row.id === id ? { ...row, assignedTo: adminId } : row))),
-    onStatus: (id, status) => setRows((prev) => prev.map((row) => (row.id === id ? { ...row, status } : row))),
+    onAssign: async (id, adminId) => {
+      const result = await assignRequest({ id, assignedToId: adminId });
+      if (result.ok) setRows((prev) => prev.map((row) => (row.id === id ? result.data : row)));
+    },
+    onStatus: async (id, status) => {
+      const result = await updateRequestStatus({ id, status });
+      if (result.ok) setRows((prev) => prev.map((row) => (row.id === id ? result.data : row)));
+    },
   });
 
   return (

@@ -8,7 +8,7 @@ import { DataGridColumnHeader } from "@/components/reui/data-grid/data-grid-colu
 import type { AdminColumnDef } from "@/components/shared/data-table";
 import { PersonCell } from "@/components/shared/person-cell";
 import { formatDate } from "@/lib/format";
-import type { AdminUser } from "@/features/admin/mock-admins";
+import type { AdminUser } from "@/features/admin/schemas";
 import { requestStatuses, type AdminRequest, type RequestStatus } from "@/features/requests/schemas";
 
 type Params = {

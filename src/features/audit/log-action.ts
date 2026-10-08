@@ -1,7 +1,8 @@
+import "server-only";
+import { prisma } from "@/lib/prisma";
 import type { AuditEntry } from "./schemas";
 
-// Phase C: insert into the AuditLog table (Prisma). Call it from EVERY sensitive Server Action
-// (delete, status change, contract review, role change, settings update) after the permission check.
+// Called automatically by adminAction (the `audit` option). The log is append-only: no update/delete.
 export async function logAction(entry: Omit<AuditEntry, "id" | "createdAt">) {
-  console.info("[audit]", entry);
+  await prisma.auditLog.create({ data: entry });
 }

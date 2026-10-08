@@ -1,64 +1,21 @@
-import { PrismaClient } from "../src/generated/prisma/client";
-
-const prisma = new PrismaClient();
+// Run: npx tsx prisma/seed.ts   (set SEED_ADMIN_EMAIL / SEED_ADMIN_NAME first)
+// Creates the first super admin. The account is linked to the logged-in user by email on first login.
+import { prisma } from "../src/lib/prisma";
 
 async function main() {
-  console.log("Starting seed...");
+  const email = process.env.SEED_ADMIN_EMAIL;
+  if (!email) throw new Error("Set SEED_ADMIN_EMAIL before seeding");
 
-  // Create default site settings
-  const settings = await prisma.siteSettings.upsert({
-    where: { id: "default" },
-    update: {},
-    create: {
-      id: "default",
-      siteName: "ProGanda",
-      whatsapp: "+201001234567",
-      email: "hello@proganda.studio",
-      socialLinks: {
-        create: [
-          {
-            platform: "instagram",
-            title: "Instagram",
-            url: "https://instagram.com/proganda",
-            icon: "instagram",
-            sortOrder: 0,
-          },
-          {
-            platform: "tiktok",
-            title: "TikTok",
-            url: "https://tiktok.com/@proganda",
-            icon: "tiktok",
-            sortOrder: 1,
-          },
-          {
-            platform: "youtube",
-            title: "YouTube",
-            url: "https://youtube.com/@proganda",
-            icon: "youtube",
-            sortOrder: 2,
-          },
-          {
-            platform: "facebook",
-            title: "Facebook",
-            url: "https://facebook.com/proganda",
-            icon: "facebook",
-            sortOrder: 3,
-          },
-        ],
-      },
-    },
+  await prisma.staffProfile.upsert({
+    where: { email },
+    create: { email, name: process.env.SEED_ADMIN_NAME ?? "Admin", adminRole: "SUPER_ADMIN" },
+    update: { adminRole: "SUPER_ADMIN", active: true },
   });
-
-  console.log("Created default settings:", settings);
-
-  console.log("Seed completed successfully!");
+await prisma.siteSettings.upsert({
+  where: { id: "site" },
+  create: { id: "site" },
+  update: {},
+});
 }
 
-main()
-  .catch((e) => {
-    console.error("Seed failed:", e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main().finally(() => prisma.$disconnect());

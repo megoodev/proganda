@@ -1,11 +1,12 @@
 import "server-only";
 
 import { cache } from "react";
-import type { UserRole } from "@/generated/prisma/enums";
 import { getAuthSession } from "@/lib/auth";
 import { isUserRole } from "@/lib/roles";
+import { UserRole } from "@/generated/prisma";
 
 export type SessionDTO = {
+  [x: string]: string;
   id: string;
   name: string;
   email: string;

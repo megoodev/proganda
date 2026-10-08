@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { admin } from "better-auth/plugins";
+import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import {
   isAdminRole,
@@ -23,6 +24,14 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: appUrl,
   trustedOrigins: [appUrl],
+
+  // تعطيل الـ Rate Limit في بيئة التطوير لتجنب مشكلة تكرار المحاولات على Localhost
+  rateLimit: {
+    enabled: process.env.NODE_ENV === "production",
+    window: 60, // النافذة الزمنية بالثواني
+    max: 100,   // أقصى عدد طلبات مسموح به لكل IP في الإنتاج
+  },
+
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
@@ -47,9 +56,6 @@ export const auth = betterAuth({
       secure: process.env.NODE_ENV === "production",
     },
   },
-  // No `user.additionalFields.role` and no role hook: the admin plugin already
-  // owns the `role` column and blocks clients from setting it. New accounts
-  // start as USER; signUpAction upgrades to BLOGGER/BRAND server-side.
   plugins: [
     admin({
       defaultRole: "USER",
@@ -59,8 +65,7 @@ export const auth = betterAuth({
 });
 
 export async function getAuthSession(requestHeaders?: Headers) {
-  const headersToPass =
-    requestHeaders ?? (await (await import("next/headers")).headers());
+  const headersToPass = requestHeaders ?? (await headers());
   return auth.api.getSession({ headers: headersToPass });
 }
 

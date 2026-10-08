@@ -1,10 +1,18 @@
-import type { Tone } from "@/components/shared/status-badge";
 import type { RequestStatus } from "./schemas";
 
-export const statusTone: Record<RequestStatus, Tone> = {
-  new: "info",
-  in_review: "warning",
-  in_progress: "warning",
-  done: "success",
-  rejected: "danger",
-};
+export function statusTone(status: RequestStatus): "default" | "success" | "warning" | "destructive" {
+  switch (status) {
+    case "NEW":
+      return "default";
+    case "IN_REVIEW":
+      return "warning";
+    case "IN_PROGRESS":
+      return "default";
+    case "DONE":
+      return "success";
+    case "REJECTED":
+      return "destructive";
+    default:
+      return "default";
+  }
+}

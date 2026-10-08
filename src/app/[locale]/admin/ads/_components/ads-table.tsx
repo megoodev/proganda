@@ -13,6 +13,7 @@ import { RowActions } from "@/components/shared/row-actions";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { formatDate } from "@/lib/format";
 import { useCrudList } from "@/features/admin/use-crud-list";
+import { deleteAd } from "@/features/ads/actions/delete-ad";
 import { adStatusTone, getAdStatus } from "@/features/ads/ad-status";
 import type { Ad } from "@/features/ads/schemas";
 import { AdFormDialog } from "./ad-form-dialog";
@@ -63,7 +64,10 @@ export function AdsTable({ initialAds }: { initialAds: Ad[] }) {
         enableSorting: false,
         cell: ({ row }) => {
           const status = getAdStatus(row.original);
-          return <StatusBadge label={t(`statuses.${status}`)} tone={adStatusTone[status]} />;
+          const tone = adStatusTone[status] ?? "default";
+          const label = t.has(`statuses.${status}`) ? t(`statuses.${status}`) : status;
+
+          return <StatusBadge label={label} tone={tone} />;
         },
         size: 130,
       },
@@ -88,7 +92,16 @@ export function AdsTable({ initialAds }: { initialAds: Ad[] }) {
         empty={<EmptyState icon={Megaphone} title={t("empty.title")} description={t("empty.description")} />}
       />
       {editing && <AdFormDialog key={editing === "new" ? "new" : editing.id} ad={editing === "new" ? undefined : editing} onClose={() => setEditing(null)} onSave={save} />}
-      <ConfirmDeleteDialog open={!!deleting} onOpenChange={(open) => !open && setDeleting(null)} onConfirm={confirmDelete} itemName={deleting?.title} />
+      <ConfirmDeleteDialog
+        open={!!deleting}
+        onOpenChange={(open) => !open && setDeleting(null)}
+        onConfirm={async () => {
+          if (!deleting) return;
+          const result = await deleteAd({ id: deleting.id });
+          if (result.ok) confirmDelete();
+        }}
+        itemName={deleting?.title}
+      />
     </>
   );
 }

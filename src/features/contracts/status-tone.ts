@@ -1,8 +1,14 @@
-import type { Tone } from "@/components/shared/status-badge";
-import type { ContractStatus } from "./schemas";
+import type { ContractReviewStatus } from "./schemas";
 
-export const contractTone: Record<ContractStatus, Tone> = {
-  pending: "warning",
-  approved: "success",
-  rejected: "danger",
-};
+export function contractTone(status: ContractReviewStatus): "default" | "success" | "warning" | "destructive" {
+  switch (status) {
+    case "PENDING":
+      return "warning";
+    case "APPROVED":
+      return "success";
+    case "REJECTED":
+      return "destructive";
+    default:
+      return "default";
+  }
+}

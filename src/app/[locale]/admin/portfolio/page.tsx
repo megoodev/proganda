@@ -3,12 +3,12 @@ import { Plus } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/shared/page-header";
-import { getCaseStudies } from "@/features/portfolio/queries/get-case-studies";
+import { listCaseStudies } from "@/features/portfolio/queries/list-case-studies";
 import { PortfolioTable } from "./_components/portfolio-table";
 
 export default async function AdminPortfolioPage() {
   const t = await getTranslations("admin.portfolio");
-  const caseStudies = await getCaseStudies();
+  const caseStudies = await listCaseStudies();
 
   return (
     <>

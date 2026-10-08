@@ -11,6 +11,7 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { PersonCell } from "@/components/shared/person-cell";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { formatCompactNumber } from "@/lib/format";
+import { setBloggerStatus } from "@/features/bloggers/actions/set-blogger-status";
 import type { Blogger, ContractStatus } from "@/features/bloggers/schemas";
 
 export function BloggersTable({ initialBloggers }: { initialBloggers: Blogger[] }) {
@@ -19,9 +20,10 @@ export function BloggersTable({ initialBloggers }: { initialBloggers: Blogger[] 
   const locale = useLocale();
   const [rows, setRows] = useState(initialBloggers);
 
-  // Phase C: Server Action (set-contract-status.ts) + audit log entry.
-  const setStatus = (id: string, status: ContractStatus) =>
-    setRows((prev) => prev.map((row) => (row.id === id ? { ...row, status } : row)));
+  const setStatus = async (id: string, status: ContractStatus) => {
+    const result = await setBloggerStatus({ id, status });
+    if (result.ok) setRows((prev) => prev.map((row) => (row.id === id ? result.data : row)));
+  };
 
   const columns = useMemo<AdminColumnDef<Blogger>[]>(
     () => [

@@ -37,7 +37,7 @@ export function AdminSidebar() {
     <Sidebar
       side={locale === "ar" ? "right" : "left"}
       collapsible="icon"
-      className="border-none bg-transparent p-2 md:p-3 transition-all duration-300 group-data-[collapsible=icon]:p-2 group-data-[collapsible=icon]:w-[72px]"
+      className="border-none bg-transparent p-2 md:p-3 transition-all duration-300 group-data-[collapsible=icon]:p-2 group-data-[collapsible=icon]:w-18"
     >
       {/* Floating Inner Card Container */}
       <div className="flex h-full w-full flex-col rounded-2xl border border-border/50 bg-card/90 text-card-foreground backdrop-blur-xl shadow-xl shadow-black/5 dark:shadow-black/20 overflow-hidden transition-all duration-300">
@@ -48,7 +48,7 @@ export function AdminSidebar() {
             href="/admin"
             className="group flex items-center gap-3 px-2 py-1.5 transition-opacity hover:opacity-90 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0"
           >
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/70 text-primary-foreground shadow-md shadow-primary/25 ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-primary via-primary/90 to-primary/70 text-primary-foreground shadow-md shadow-primary/25 ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105">
               <LayoutDashboard className="size-4.5" />
             </div>
             <div className="flex flex-col min-w-0 group-data-[collapsible=icon]:hidden leading-tight">
@@ -124,7 +124,7 @@ export function AdminSidebar() {
                                   {/* Hover Arrow Effect */}
                                   <ChevronRight
                                     className={cn(
-                                      "size-4 shrink-0 opacity-0 -translate-x-2 transition-all duration-200 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 group-data-[collapsible=icon]:hidden rtl:rotate-180 rtl:group-hover/btn:-translate-x-0",
+                                      "size-4 shrink-0 opacity-0 -translate-x-2 transition-all duration-200 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 group-data-[collapsible=icon]:hidden rtl:rotate-180 rtl:group-hover/btn:translate-x-0",
                                       active ? "text-primary opacity-100 translate-x-0" : "text-muted-foreground"
                                     )}
                                   />
@@ -168,7 +168,7 @@ export function AdminSidebar() {
                 {t("yourRole")}
               </p>
               <p className="truncate text-xs font-bold text-foreground">
-                {tRoles(role)}
+                {role ? tRoles(role) : "—"}
               </p>
             </div>
           </div>

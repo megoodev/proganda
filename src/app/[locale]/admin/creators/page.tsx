@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/page-header";
-import { getShowcaseCreators } from "@/features/creators/queries/get-showcase-creators";
+import { listShowcaseCreators } from "@/features/creators/queries/list-showcase-creators";
 import { CreatorsTable } from "./_components/creators-table";
 
 export default async function AdminCreatorsPage() {
   const t = await getTranslations("admin.creators");
-  const creators = await getShowcaseCreators();
+  const creators = await listShowcaseCreators();
 
   return (
     <>

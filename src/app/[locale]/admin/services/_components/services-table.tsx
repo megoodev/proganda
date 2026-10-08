@@ -11,6 +11,7 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { RowActions } from "@/components/shared/row-actions";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { useCrudList } from "@/features/admin/use-crud-list";
+import { deleteService } from "@/features/services/actions/delete-service";
 import type { Service } from "@/features/services/schemas";
 import { ServiceFormDialog } from "./service-form-dialog";
 
@@ -64,7 +65,16 @@ export function ServicesTable({ initialServices }: { initialServices: Service[] 
       {editing && (
         <ServiceFormDialog key={editing === "new" ? "new" : editing.id} service={editing === "new" ? undefined : editing} onClose={() => setEditing(null)} onSave={save} />
       )}
-      <ConfirmDeleteDialog open={!!deleting} onOpenChange={(open) => !open && setDeleting(null)} onConfirm={confirmDelete} itemName={deleting?.title} />
+      <ConfirmDeleteDialog
+        open={!!deleting}
+        onOpenChange={(open) => !open && setDeleting(null)}
+        onConfirm={async () => {
+          if (!deleting) return;
+          const result = await deleteService({ id: deleting.id });
+          if (result.ok) confirmDelete();
+        }}
+        itemName={deleting?.title}
+      />
     </>
   );
 }

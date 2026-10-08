@@ -9,6 +9,7 @@ import { DataTable, type AdminColumnDef } from "@/components/shared/data-table";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PersonCell } from "@/components/shared/person-cell";
 import { StatusBadge } from "@/components/shared/status-badge";
+import { setBrandStatus } from "@/features/brands/actions/set-brand-status";
 import type { Brand, BrandStatus } from "@/features/brands/schemas";
 
 export function BrandsTable({ initialBrands }: { initialBrands: Brand[] }) {

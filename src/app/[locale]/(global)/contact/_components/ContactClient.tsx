@@ -44,7 +44,6 @@ export type SocialLink = {
   icon?: string | null;
 };
 
-// Loose shape so the Prisma result (null fields) is accepted directly
 export type ContactSettings = {
   email?: string | null;
   whatsapp?: string | null;
@@ -53,14 +52,11 @@ export type ContactSettings = {
 };
 
 export type ContactDictionary = {
-  // Header
   eyebrow: string;
   title: string;
   description: string;
   responseTime: string;
   ndaProtected: string;
-
-  // Direct channels & contact info
   directChannelsTitle: string;
   directChannelsSubtitle: string;
   whatsapp: string;
@@ -77,8 +73,6 @@ export type ContactDictionary = {
   officeHours: string;
   officeLocationsTitle: string;
   officeLocations: string;
-
-  // Form labels
   formTitle: string;
   messageFormTitle: string;
   name: string;
@@ -94,8 +88,6 @@ export type ContactDictionary = {
   sending: string;
   success: string;
   error: string;
-
-  // Consultation
   consultationEyebrow: string;
   consultationTitle: string;
   consultationSubtitle: string;
@@ -113,8 +105,6 @@ export type ContactDictionary = {
   consultationNotes: string;
   consultationSubmit: string;
   consultationSuccess: string;
-
-  // FAQ
   faqTitle: string;
   faqSubtitle: string;
   faqs: Array<{ q: string; a: string }>;
@@ -129,7 +119,6 @@ export interface ContactClientProps {
 
 const BASE_ICON_CLASS = "size-[18px]";
 
-// Map icons directly to their brand colors
 const ICON_MAP: Record<string, ReactNode> = {
   instagram: <FaInstagram className={`${BASE_ICON_CLASS} text-[#E4405F]`} />,
   tiktok: <FaTiktok className={`${BASE_ICON_CLASS} text-foreground`} />,
@@ -149,17 +138,14 @@ const ICON_MAP: Record<string, ReactNode> = {
 };
 
 function getSocialIcon(platform: string, iconName?: string | null) {
-  // 1. Try matching by explicit icon name
   if (iconName) {
     const key = iconName.toLowerCase().trim();
     if (ICON_MAP[key]) return ICON_MAP[key];
   }
 
-  // 2. Try matching by platform name
   const p = platform.toLowerCase().trim();
   if (ICON_MAP[p]) return ICON_MAP[p];
 
-  // 3. Partial fallback matching
   if (p.includes("instagram")) return ICON_MAP.instagram;
   if (p.includes("tiktok")) return ICON_MAP.tiktok;
   if (p.includes("whatsapp")) return ICON_MAP.whatsapp;
@@ -168,7 +154,6 @@ function getSocialIcon(platform: string, iconName?: string | null) {
   if (p.includes("youtube")) return ICON_MAP.youtube;
   if (p.includes("twitter") || p === "x") return ICON_MAP.twitter;
 
-  // Default fallback
   return <LuGlobe className={`${BASE_ICON_CLASS} text-primary`} />;
 }
 
@@ -178,6 +163,7 @@ export function ContactClient({
   back,
   dict,
 }: ContactClientProps) {
+  // الاعتماد فقط على البيانات القادمة من قاعدة البيانات
   const socialLinks = directSocialLinks ?? settings?.socialLinks ?? [];
 
   const rawWhatsapp = settings?.whatsapp ?? "";
@@ -363,32 +349,9 @@ export function ContactClient({
                   </a>
                 ))
               ) : (
-                <>
-                  <a
-                    href="https://www.instagram.com/proganda1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold transition-colors hover:border-primary"
-                  >
-                    <span className="flex items-center gap-3 text-muted-foreground hover:text-accent-foreground">
-                      {ICON_MAP.instagram}
-                      Instagram
-                    </span>
-                    <LuArrowUpRight className="size-4 text-white/35 transition-colors group-hover:text-primary" />
-                  </a>
-                  <a
-                    href="https://www.tiktok.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold transition-colors hover:border-primary"
-                  >
-                    <span className="flex items-center gap-3 text-muted-foreground hover:text-accent-foreground">
-                      {ICON_MAP.tiktok}
-                      TikTok
-                    </span>
-                    <LuArrowUpRight className="size-4 text-white/35 transition-colors group-hover:text-primary" />
-                  </a>
-                </>
+                <p className="text-xs text-muted-foreground">
+                  لا توجد روابط تواصل اجتماعي حالياً
+                </p>
               )}
             </div>
           </div>

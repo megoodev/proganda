@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { AdminUser } from "@/features/admin/mock-admins";
+import type { AdminUser } from "@/features/admin/schemas";
 import { requestStatuses, type RequestType } from "@/features/requests/schemas";
 
 export type Filters = { type: string; status: string; assignee: string };

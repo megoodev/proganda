@@ -12,6 +12,7 @@ import { PersonCell } from "@/components/shared/person-cell";
 import { RowActions } from "@/components/shared/row-actions";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { useCrudList } from "@/features/admin/use-crud-list";
+import { deleteShowcaseCreator } from "@/features/creators/actions/delete-showcase-creator";
 import type { ShowcaseCreator } from "@/features/creators/schemas";
 import { CreatorFormDialog } from "./creator-form-dialog";
 
@@ -64,7 +65,16 @@ export function CreatorsTable({ initialCreators }: { initialCreators: ShowcaseCr
       {editing && (
         <CreatorFormDialog key={editing === "new" ? "new" : editing.id} creator={editing === "new" ? undefined : editing} onClose={() => setEditing(null)} onSave={save} />
       )}
-      <ConfirmDeleteDialog open={!!deleting} onOpenChange={(open) => !open && setDeleting(null)} onConfirm={confirmDelete} itemName={deleting?.name} />
+      <ConfirmDeleteDialog
+        open={!!deleting}
+        onOpenChange={(open) => !open && setDeleting(null)}
+        onConfirm={async () => {
+          if (!deleting) return;
+          const result = await deleteShowcaseCreator({ id: deleting.id });
+          if (result.ok) confirmDelete();
+        }}
+        itemName={deleting?.name}
+      />
     </>
   );
 }

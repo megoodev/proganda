@@ -88,7 +88,7 @@ export async function bootstrapAccountProfilesFromAuth(input: {
       city: parsed.city || null,
       governorate: parsed.governorate || null,
     };
-    await tx.profile.upsert({
+    await tx.Profile.upsert({
       where: { userId: parsed.userId },
       create: { userId: parsed.userId, ...base },
       update: base,

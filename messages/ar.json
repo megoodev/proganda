@@ -25,53 +25,7 @@
     "brandFirstPart": "برو",
     "brandSecondPart": "غاندا"
   },
-  "dashboard": {
-    "overview": "نظرة عامة",
-    "dashboard": "لوحة التحكم",
-    "cmsTitle": "إدارة المحتوى",
-    "cmsWelcome": "مرحباً {name}، تم تسجيل دخولك إلى مساحة عمل بروغاندا.",
-    "signedInAs": "مسجل الدخول باسم",
-    "accessLevel": "مستوى الصلاحية",
-    "roleAdmin": "مسؤول",
-    "roleTeam": "عضو فريق",
-    "sales": "المبيعات",
-    "store": "المتجر",
-    "orders": "الطلبات",
-    "allOrders": "كل الطلبات",
-    "unfulfilled": "غير المنفذة",
-    "returns": "المرتجعات",
-    "products": "المنتجات",
-    "catalog": "الكتالوج",
-    "inventory": "المخزون",
-    "collections": "المجموعات",
-    "customers": "العملاء",
-    "marketing": "التسويق",
-    "settings": "الإعدادات",
-    "storeSettings": "إعدادات المتجر",
-    "storeProfile": "ملف المتجر",
-    "shippingDelivery": "الشحن والتوصيل",
-    "payments": "المدفوعات",
-    "staff": "الفريق",
-    "apps": "التطبيقات",
-    "sellerHelp": "مساعدة البائع",
-    "platformStatus": "حالة المنصة",
-    "addProduct": "إضافة منتج",
-    "newProject": "مشروع جديد",
-    "searchStore": "البحث في المتجر",
-    "notifications": "الإشعارات",
-    "toggleSidebar": "إظهار أو إخفاء الشريط الجانبي",
-    "latestUpdate": "آخر تحديث",
-    "latestTitle": "خيارات شحن أكثر ذكاءً",
-    "latestDescription": "أسعار فورية عند إتمام الشراء.",
-    "changelog": "سجل التغييرات",
-    "closeUpdate": "إغلاق التحديث",
-    "storeOwner": "مالك المتجر",
-    "profileMenu": "الملف الشخصي",
-    "keyboardShortcuts": "اختصارات لوحة المفاتيح",
-    "sellerGuides": "أدلة البائع",
-    "planBilling": "الخطة والفوترة",
-    "logout": "تسجيل الخروج"
-  },
+
   "join": {
     "eyebrow": "للمبدعين والفريق والشركاء",
     "title": "لنصنع شيئاً معاً في بروغاندا.",
@@ -800,37 +754,37 @@
   "admin": {
     "nav": {
       "brand": "لوحة التحكم",
-      "soon": "قريبًا",
-      "yourRole": "دورك",
+      "soon": "قريباً",
+      "yourRole": "دورك الحالي",
       "groups": {
         "overview": "نظرة عامة",
         "requests": "الطلبات",
         "content": "المحتوى",
-        "people": "الأشخاص",
-        "chat": "الشات",
+        "people": "الأفراد",
+        "chat": "المحادثات",
         "system": "النظام"
       },
       "items": {
         "overview": "الرئيسية",
         "requests": "صندوق الطلبات",
-        "portfolio": "أعمالنا",
+        "portfolio": "معرض الأعمال",
         "services": "الخدمات",
-        "creators": "بلوجرز الموقع",
+        "creators": "صنّاع الموقع",
         "ads": "الإعلانات",
         "bloggers": "البلوجرز",
-        "brands": "البراندات",
+        "brands": "العلامات التجارية",
         "contracts": "العقود",
-        "admins": "الأدمنز",
+        "admins": "المسؤولون",
         "chat": "المحادثات",
-        "auditLog": "سجل العمليات",
+        "auditLog": "سجل النشاطات",
         "settings": "إعدادات الموقع"
       }
     },
     "roles": {
-      "viewingAs": "عرض بصلاحية",
-      "super_admin": "مدير عام",
+      "viewingAs": "العرض بصفتك",
+      "super_admin": "مسؤول رئيسي",
       "campaign_manager": "مدير الحملات",
-      "creator_manager": "مدير البلوجرز",
+      "creator_manager": "مدير صنّاع المحتوى",
       "hr": "الموارد البشرية",
       "ads_manager": "مدير الإعلانات"
     },
@@ -844,15 +798,15 @@
       "delete": "حذف",
       "edit": "تعديل",
       "deleteTitle": "تأكيد الحذف",
-      "deleteDescription": "سيتم حذف «{name}» نهائيًا ولا يمكن التراجع.",
-      "loading": "جارٍ التحميل...",
+      "deleteDescription": "سيتم حذف \"{name}\" نهائياً. لا يمكن التراجع عن هذا الإجراء.",
+      "loading": "جاري التحميل...",
       "search": "بحث",
       "noResults": "لا توجد نتائج",
-      "rowsPerPage": "عدد الصفوف",
+      "rowsPerPage": "عدد الصفوف في الصفحة",
       "paginationInfo": "{from} - {to} من {count}"
     },
     "platforms": {
-      "instagram": "إنستجرام",
+      "instagram": "إنستغرام",
       "tiktok": "تيك توك",
       "youtube": "يوتيوب",
       "facebook": "فيسبوك",
@@ -863,49 +817,49 @@
       "description": "ملخص سريع لنشاط الشركة.",
       "stats": {
         "totalViews": "إجمالي المشاهدات",
-        "newRequests": "طلبات جديدة",
-        "pendingContracts": "عقود بانتظار الموافقة",
-        "activeCreators": "بلوجرز متعاقدون"
+        "newRequests": "الطلبات الجديدة",
+        "pendingContracts": "العقود في انتظار الموافقة",
+        "activeCreators": "البلوجرز المتعاقد معهم"
       },
       "recent": {
-        "title": "آخر الطلبات"
+        "title": "أحدث الطلبات"
       },
       "pending": {
-        "title": "عقود معلقة",
+        "title": "العقود المعلقة",
         "empty": "لا توجد عقود معلقة"
       },
       "viewAll": "عرض الكل"
     },
     "requests": {
       "title": "صندوق الطلبات",
-      "description": "كل الطلبات في مكان واحد، مع توزيعها على الأدمنز.",
-      "searchPlaceholder": "ابحث بالاسم أو الموضوع",
-      "unassigned": "غير موزّع",
+      "description": "جميع الطلبات في مكان واحد، ومعينة للمسؤولين.",
+      "searchPlaceholder": "البحث باسم أو بالموضوع",
+      "unassigned": "غير معين",
       "columns": {
         "type": "النوع",
         "from": "من",
         "subject": "الموضوع",
         "status": "الحالة",
-        "assignedTo": "المسؤول",
+        "assignedTo": "معين لـ",
         "date": "التاريخ"
       },
       "types": {
         "consultation": "استشارة",
         "campaign": "حملة",
         "ad": "إعلان",
-        "job": "توظيف"
+        "job": "وظيفة"
       },
       "statuses": {
         "new": "جديد",
         "in_review": "قيد المراجعة",
         "in_progress": "قيد التنفيذ",
-        "done": "تم",
+        "done": "مكتمل",
         "rejected": "مرفوض"
       },
       "filters": {
         "type": "النوع",
         "status": "الحالة",
-        "assignee": "المسؤول"
+        "assignee": "المسؤول المعين"
       },
       "empty": {
         "title": "لا توجد طلبات",
@@ -913,14 +867,15 @@
       }
     },
     "portfolio": {
-      "title": "أعمالنا",
-      "description": "أعمال الشركة السابقة مع أرقام النتائج لكل منصة.",
+      "title": "معرض الأعمال",
+      "searchPlaceholder": "البحث في معرض الأعمال...",
+      "description": "أعمال الشركة السابقة مع النتائج حسب المنصة.",
       "new": "إضافة عمل",
       "newTitle": "إضافة عمل جديد",
       "editTitle": "تعديل العمل",
       "edit": "تعديل",
       "columns": {
-        "brand": "البراند",
+        "brand": "العلامة التجارية",
         "title": "العنوان",
         "views": "المشاهدات",
         "platforms": "المنصات",
@@ -932,28 +887,28 @@
       },
       "empty": {
         "title": "لا توجد أعمال بعد",
-        "description": "أضف أول عمل ليظهر في الموقع."
+        "description": "أضف العمل الأول لعرضه على الموقع."
       },
       "form": {
-        "brand": "اسم البراند",
+        "brand": "اسم العلامة التجارية",
         "title": "عنوان الحملة",
         "goal": "الهدف",
-        "summary": "ملخص",
-        "published": "نشر في الموقع",
-        "publishedHint": "يظهر العمل للزوار عند التفعيل.",
+        "summary": "الملخص",
+        "published": "نشر على الموقع",
+        "publishedHint": "يمكن للزوار رؤية هذا العمل عند التفعيل.",
         "metrics": "أرقام المنصات",
         "addPlatform": "إضافة منصة",
         "platform": "المنصة",
         "views": "المشاهدات",
-        "reach": "الريتش",
+        "reach": "الوصول",
         "engagement": "التفاعل",
-        "remove": "حذف",
-        "saveNote": "تم الحفظ (تجريبي، لم يُرسل لقاعدة البيانات)"
+        "remove": "إزالة",
+        "saveNote": "تم الحفظ (تجريبي، لم يتم الإرسال إلى قاعدة البيانات)"
       }
     },
     "bloggers": {
       "title": "البلوجرز",
-      "description": "البلوجرز المسجلون وحالة العقد مع كل واحد.",
+      "description": "البلوجرز المسجلون وحالة عقودهم.",
       "columns": {
         "name": "الاسم",
         "niche": "المجال",
@@ -962,16 +917,17 @@
         "contract": "العقد"
       },
       "contract": {
-        "pending": "بانتظار الموافقة",
-        "contracted": "متعاقد"
+        "pending": "قيد الانتظار",
+        "contracted": "متعاقد معه"
       },
-      "approve": "موافقة على العقد",
-      "revoke": "إلغاء التعاقد",
+      "approve": "الموافقة على العقد",
+      "revoke": "إلغاء",
       "empty": "لا يوجد بلوجرز بعد"
     },
     "services": {
       "title": "الخدمات",
-      "description": "الخدمات اللي بتظهر في صفحة خدماتنا.",
+      "description": "الخدمات المعروضة في صفحة الخدمات العامة.",
+      "searchPlaceholder": "البحث في الخدمات...",
       "new": "إضافة خدمة",
       "columns": {
         "title": "الخدمة",
@@ -979,25 +935,25 @@
         "status": "الحالة"
       },
       "status": {
-        "published": "منشورة",
+        "published": "منشور",
         "draft": "مسودة"
       },
       "empty": {
         "title": "لا توجد خدمات",
-        "description": "أضف أول خدمة لتظهر في الموقع."
+        "description": "أضف الخدمة الأولى لعرضها على الموقع."
       },
       "form": {
         "newTitle": "إضافة خدمة",
         "editTitle": "تعديل الخدمة",
         "title": "اسم الخدمة",
         "description": "الوصف",
-        "published": "نشر في الموقع"
+        "published": "نشر على الموقع"
       }
     },
     "creators": {
-      "title": "بلوجرز الموقع",
-      "description": "البلوجرز اللي بيظهروا في الصفحة الرئيسية وصفحة البلوجرز.",
-      "new": "إضافة بلوجر",
+      "title": "صنّاع الموقع",
+      "description": "الصنّاع المعروضون في الصفحة الرئيسية وصفحة الصنّاع.",
+      "new": "إضافة صانع محتوى",
       "columns": {
         "name": "الاسم",
         "niche": "المجال",
@@ -1009,30 +965,30 @@
         "hidden": "مخفي"
       },
       "empty": {
-        "title": "لا يوجد بلوجرز",
-        "description": "أضف بلوجرًا ليظهر في الموقع."
+        "title": "لا يوجد صنّاع محتوى",
+        "description": "أضف صانع محتوى لعرضه على الموقع."
       },
       "form": {
-        "newTitle": "إضافة بلوجر",
-        "editTitle": "تعديل البلوجر",
+        "newTitle": "إضافة صانع محتوى",
+        "editTitle": "تعديل صانع المحتوى",
         "name": "الاسم",
         "niche": "المجال",
         "reach": "الوصول",
         "reachHint": "مثال: 1.2M",
         "image": "رابط الصورة",
-        "imageHint": "سيُستبدل برفع الصورة لاحقًا.",
-        "published": "إظهار في الموقع"
+        "imageHint": "سيتم استبداله بحقل رفع الصور لاحقاً.",
+        "published": "إظهار على الموقع"
       }
     },
     "ads": {
       "title": "الإعلانات",
-      "description": "إعلانات الشركة وإعلانات البراندات المدفوعة.",
+      "description": "إعلانات الشركة وإعلانات العلامات التجارية المدفوعة.",
       "new": "إضافة إعلان",
       "columns": {
         "title": "الإعلان",
-        "placement": "المكان",
+        "placement": "الموقع",
         "source": "المصدر",
-        "period": "الفترة",
+        "period": "المدة",
         "status": "الحالة"
       },
       "placements": {
@@ -1041,51 +997,59 @@
       },
       "sources": {
         "company": "الشركة",
-        "brand": "براند"
+        "brand": "علامة تجارية"
       },
+      "searchPlaceholder": "البحث في الإعلانات...",
       "statuses": {
         "draft": "مسودة",
         "scheduled": "مجدول",
         "active": "نشط",
-        "ended": "منتهي"
+        "ended": "منتهي",
+        "Unknown": "غير معروف",
+        "ACTIVE": "نشط",
+        "PENDING": "قيد الانتظار",
+        "PAUSED": "متوقف مؤقتاً",
+        "REJECTED": "مرفوض"
       },
       "empty": {
         "title": "لا توجد إعلانات",
-        "description": "أضف إعلانًا ليظهر في الموقع."
+        "description": "أضف إعلاناً لعرضه على الموقع."
       },
       "form": {
         "newTitle": "إضافة إعلان",
         "editTitle": "تعديل الإعلان",
         "title": "عنوان الإعلان",
         "body": "النص",
-        "placement": "مكان العرض",
+        "placement": "الموقع",
         "source": "مصدر الإعلان",
-        "brandName": "اسم البراند",
+        "brandName": "اسم العلامة التجارية",
         "startsAt": "يبدأ في",
         "endsAt": "ينتهي في",
         "published": "نشر"
       }
     },
     "brands": {
-      "title": "البراندات",
-      "description": "البراندات المسجلة وحالة العقد مع كل واحد.",
-      "columns": {
-        "name": "البراند",
-        "industry": "المجال",
-        "contact": "التواصل",
-        "contract": "العقد"
-      },
-      "contract": {
-        "pending": "بانتظار الموافقة",
-        "contracted": "متعاقد"
-      },
-      "approve": "موافقة على العقد",
-      "revoke": "إلغاء التعاقد",
-      "empty": "لا توجد براندات بعد"
+    "title": "العلامات التجارية",
+    "description": "العلامات التجارية المسجلة وحالة العقود الخاصة بها.",
+    "searchPlaceholder": "البحث في العلامات التجارية...",
+    "columns": {
+      "name": "العلامة التجارية",
+      "industry": "المجال",
+      "contact": "التواصل",
+      "contract": "العقد"
     },
+    "contract": {
+      "pending": "قيد الانتظار",
+      "contracted": "متعاقد"
+    },
+    "approve": "اعتماد العقد",
+    "revoke": "إلغاء",
+    "empty": "لا توجد علامات تجارية بعد"
+  },
     "contracts": {
       "title": "طلبات العقود",
-      "description": "مراجعة طلبات التعاقد من البلوجرز والبراندات.",
+      "description": "إدارة ومراجعة عقود المدوّنين والعلامات التجارية.",
+      "searchPlaceholder": "البحث في العقود...",
       "columns": {
         "party": "الطرف",
         "type": "النوع",
@@ -1093,115 +1057,110 @@
         "date": "التاريخ"
       },
       "types": {
-        "blogger": "بلوجر",
-        "brand": "براند"
+        "BLOGGER": "مدون",
+        "BRAND": "علامة تجارية"
       },
       "statuses": {
-        "pending": "بانتظار المراجعة",
-        "approved": "موافق عليه",
+        "pending": "قيد الانتظار",
+        "approved": "مقبول",
         "rejected": "مرفوض"
       },
       "review": "مراجعة",
-      "form": {
-        "status": "الحالة",
-        "notes": "ملاحظات الأدمن",
-        "notesHint": "لا تظهر للمستخدم."
-      },
-      "empty": "لا توجد طلبات عقود"
+      "empty": "لا توجد طلبات عقود بعد"
     },
     "admins": {
-      "title": "الأدمنز",
-      "description": "فريق الشركة وصلاحيات كل واحد.",
-      "new": "إضافة أدمن",
-      "lastSuperHint": "لا يمكن تغيير دور آخر مدير عام أو إيقافه.",
+      "title": "المسؤولون",
+      "description": "فريق الشركة وصلاحيات كل شخص.",
+      "new": "إضافة مسؤول",
+      "lastSuperHint": "لا يمكن تخفيض رتبة أو تعطيل المسؤول الرئيسي الأخير.",
       "columns": {
         "name": "الاسم",
-        "email": "الإيميل",
+        "email": "البريد الإلكتروني",
         "role": "الدور",
-        "active": "مفعّل"
+        "active": "نشط"
       },
       "form": {
-        "newTitle": "إضافة أدمن",
-        "editTitle": "تعديل الأدمن",
+        "newTitle": "إضافة مسؤول",
+        "editTitle": "تعديل مسؤول",
         "name": "الاسم",
-        "email": "الإيميل",
+        "email": "البريد الإلكتروني",
         "role": "الدور"
       },
-      "empty": "لا يوجد أدمنز"
+      "empty": "لا يوجد مسؤولون"
     },
     "chat": {
       "title": "المحادثات",
-      "description": "محادثات البلوجرز المتعاقدين فقط.",
-      "selectPrompt": "اختر محادثة لعرضها",
+      "description": "المحادثات المتاحة مع البلوجرز المتعاقد معهم فقط.",
+      "selectPrompt": "اختر محادثة",
       "noConversations": "لا توجد محادثات بعد",
-      "inputPlaceholder": "اكتب رسالة",
+      "inputPlaceholder": "اكتب رسالة...",
       "send": "إرسال",
       "back": "رجوع",
-      "managedBy": "المسؤول: {name}"
+      "managedBy": "يدار بواسطة {name}"
     },
     "audit": {
-      "title": "سجل العمليات",
-      "description": "من فعل ماذا ومتى داخل لوحة التحكم.",
+      "title": "سجل النشاطات",
+      "description": "سجل بالعمليات المنفذة ومن قام بها مع التوقيت داخل لوحة التحكم.",
       "columns": {
         "time": "الوقت",
-        "admin": "الأدمن",
-        "action": "العملية",
+        "admin": "المسؤول",
+        "action": "الإجراء",
         "entity": "القسم",
         "details": "التفاصيل"
       },
       "entities": {
         "request": "الطلبات",
         "contract": "العقود",
-        "portfolio": "أعمالنا",
+        "portfolio": "معرض الأعمال",
         "ad": "الإعلانات",
-        "admin": "الأدمنز",
+        "admin": "المسؤولون",
         "settings": "الإعدادات"
       },
       "actions": {
-        "request_assigned": "توزيع طلب",
-        "request_status_changed": "تغيير حالة طلب",
-        "contract_approved": "الموافقة على عقد",
-        "contract_rejected": "رفض عقد",
-        "portfolio_created": "إضافة عمل",
-        "portfolio_deleted": "حذف عمل",
-        "ad_created": "إضافة إعلان",
-        "admin_role_changed": "تغيير دور أدمن",
-        "settings_updated": "تعديل الإعدادات"
+        "request_assigned": "تم تعيين الطلب",
+        "request_status_changed": "تغيرت حالة الطلب",
+        "contract_approved": "تم قبول العقد",
+        "contract_rejected": "تم رفض العقد",
+        "portfolio_created": "تمت إضافة عمل",
+        "portfolio_deleted": "تم حذف عمل",
+        "ad_created": "تمت إضافة إعلان",
+        "admin_role_changed": "تغير دور المسؤول",
+        "settings_updated": "تمت تحديث الإعدادات"
       },
       "filters": {
         "entity": "القسم"
       },
-      "empty": "لا توجد عمليات مسجلة"
+      "empty": "لا توجد إجراءات مسجلة"
     },
     "settings": {
       "title": "إعدادات الموقع",
-      "description": "بيانات التواصل وروابط السوشيال اللي بتظهر في الموقع.",
-      "socialDescription": "أضف روابط السوشيال ميديا اللي بتظهر في الموقع",
+      "description": "بيانات التواصل وروابط التواصل الاجتماعي المعروضة على الموقع.",
+      "socialDescription": "إضافة روابط وسائل التواصل الاجتماعي التي تظهر على الموقع",
       "sections": {
         "contact": "التواصل",
-        "social": "السوشيال ميديا"
+        "social": "وسائل التواصل الاجتماعي"
       },
       "fields": {
         "siteName": "اسم الموقع",
-        "whatsapp": "رقم WhatsApp",
-        "email": "الإيميل"
+        "whatsapp": "رقم الواتساب",
+        "email": "البريد الإلكتروني"
       },
       "socialFields": {
-        "platform": "...",
-        "title": "...",
-        "url": "...",
+        "platform": "المنصة",
+        "title": "العنوان",
+        "url": "الرابط",
         "icon": "الأيقونة",
         "iconAuto": "تلقائي"
       },
-      "addSocial": "إضافة رابط",
-      "noSocialLinks": "لا توجد روابط سوشيال مضافة",
-      "noSocialLinksHint": "اضغط على زر الإضافة لبدء إضافة روابط",
+      "addSocial": "إضافة رابط تواصل",
+      "noSocialLinks": "لم يتم إضافة روابط تواصل بعد",
+      "noSocialLinksHint": "انقر على زر الإضافة للبدء في إضافة الرابط",
       "saveChanges": "حفظ التغييرات",
-      "saveChangesHint": "سيتم تطبيق التغييرات فوراً على الموقع",
+      "saveChangesHint": "سيتم تطبيق التغييرات على الموقع فوراً",
       "saved": "تم الحفظ",
-      "saving": "جارٍ الحفظ...",
-      "whatsappHint": "رقم موبايل مصري، مثال: 01001234567",
-      "saveNote": "تم الحفظ (تجريبي، لم يُرسل لقاعدة البيانات)"
+      "saving": "جاري الحفظ...",
+      "whatsappHint": "رقم هاتف مصري، مثال: 01001234567",
+      "saveNote": "تم الحفظ (تجريبي، لم يتم الإرسال إلى قاعدة البيانات)"
     }
   }
 }
